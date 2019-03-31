@@ -1,4 +1,4 @@
-import 'package:flutter_starter_kit/app/model/pojo/Attribute.dart';
+import 'package:flutter_plate/app/model/pojo/Attribute.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'Property.g.dart';

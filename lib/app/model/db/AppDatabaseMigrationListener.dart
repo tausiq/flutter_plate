@@ -1,5 +1,5 @@
-import 'package:flutter_starter_kit/utility/db/DatabaseHelper.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/util/db/DatabaseHelper.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDatabaseMigrationListener implements DatabaseMigrationListener{

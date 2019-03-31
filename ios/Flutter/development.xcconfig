@@ -1,5 +1,5 @@
 #include "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
 #include "Generated.xcconfig"
 
-APP_NAME=(Dev) Flutter Starter Kit
+APP_NAME=(D) Flutter Plate
 BUNDLE_SUFFIX=.dev

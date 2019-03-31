@@ -1,4 +1,4 @@
-package com.test.flutterstarterkit
+package com.genericslab.flutterplate
 
 import android.os.Bundle
 

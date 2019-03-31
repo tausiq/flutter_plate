@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_starter_kit/app/model/api/AppStoreAPIRepository.dart';
-import 'package:flutter_starter_kit/app/model/core/AppStoreApplication.dart';
-import 'package:flutter_starter_kit/app/model/pojo/AppContent.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/app/model/api/AppStoreAPIRepository.dart';
+import 'package:flutter_plate/app/model/core/AppStoreApplication.dart';
+import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeBloc{

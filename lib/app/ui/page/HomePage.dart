@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/app/bloc/HomeBloc.dart';
-import 'package:flutter_starter_kit/app/model/core/AppProvider.dart';
-import 'package:flutter_starter_kit/app/model/pojo/AppContent.dart';
-import 'package:flutter_starter_kit/app/ui/page/AppDetailPage.dart';
-import 'package:flutter_starter_kit/generated/i18n.dart';
-import 'package:flutter_starter_kit/utility/widget/StreamListItem.dart';
+import 'package:flutter_plate/app/bloc/HomeBloc.dart';
+import 'package:flutter_plate/app/model/core/AppProvider.dart';
+import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/app/ui/page/AppDetailPage.dart';
+import 'package:flutter_plate/generated/i18n.dart';
+import 'package:flutter_plate/util/widget/StreamListItem.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class HomePage extends StatefulWidget {

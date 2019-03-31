@@ -50,11 +50,20 @@ AppContent _$AppContentFromJson(Map<String, dynamic> json) {
       (json['price'] as num)?.toDouble(),
       json['bundleId'] as String,
       (json['averageUserRating'] as num)?.toDouble(),
-      json['userRatingCount'] as num);
+      json['userRatingCount'] as num)
+    ..isFeatureApp = json['isFeatureApp'] as int
+    ..isFreeApp = json['isFreeApp'] as int
+    ..order = json['order'] as int;
 }
 
 Map<String, dynamic> _$AppContentToJson(AppContent instance) =>
     <String, dynamic>{
+      'trackId': instance.trackId,
+      'isFeatureApp': instance.isFeatureApp,
+      'isFreeApp': instance.isFreeApp,
+      'trackName': instance.trackName,
+      'description': instance.description,
+      'order': instance.order,
       'isGameCenterEnabled': instance.isGameCenterEnabled,
       'screenshotUrls': instance.screenshotUrls,
       'ipadScreenshotUrls': instance.ipadScreenshotUrls,
@@ -78,8 +87,6 @@ Map<String, dynamic> _$AppContentToJson(AppContent instance) =>
       'currentVersionReleaseDate': instance.currentVersionReleaseDate,
       'isVppDeviceBasedLicensingEnabled':
           instance.isVppDeviceBasedLicensingEnabled,
-      'trackId': instance.trackId,
-      'trackName': instance.trackName,
       'releaseNotes': instance.releaseNotes,
       'releaseDate': instance.releaseDate,
       'primaryGenreId': instance.primaryGenreId,
@@ -89,7 +96,6 @@ Map<String, dynamic> _$AppContentToJson(AppContent instance) =>
       'minimumOsVersion': instance.minimumOsVersion,
       'primaryGenreName': instance.primaryGenreName,
       'genreIds': instance.genreIds,
-      'description': instance.description,
       'artistId': instance.artistId,
       'artistName': instance.artistName,
       'genres': instance.genres,

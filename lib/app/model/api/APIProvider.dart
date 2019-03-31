@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_starter_kit/app/model/pojo/response/LookupResponse.dart';
-import 'package:flutter_starter_kit/app/model/pojo/response/TopAppResponse.dart';
-import 'package:flutter_starter_kit/config/Env.dart';
-import 'package:flutter_starter_kit/utility/http/HttpException.dart';
-import 'package:flutter_starter_kit/utility/log/DioLogger.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/app/model/pojo/response/LookupResponse.dart';
+import 'package:flutter_plate/app/model/pojo/response/TopAppResponse.dart';
+import 'package:flutter_plate/config/Env.dart';
+import 'package:flutter_plate/util/http/HttpException.dart';
+import 'package:flutter_plate/util/log/DioLogger.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:sprintf/sprintf.dart';
 
 class APIProvider{

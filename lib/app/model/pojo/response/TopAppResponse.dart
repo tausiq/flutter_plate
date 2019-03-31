@@ -1,4 +1,4 @@
-import 'package:flutter_starter_kit/app/model/pojo/Entry.dart';
+import 'package:flutter_plate/app/model/pojo/Entry.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'TopAppResponse.g.dart';

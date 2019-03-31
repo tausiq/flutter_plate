@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/app/model/core/AppProvider.dart';
-import 'package:flutter_starter_kit/app/model/core/AppStoreApplication.dart';
-import 'package:flutter_starter_kit/config/Env.dart';
-import 'package:flutter_starter_kit/generated/i18n.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/app/model/core/AppProvider.dart';
+import 'package:flutter_plate/app/model/core/AppStoreApplication.dart';
+import 'package:flutter_plate/config/Env.dart';
+import 'package:flutter_plate/generated/i18n.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 
@@ -44,7 +44,7 @@ class AppComponentState extends State<AppComponent> {
         supportedLocales: S.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
         theme: new ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Env.value.primarySwatch,
         ),
         onGenerateRoute: _application.router.generator,
     );

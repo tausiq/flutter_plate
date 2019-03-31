@@ -1,10 +1,10 @@
-import 'package:flutter_starter_kit/app/model/api/APIProvider.dart';
-import 'package:flutter_starter_kit/app/model/db/DBAppStoreRepository.dart';
-import 'package:flutter_starter_kit/app/model/pojo/AppContent.dart';
-import 'package:flutter_starter_kit/app/model/pojo/Entry.dart';
-import 'package:flutter_starter_kit/app/model/pojo/response/LookupResponse.dart';
-import 'package:flutter_starter_kit/app/model/pojo/response/TopAppResponse.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/app/model/api/APIProvider.dart';
+import 'package:flutter_plate/app/model/db/DBAppStoreRepository.dart';
+import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/app/model/pojo/Entry.dart';
+import 'package:flutter_plate/app/model/pojo/response/LookupResponse.dart';
+import 'package:flutter_plate/app/model/pojo/response/TopAppResponse.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AppStoreAPIRepository{

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 
 class DioLogger{
   static void onSend(String tag, RequestOptions options){

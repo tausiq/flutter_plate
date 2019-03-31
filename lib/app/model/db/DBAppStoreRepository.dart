@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter_starter_kit/app/model/pojo/AppContent.dart';
-import 'package:flutter_starter_kit/app/model/pojo/Attribute.dart';
+import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/app/model/pojo/Attribute.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter_starter_kit/utility/log/Log.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 
 class DBAppStoreRepository{
 

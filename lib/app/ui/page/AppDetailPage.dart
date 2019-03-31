@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/app/bloc/AppDetailBloc.dart';
-import 'package:flutter_starter_kit/app/model/core/AppProvider.dart';
-import 'package:flutter_starter_kit/app/model/pojo/AppContent.dart';
-import 'package:flutter_starter_kit/generated/i18n.dart';
+import 'package:flutter_plate/app/bloc/AppDetailBloc.dart';
+import 'package:flutter_plate/app/model/core/AppProvider.dart';
+import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/generated/i18n.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class AppDetailPage extends StatefulWidget {
@@ -240,10 +240,10 @@ class _AppDetailPageState extends State<AppDetailPage> {
         itemCount: length,
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        separatorBuilder: (BuildContext context int index){
+        separatorBuilder: (BuildContext context, int index){
           return Container(width: 12);
         },
-        itemBuilder: (BuildContext context int index){
+        itemBuilder: (BuildContext context, int index){
           double left = 0 == index ? 20 : 0;
           double right = length - 1 == index ? 20 : 0;
           String url = appContent.screenshotUrls[index];

@@ -1,7 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/app/ui/page/AppDetailPage.dart';
-import 'package:flutter_starter_kit/app/ui/page/HomePage.dart';
+import 'package:flutter_plate/app/ui/page/AppDetailPage.dart';
+import 'package:flutter_plate/app/ui/page/HomePage.dart';
 
 var rootHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
