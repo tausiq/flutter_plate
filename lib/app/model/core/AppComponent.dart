@@ -14,9 +14,7 @@ class AppComponent extends StatefulWidget {
   AppComponent(this._application);
 
   @override
-  State createState() {
-    return new AppComponentState(_application);
-  }
+  State createState() => AppComponentState(_application);
 }
 
 class AppComponentState extends State<AppComponent> {
@@ -34,7 +32,7 @@ class AppComponentState extends State<AppComponent> {
   @override
   Widget build(BuildContext context) {
 
-    final app = new MaterialApp(
+    final app = MaterialApp(
         title: Env.value.appName,
         localizationsDelegates: [
           S.delegate,
@@ -43,7 +41,7 @@ class AppComponentState extends State<AppComponent> {
         ],
         supportedLocales: S.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
-        theme: new ThemeData(
+        theme: ThemeData(
           primarySwatch: Env.value.primarySwatch,
         ),
         onGenerateRoute: _application.router.generator,

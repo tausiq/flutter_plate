@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/ui/page/AppDetailPage.dart';
 import 'package:flutter_plate/app/ui/page/HomePage.dart';
 
-var rootHandler = new Handler(
+var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       return HomePage();
     });
 
-var appDetailRouteHandler = new Handler(
+var appDetailRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       String appId = params['appId']?.first;
       String heroTag = params['heroTag']?.first;
@@ -17,13 +17,13 @@ var appDetailRouteHandler = new Handler(
       String titleTag = params['titleTag']?.first;
 
 
-      return new AppDetailPage(appId: num.parse(appId), heroTag:heroTag,title: title, url: url, titleTag: titleTag);
+      return AppDetailPage(appId: num.parse(appId), heroTag:heroTag,title: title, url: url, titleTag: titleTag);
     });
 
 class AppRoutes {
 
   static void configureRoutes(Router router) {
-    router.notFoundHandler = new Handler(
+    router.notFoundHandler = Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
           print('ROUTE WAS NOT FOUND !!!');
         });

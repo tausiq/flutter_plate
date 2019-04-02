@@ -64,7 +64,7 @@ class APIProvider{
 
   void throwIfNoSuccess(Response response) {
     if(response.statusCode < 200 || response.statusCode > 299) {
-      throw new HttpException(response);
+      throw HttpException(response);
     }
   }
 

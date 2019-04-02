@@ -252,9 +252,9 @@ class _AppDetailPageState extends State<AppDetailPage> {
             child: CachedNetworkImage(
               imageUrl: url,
               fit: BoxFit.fitHeight,
-              errorWidget: new Icon(Icons.error),
-              fadeOutDuration: new Duration(seconds: 1),
-              fadeInDuration: new Duration(seconds: 1)
+              errorWidget: Icon(Icons.error),
+              fadeOutDuration: Duration(seconds: 1),
+              fadeInDuration: Duration(seconds: 1)
             )
           );
         }
@@ -278,9 +278,9 @@ class _AppDetailPageState extends State<AppDetailPage> {
         borderRadius: BorderRadius.circular(16.0),
         child: CachedNetworkImage(
             imageUrl: iconUrl,
-            errorWidget: new Icon(Icons.error),
-            fadeOutDuration: new Duration(seconds: 1),
-            fadeInDuration: new Duration(seconds: 1)
+            errorWidget: Icon(Icons.error),
+            fadeOutDuration: Duration(seconds: 1),
+            fadeInDuration: Duration(seconds: 1)
         )
     );
   }

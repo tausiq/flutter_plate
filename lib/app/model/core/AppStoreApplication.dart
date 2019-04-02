@@ -42,7 +42,6 @@ class AppStoreApplication implements Application {
   }
 
   void _initDBRepository(){
-
     dbAppStoreRepository = DBAppStoreRepository(_db.database);
   }
 
@@ -69,7 +68,7 @@ class AppStoreApplication implements Application {
   }
 
   void _initRouter(){
-    router = new Router();
+    router = Router();
     AppRoutes.configureRoutes(router);
   }
 }

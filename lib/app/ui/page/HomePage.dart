@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   HomeBloc bloc;
-  final TextEditingController _searchBoxController = new TextEditingController();
+  final TextEditingController _searchBoxController = TextEditingController();
   Color greyColor = Color.fromARGB(255, 163, 163, 163);
   var _keys = {};
   var listViewKey = UniqueKey();
@@ -225,9 +225,9 @@ class _HomePageState extends State<HomePage> {
                                 borderRadius: BorderRadius.circular(16.0),
                                 child: CachedNetworkImage(
                                     imageUrl: app.artworkUrl100,
-                                    errorWidget: new Icon(Icons.error),
-                                    fadeOutDuration: new Duration(seconds: 1),
-                                    fadeInDuration: new Duration(seconds: 1)
+                                    errorWidget: Icon(Icons.error),
+                                    fadeOutDuration: Duration(seconds: 1),
+                                    fadeInDuration: Duration(seconds: 1)
                                 )
                             ),
                           )
@@ -376,9 +376,9 @@ class _HomePageState extends State<HomePage> {
         borderRadius: radius,
         child: CachedNetworkImage(
             imageUrl: iconUrl,
-            errorWidget: new Icon(Icons.error),
-            fadeOutDuration: new Duration(seconds: 1),
-            fadeInDuration: new Duration(seconds: 1)
+            errorWidget: Icon(Icons.error),
+            fadeOutDuration: Duration(seconds: 1),
+            fadeInDuration: Duration(seconds: 1)
         )
     );
   }
