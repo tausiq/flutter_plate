@@ -4,14 +4,12 @@ import 'package:json_annotation/json_annotation.dart';
 part 'Entry.g.dart';
 
 @JsonSerializable()
-class Entry{
-
-
+class Entry {
   @JsonKey(name: 'im:name')
   Property imName;
   @JsonKey(name: 'im:image')
   List<Property> imImage;
-  Property summary;
+//  Property summary;
   @JsonKey(name: 'im:price')
   Property imPrice;
   @JsonKey(name: 'im:contentType')
@@ -25,13 +23,10 @@ class Entry{
   @JsonKey(name: 'im:releaseDate')
   Property imReleaseDate;
 
-
-  Entry(this.imName, this.imImage, this.summary, this.imPrice,
-      this.imContentType, this.title, this.link, this.id, this.imArtist,
-      this.category, this.imReleaseDate);
+  Entry(this.imName, this.imImage, this.imPrice, this.imContentType, this.title,
+      this.link, this.id, this.imArtist, this.category, this.imReleaseDate);
 
   factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
 
   Map<String, dynamic> toJson() => _$EntryToJson(this);
-
 }

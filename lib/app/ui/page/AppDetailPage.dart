@@ -83,7 +83,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
     showDialog(
         context: context,
         barrierDismissible: false,
-        child: Dialog(
+        builder: (_) => Dialog(
             child: Container(
                 padding: EdgeInsets.all(16),
                 child: Column(

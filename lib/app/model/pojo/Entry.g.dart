@@ -15,9 +15,6 @@ Entry _$EntryFromJson(Map<String, dynamic> json) {
           ?.map((e) =>
               e == null ? null : Property.fromJson(e as Map<String, dynamic>))
           ?.toList(),
-      json['summary'] == null
-          ? null
-          : Property.fromJson(json['summary'] as Map<String, dynamic>),
       json['im:price'] == null
           ? null
           : Property.fromJson(json['im:price'] as Map<String, dynamic>),
@@ -47,7 +44,6 @@ Entry _$EntryFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$EntryToJson(Entry instance) => <String, dynamic>{
       'im:name': instance.imName,
       'im:image': instance.imImage,
-      'summary': instance.summary,
       'im:price': instance.imPrice,
       'im:contentType': instance.imContentType,
       'title': instance.title,

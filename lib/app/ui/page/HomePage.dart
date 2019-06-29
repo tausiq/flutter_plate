@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         barrierDismissible: false,
-        child: Dialog(
+        builder: (_) => Dialog(
             child: Container(
                 padding: EdgeInsets.all(16),
                 child: Column(

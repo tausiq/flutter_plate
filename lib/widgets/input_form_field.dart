@@ -9,8 +9,8 @@ class InputFormField extends StatelessWidget {
   final bool obscureText, autoFocus;
   final double bottomMargin;
   final TextStyle textStyle, hintStyle;
-  var validateFunction;
-  var onSaved;
+  final Function validateFunction;
+  final Function onSaved;
   final int maxLength;
   final Key key;
   final int maxLines;
@@ -20,22 +20,22 @@ class InputFormField extends StatelessWidget {
   //passing props in the Constructor.
   InputFormField(
       {this.key,
-        this.hintText,
-        this.labelText,
-        this.obscureText,
-        this.autoFocus,
-        this.textInputType,
-        this.textFieldColor,
-        this.bottomMargin,
-        this.textStyle,
-        this.validateFunction,
-        this.onSaved,
-        this.hintStyle,
-        this.text,
-        this.maxLength,
-        this.controller,
-        this.textCapitalization,
-        this.maxLines});
+      this.hintText,
+      this.labelText,
+      this.obscureText,
+      this.autoFocus,
+      this.textInputType,
+      this.textFieldColor,
+      this.bottomMargin,
+      this.textStyle,
+      this.validateFunction,
+      this.onSaved,
+      this.hintStyle,
+      this.text,
+      this.maxLength,
+      this.controller,
+      this.textCapitalization,
+      this.maxLines});
 
   @override
   Widget build(BuildContext context) {
