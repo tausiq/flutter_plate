@@ -1,4 +1,6 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_plate/app/bloc/app_bloc_delegate.dart';
 import 'package:flutter_plate/app/model/core/AppComponent.dart';
 import 'package:flutter_plate/app/model/core/AppStoreApplication.dart';
 import 'package:flutter_stetho/flutter_stetho.dart';
@@ -32,6 +34,7 @@ class Env {
   void _init() async{
     if(EnvType.DEVELOPMENT == environmentType || EnvType.STAGING == environmentType){
       Stetho.initialize();
+      BlocSupervisor.delegate = AppBlocDelegate();
     }
 
     var application = AppStoreApplication();
