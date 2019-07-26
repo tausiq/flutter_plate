@@ -4,7 +4,7 @@ import 'package:flutter_plate/timer/bloc/bloc.dart';
 
 import 'bloc/timer_bloc.dart';
 
-class Actions extends StatelessWidget {
+class TimerActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(

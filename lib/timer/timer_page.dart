@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/timer/timer_actions.dart';
+import 'package:flutter_plate/timer/timer_actions.dart';
 
 import 'bloc/timer_bloc.dart';
 
@@ -45,7 +46,7 @@ class TimerPage extends StatelessWidget {
             condition: (previousState, currentState) =>
                 currentState.runtimeType != previousState.runtimeType,
             bloc: _timerBloc,
-            builder: (context, state) => Actions(),
+            builder: (context, state) => TimerActions(),
           ),
         ],
       ),
