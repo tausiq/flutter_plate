@@ -25,7 +25,8 @@ class _LoginFormState extends State<LoginForm> {
       ));
     }
 
-    return BlocListener<LoginBloc, LoginState>(
+    return BlocListener(
+      bloc: _loginBloc,
       listener: (context, state) {
         if (state is LoginFailure) {
           Scaffold.of(context).showSnackBar(
@@ -39,9 +40,9 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginEvent, LoginState>(
         bloc: _loginBloc,
         builder: (
-            BuildContext context,
-            LoginState state,
-            ) {
+          BuildContext context,
+          LoginState state,
+        ) {
           return Form(
             child: Column(
               children: [
@@ -56,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 RaisedButton(
                   onPressed:
-                  state is! LoginLoading ? _onLoginButtonPressed : null,
+                      state is! LoginLoading ? _onLoginButtonPressed : null,
                   child: Text('Login'),
                 ),
                 Container(

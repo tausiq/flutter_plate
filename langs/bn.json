@@ -1,0 +1,28 @@
+{
+    "hello_there": "ওহে!",
+    "see_you_soon": "শীঘ্রই আবার দেখা হবে",
+    "ok": "ঠিক আছে",
+    "cancel": "বাতিল",
+    "save": "রক্ষা",
+    "title_settings": "সেটিংস",
+    "subtitle_settings": "সেটিংস কনফিগার করুন",
+    "title_logout": "প্রস্থান",
+    "subtitle_logout": "অ্যাপ্লিকেশন থেকে লগআউট",
+    "title_about": "সম্পর্কিত",
+    "subtitle_about": "অ্যাপ্লিকেশন জানতে পান",
+    "title": "Hello",
+    "msg": "Hello {} in the {} world ",
+    "clickMe": "Click me",
+    "profile": {
+        "reset_password": {
+            "title": "Reset Password",
+            "username": "Username",
+            "password": "password"
+        }
+    },
+    "clicked": {
+        "zero": "You clicked {} times!",
+        "one": "You clicked {} time!",
+        "other": "You clicked {} times!"
+    }
+}

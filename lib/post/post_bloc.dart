@@ -9,7 +9,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:bloc/bloc.dart';
 
-
 class PostBloc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;
 
@@ -17,9 +16,9 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   @override
   Stream<PostState> transform(
-      Stream<PostEvent> events,
-      Stream<PostState> Function(PostEvent event) next,
-      ) {
+    Stream<PostEvent> events,
+    Stream<PostState> Function(PostEvent event) next,
+  ) {
     return super.transform(
       (events as Observable<PostEvent>).debounceTime(
         Duration(milliseconds: 500),
@@ -40,11 +39,13 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           yield PostLoaded(posts: posts, hasReachedMax: false);
         }
         if (currentState is PostLoaded) {
-          final posts = await _fetchPosts(currentState.posts.length, 20);
+          final posts =
+              await _fetchPosts((currentState as PostLoaded).posts.length, 20);
           yield posts.isEmpty
-              ? currentState.copyWith(hasReachedMax: true)
+              ? (currentState as PostLoaded).copyWith(hasReachedMax: true)
               : PostLoaded(
-              posts: currentState.posts + posts, hasReachedMax: false);
+                  posts: (currentState as PostLoaded).posts + posts,
+                  hasReachedMax: false);
         }
       } catch (_) {
         yield PostError();

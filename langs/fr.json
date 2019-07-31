@@ -1,0 +1,28 @@
+{
+    "hello_there": "Bonjour!",
+    "see_you_soon": "À bientôt!",
+    "ok": "D'accord",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "title_settings": "Settings",
+    "subtitle_settings": "Configure settings",
+    "title_logout": "Logout",
+    "subtitle_logout": "Logout from app",
+    "title_about": "About",
+    "subtitle_about": "Get to know the app",
+    "title": "Hello",
+    "msg": "Hello {} in the {} world ",
+    "clickMe": "Click me",
+    "profile": {
+        "reset_password": {
+            "title": "Reset Password",
+            "username": "Username",
+            "password": "password"
+        }
+    },
+    "clicked": {
+        "zero": "You clicked {} times!",
+        "one": "You clicked {} time!",
+        "other": "You clicked {} times!"
+    }
+}
