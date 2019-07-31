@@ -33,41 +33,46 @@ class AppStoreApplication implements Application {
   }
 
   Future<void> _initDB() async {
-    AppDatabaseMigrationListener migrationListener = AppDatabaseMigrationListener();
-    DatabaseConfig databaseConfig = DatabaseConfig(Env.value.dbVersion, Env.value.dbName, migrationListener);
+    AppDatabaseMigrationListener migrationListener =
+        AppDatabaseMigrationListener();
+    DatabaseConfig databaseConfig = DatabaseConfig(
+        Env.value.dbVersion, Env.value.dbName, migrationListener);
     _db = DatabaseHelper(databaseConfig);
     Log.info('DB name : ' + Env.value.dbName);
 //    await _db.deleteDB();
     await _db.open();
   }
 
-  void _initDBRepository(){
+  void _initDBRepository() {
     dbAppStoreRepository = DBAppStoreRepository(_db.database);
   }
 
-  void _initAPIRepository(){
+  void _initAPIRepository() {
     APIProvider apiProvider = APIProvider();
-    appStoreAPIRepository = AppStoreAPIRepository(apiProvider, dbAppStoreRepository);
+    appStoreAPIRepository =
+        AppStoreAPIRepository(apiProvider, dbAppStoreRepository);
   }
 
-  void _initLog(){
+  void _initLog() {
     Log.init();
 
-    switch(Env.value.environmentType){
+    switch (Env.value.environmentType) {
       case EnvType.TESTING:
       case EnvType.DEVELOPMENT:
-      case EnvType.STAGING:{
-        Log.setLevel(Level.ALL);
-        break;
-      }
-      case EnvType.PRODUCTION:{
-        Log.setLevel(Level.INFO);
-        break;
-      }
+      case EnvType.STAGING:
+        {
+          Log.setLevel(Level.ALL);
+          break;
+        }
+      case EnvType.PRODUCTION:
+        {
+          Log.setLevel(Level.INFO);
+          break;
+        }
     }
   }
 
-  void _initRouter(){
+  void _initRouter() {
     router = Router();
     AppRoutes.configureRoutes(router);
   }

@@ -8,7 +8,7 @@ import 'package:flutter_plate/app/model/pojo/response/LookupResponse.dart';
 import 'package:flutter_plate/app/model/pojo/response/TopAppResponse.dart';
 import 'package:rxdart/rxdart.dart';
 
-class AppStoreAPIRepository{
+class AppStoreAPIRepository {
   static const int TOP_100 = 100;
   static const int TOP_10 = 10;
 
@@ -17,68 +17,69 @@ class AppStoreAPIRepository{
 
   AppStoreAPIRepository(this._apiProvider, this._dbAppStoreRepository);
 
-
-  Observable<List<AppContent>> getTop100FreeApp(){
+  Observable<List<AppContent>> getTop100FreeApp() {
     return Observable.fromFuture(_apiProvider.getTopFreeApp(TOP_100))
-    .flatMap(_convertFromEntry)
-    .flatMap((List<AppContent> list){
+        .flatMap(_convertFromEntry)
+        .flatMap((List<AppContent> list) {
       return Observable.fromFuture(_loadAndSaveTopFreeApp(list, ''));
     });
   }
 
-  Observable<List<AppContent>> getTop10FeatureApp(){
+  Observable<List<AppContent>> getTop10FeatureApp() {
     return Observable.fromFuture(_apiProvider.getTopFeatureApp(TOP_10))
-    .flatMap(_convertFromEntry)
-    .flatMap((List<AppContent> list){
+        .flatMap(_convertFromEntry)
+        .flatMap((List<AppContent> list) {
       return Observable.fromFuture(_loadAndSaveFeatureApp(list, ''));
     });
   }
 
-  Observable<AppContent> getAppDetail(String id){
+  Observable<AppContent> getAppDetail(String id) {
     return Observable.fromFuture(_apiProvider.getAppDetail(id))
-    .flatMap((LookupResponse response){
+        .flatMap((LookupResponse response) {
       return Observable.just(response.results[0]);
-    })
-    .flatMap((AppContent appContent){
+    }).flatMap((AppContent appContent) {
       return Observable.fromFuture(_loadAndSaveAppDetail(appContent));
     });
   }
 
-
-  Observable<List<AppContent>> _convertFromEntry(TopAppResponse response){
+  Observable<List<AppContent>> _convertFromEntry(TopAppResponse response) {
     List<AppContent> appContent = [];
-    for(Entry entry in response.feed.entry){
+    for (Entry entry in response.feed.entry) {
       appContent.add(AppContent.fromEntry(entry));
     }
     return Observable.just(appContent);
   }
 
-  Future<List<AppContent>> _loadAndSaveFeatureApp(List<AppContent> list, String searchKey) async{
-    for(var i = 0; i < list.length ; i++){
+  Future<List<AppContent>> _loadAndSaveFeatureApp(
+      List<AppContent> list, String searchKey) async {
+    for (var i = 0; i < list.length; i++) {
       AppContent app = list[i];
       app.order = i;
       app.isFeatureApp = 1;
       await _dbAppStoreRepository.saveOrUpdateFeatureApp(app);
     }
-    List<AppContent> appList = await _dbAppStoreRepository.loadFeaturesApp(searchKey);
+    List<AppContent> appList =
+        await _dbAppStoreRepository.loadFeaturesApp(searchKey);
     return appList;
   }
 
-  Future<List<AppContent>> _loadAndSaveTopFreeApp(List<AppContent> list, String searchKey) async{
-    for(var i = 0; i < list.length ; i++){
+  Future<List<AppContent>> _loadAndSaveTopFreeApp(
+      List<AppContent> list, String searchKey) async {
+    for (var i = 0; i < list.length; i++) {
       AppContent app = list[i];
       app.order = i;
       app.isFreeApp = 1;
       await _dbAppStoreRepository.saveOrUpdateTopFreeApp(app);
     }
-    List<AppContent> appList = await _dbAppStoreRepository.loadTopFreeApp(searchKey);
+    List<AppContent> appList =
+        await _dbAppStoreRepository.loadTopFreeApp(searchKey);
     return appList;
   }
 
-  Future<AppContent> _loadAndSaveAppDetail(AppContent appContent) async{
+  Future<AppContent> _loadAndSaveAppDetail(AppContent appContent) async {
     await _dbAppStoreRepository.saveOrUpdateDetailApp(appContent);
-    AppContent appDb = await _dbAppStoreRepository.loadAppDetail(appContent.trackId);
+    AppContent appDb =
+        await _dbAppStoreRepository.loadAppDetail(appContent.trackId);
     return appDb;
   }
-
 }

@@ -5,7 +5,7 @@ import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
 
-class AppDetailBloc{
+class AppDetailBloc {
   final AppStoreApplication _application;
   CompositeSubscription _compositeSubscription = CompositeSubscription();
 
@@ -15,7 +15,6 @@ class AppDetailBloc{
   Stream<bool> get isShowLoading => _isShowLoading.stream;
   Stream<AppContent> get appContent => _appContent.stream;
 
-
   AppDetailBloc(this._application);
 
   void dispose() {
@@ -24,14 +23,14 @@ class AppDetailBloc{
     _appContent.close();
   }
 
-  void loadDetail(String appId){
+  void loadDetail(String appId) {
     _isShowLoading.add(true);
-    StreamSubscription subscription = _application.appStoreAPIRepository.getAppDetail(appId)
-        .listen((AppContent appContent){
+    StreamSubscription subscription = _application.appStoreAPIRepository
+        .getAppDetail(appId)
+        .listen((AppContent appContent) {
       _appContent.add(appContent);
       _isShowLoading.add(false);
     });
     _compositeSubscription.add(subscription);
   }
-
 }

@@ -2,9 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/model/core/app_store_application.dart';
 
-
 class AppProvider extends InheritedWidget {
-
   final AppStoreApplication application;
 
   AppProvider({Key key, Widget child, this.application})
@@ -17,11 +15,13 @@ class AppProvider extends InheritedWidget {
   }
 
   static Router getRouter(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider).application.router;
+    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider)
+        .application
+        .router;
   }
 
   static AppStoreApplication getApplication(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider).application;
+    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider)
+        .application;
   }
-
 }
