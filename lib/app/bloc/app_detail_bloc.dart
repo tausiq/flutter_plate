@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_plate/app/model/core/AppStoreApplication.dart';
+import 'package:flutter_plate/app/model/core/app_store_application.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';

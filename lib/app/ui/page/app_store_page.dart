@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/app/bloc/HomeBloc.dart';
-import 'package:flutter_plate/app/model/core/AppProvider.dart';
+import 'package:flutter_plate/app/bloc/app_store_bloc.dart';
+import 'package:flutter_plate/app/model/core/app_provider.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/generated/i18n.dart';
 import 'package:flutter_plate/util/widget/StreamListItem.dart';
@@ -20,7 +20,7 @@ class AppStorePage extends StatefulWidget {
 }
 
 class _AppStorePageState extends State<AppStorePage> {
-  HomeBloc bloc;
+  AppStoreBloc bloc;
   final TextEditingController _searchBoxController = TextEditingController();
   Color greyColor = Color.fromARGB(255, 163, 163, 163);
   var _keys = {};
@@ -72,7 +72,7 @@ class _AppStorePageState extends State<AppStorePage> {
 
   void _init() {
     if (null == bloc) {
-      bloc = HomeBloc(AppProvider.getApplication(context));
+      bloc = AppStoreBloc(AppProvider.getApplication(context));
       bloc.isShowLoading.listen((bool isLoading) {
         if (isLoading) {
           _showLoading();

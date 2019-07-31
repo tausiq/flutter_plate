@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_plate/app/model/api/APIProvider.dart';
-import 'package:flutter_plate/app/model/db/DBAppStoreRepository.dart';
+import 'package:flutter_plate/app/model/api/api_provider.dart';
+import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/app/model/pojo/Entry.dart';
 import 'package:flutter_plate/app/model/pojo/response/LookupResponse.dart';

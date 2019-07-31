@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter_plate/app/model/api/AppStoreAPIRepository.dart';
-import 'package:flutter_plate/app/model/core/AppStoreApplication.dart';
+import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
+import 'package:flutter_plate/app/model/core/app_store_application.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:rxdart/rxdart.dart';
 
-class HomeBloc{
+class AppStoreBloc{
 
   final AppStoreApplication _application;
   final _searchText = BehaviorSubject<String>();
@@ -15,7 +15,7 @@ class HomeBloc{
   final _noticeItemUpdate = BehaviorSubject<num>();
   List<HomeListItem> appList;
 
-  HomeBloc(this._application){
+  AppStoreBloc(this._application){
     _init();
   }
 

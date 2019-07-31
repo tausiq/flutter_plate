@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/app/model/core/AppProvider.dart';
-import 'package:flutter_plate/app/model/core/AppStoreApplication.dart';
+import 'package:flutter_plate/app/model/core/app_provider.dart';
+import 'package:flutter_plate/app/model/core/app_store_application.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/generated/i18n.dart';
 import 'package:flutter_plate/util/log/Log.dart';
