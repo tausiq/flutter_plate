@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/app/bloc/AppDetailBloc.dart';
+import 'package:flutter_plate/app/bloc/app_detail_bloc.dart';
 import 'package:flutter_plate/app/model/core/AppProvider.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/generated/i18n.dart';

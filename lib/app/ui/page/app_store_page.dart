@@ -4,21 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/bloc/HomeBloc.dart';
 import 'package:flutter_plate/app/model/core/AppProvider.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
-import 'package:flutter_plate/app/ui/page/AppDetailPage.dart';
 import 'package:flutter_plate/generated/i18n.dart';
 import 'package:flutter_plate/util/widget/StreamListItem.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
-class HomePage extends StatefulWidget {
+import 'app_detail_page.dart';
+
+class AppStorePage extends StatefulWidget {
   static const String PATH = '/';
 
-  HomePage({Key key}) : super(key: key);
+  AppStorePage({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _AppStorePageState createState() => _AppStorePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AppStorePageState extends State<AppStorePage> {
   HomeBloc bloc;
   final TextEditingController _searchBoxController = TextEditingController();
   Color greyColor = Color.fromARGB(255, 163, 163, 163);
