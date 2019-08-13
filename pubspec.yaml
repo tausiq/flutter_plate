@@ -21,7 +21,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  fluro: 1.4.0
+  fluro: 1.5.1
   dio: 2.1.5
   logging: 0.11.3+2
   json_annotation: 2.4.0
