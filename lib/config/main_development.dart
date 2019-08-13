@@ -10,5 +10,4 @@ class Development extends Env {
   EnvType environmentType = EnvType.DEVELOPMENT;
 
   final String dbName = 'dev-app.db';
-
 }

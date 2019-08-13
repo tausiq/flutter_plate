@@ -7,11 +7,11 @@ import 'package:intl/intl.dart';
 class DateTimePicker extends StatelessWidget {
   const DateTimePicker(
       {Key key,
-        this.labelText,
-        this.selectedDate,
-        this.selectedTime,
-        this.selectDate,
-        this.selectTime})
+      this.labelText,
+      this.selectedDate,
+      this.selectedTime,
+      this.selectDate,
+      this.selectTime})
       : super(key: key);
 
   final String labelText;
@@ -31,7 +31,7 @@ class DateTimePicker extends StatelessWidget {
 
   Future<Null> _selectTime(BuildContext context) async {
     final TimeOfDay picked =
-    await showTimePicker(context: context, initialTime: selectedTime);
+        await showTimePicker(context: context, initialTime: selectedTime);
     if (picked != null && picked != selectedTime) selectTime(picked);
   }
 

@@ -7,7 +7,6 @@ import 'package:bloc/bloc.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
-
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final UserRepository userRepository;
@@ -20,8 +19,8 @@ class AuthenticationBloc
 
   @override
   Stream<AuthenticationState> mapEventToState(
-      AuthenticationEvent event,
-      ) async* {
+    AuthenticationEvent event,
+  ) async* {
     if (event is AppStarted) {
       final bool hasToken = await userRepository.hasToken();
 

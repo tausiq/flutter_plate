@@ -4,20 +4,19 @@ import 'package:json_annotation/json_annotation.dart';
 part 'TopAppResponse.g.dart';
 
 @JsonSerializable()
-class TopAppResponse{
-
+class TopAppResponse {
   Feed feed;
 
   TopAppResponse(this.feed);
 
-  factory TopAppResponse.fromJson(Map<String, dynamic> json) => _$TopAppResponseFromJson(json);
+  factory TopAppResponse.fromJson(Map<String, dynamic> json) =>
+      _$TopAppResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$TopAppResponseToJson(this);
-
 }
 
 @JsonSerializable()
-class Feed{
+class Feed {
   List<Entry> entry;
 
   Feed(this.entry);
@@ -25,5 +24,4 @@ class Feed{
   factory Feed.fromJson(Map<String, dynamic> json) => _$FeedFromJson(json);
 
   Map<String, dynamic> toJson() => _$FeedToJson(this);
-
 }

@@ -11,5 +11,4 @@ class Production extends Env {
   EnvType environmentType = EnvType.PRODUCTION;
 
   final String dbName = 'prod-app.db';
-
 }

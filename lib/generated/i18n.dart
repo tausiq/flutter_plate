@@ -8,15 +8,16 @@ import 'package:flutter/material.dart';
 import 'messages_all.dart';
 
 class S {
- 
-  static const GeneratedLocalizationsDelegate delegate = GeneratedLocalizationsDelegate();
+  static const GeneratedLocalizationsDelegate delegate =
+      GeneratedLocalizationsDelegate();
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
-  
+
   static Future<S> load(Locale locale) {
-    final String name = locale.countryCode == null ? locale.languageCode : locale.toString();
+    final String name =
+        locale.countryCode == null ? locale.languageCode : locale.toString();
 
     final String localeName = Intl.canonicalizedLocale(name);
 
@@ -25,7 +26,7 @@ class S {
       return new S();
     });
   }
-  
+
   String get hello {
     return Intl.message('Hello', name: 'hello');
   }
@@ -53,8 +54,6 @@ class S {
   String get detailRate {
     return Intl.message('Comments', name: 'detailRate');
   }
-
-
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
@@ -62,11 +61,10 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-			Locale("en", ""),
-			Locale("ja", ""),
-			Locale("zh", "TW"),
-			Locale("de", ""),
-
+      Locale("en", ""),
+      Locale("ja", ""),
+      Locale("zh", "TW"),
+      Locale("de", ""),
     ];
   }
 
@@ -109,7 +107,7 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) =>
-    locale != null && supportedLocales.contains(locale);
+      locale != null && supportedLocales.contains(locale);
 
   @override
   bool shouldReload(GeneratedLocalizationsDelegate old) => false;

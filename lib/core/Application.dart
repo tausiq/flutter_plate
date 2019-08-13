@@ -1,4 +1,4 @@
-abstract class Application{
+abstract class Application {
   void onCreate();
   void onTerminate();
 }

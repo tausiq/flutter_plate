@@ -4,16 +4,14 @@ import 'package:json_annotation/json_annotation.dart';
 part 'LookupResponse.g.dart';
 
 @JsonSerializable()
-class LookupResponse{
-
+class LookupResponse {
   int resultCount;
   List<AppContent> results;
 
-
   LookupResponse(this.resultCount, this.results);
 
-  factory LookupResponse.fromJson(Map<String, dynamic> json) => _$LookupResponseFromJson(json);
+  factory LookupResponse.fromJson(Map<String, dynamic> json) =>
+      _$LookupResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$LookupResponseToJson(this);
-
 }

@@ -32,7 +32,8 @@ class AuthPage extends StatelessWidget {
           }
           if (state is AuthenticationLoading) {
             return LoadingIndicator();
-          } else return null;
+          } else
+            return null;
         },
       ),
     );

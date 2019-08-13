@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 
-
 class UserRepository {
   Future<String> authenticate({
     @required String username,

@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthenticationBloc authenticationBloc =
-    BlocProvider.of<AuthenticationBloc>(context);
+        BlocProvider.of<AuthenticationBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -18,11 +18,11 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: Center(
             child: RaisedButton(
-              child: Text('logout'),
-              onPressed: () {
-                authenticationBloc.dispatch(LoggedOut());
-              },
-            )),
+          child: Text('logout'),
+          onPressed: () {
+            authenticationBloc.dispatch(LoggedOut());
+          },
+        )),
       ),
     );
   }

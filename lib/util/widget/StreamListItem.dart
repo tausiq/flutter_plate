@@ -2,14 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 
-class StreamListItem<T, S> extends StatefulWidget{
-
+class StreamListItem<T, S> extends StatefulWidget {
   final T initialData;
   final StreamListItemComparator<T, S> comparator;
   final StreamListItemBuilder<T> builder;
   final Stream<S> stream;
 
-  StreamListItem({Key key, this.initialData, this.comparator, this.builder, this.stream}) : super(key: key);
+  StreamListItem(
+      {Key key, this.initialData, this.comparator, this.builder, this.stream})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -17,12 +18,11 @@ class StreamListItem<T, S> extends StatefulWidget{
   }
 }
 
-
-typedef StreamListItemBuilder<T> = Widget Function(BuildContext context, T data);
+typedef StreamListItemBuilder<T> = Widget Function(
+    BuildContext context, T data);
 typedef StreamListItemComparator<T, S> = bool Function(T data, S changedObject);
 
 class _StreamListItemState<T, S> extends State<StreamListItem<T, S>> {
-
   T _data;
   StreamSubscription<S> _subscription;
 
@@ -55,11 +55,11 @@ class _StreamListItemState<T, S> extends State<StreamListItem<T, S>> {
     return widget.builder(context, _data);
   }
 
-  void _subscribe(){
-    _subscription = widget.stream.listen((idObj){
+  void _subscribe() {
+    _subscription = widget.stream.listen((idObj) {
       bool isSameObjId = widget.comparator(_data, idObj);
-      if(isSameObjId){
-        setState((){}); // Force update
+      if (isSameObjId) {
+        setState(() {}); // Force update
       }
     });
   }
@@ -70,5 +70,4 @@ class _StreamListItemState<T, S> extends State<StreamListItem<T, S>> {
       _subscription = null;
     }
   }
-
 }

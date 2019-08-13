@@ -11,16 +11,15 @@ final _$ja = $ja();
 
 class $ja extends MessageLookupByLibrary {
   get localeName => 'ja';
-  
-  final messages = {
-		"hello" : MessageLookupByLibrary.simpleMessage("Hello"),
-		"title" : MessageLookupByLibrary.simpleMessage("Hello world App"),
-		"dialogLoading" : MessageLookupByLibrary.simpleMessage("読み込み中 ..."),
-		"homeEmptyList" : MessageLookupByLibrary.simpleMessage("結果なし"),
-		"homeSearchHint" : MessageLookupByLibrary.simpleMessage("検索 ..."),
-		"homeRecommend" : MessageLookupByLibrary.simpleMessage("おすすめ"),
-		"detailRate" : MessageLookupByLibrary.simpleMessage("コメント"),
 
+  final messages = {
+    "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "title": MessageLookupByLibrary.simpleMessage("Hello world App"),
+    "dialogLoading": MessageLookupByLibrary.simpleMessage("読み込み中 ..."),
+    "homeEmptyList": MessageLookupByLibrary.simpleMessage("結果なし"),
+    "homeSearchHint": MessageLookupByLibrary.simpleMessage("検索 ..."),
+    "homeRecommend": MessageLookupByLibrary.simpleMessage("おすすめ"),
+    "detailRate": MessageLookupByLibrary.simpleMessage("コメント"),
   };
 }
 
@@ -28,16 +27,15 @@ final _$zh_TW = $zh_TW();
 
 class $zh_TW extends MessageLookupByLibrary {
   get localeName => 'zh_TW';
-  
-  final messages = {
-		"hello" : MessageLookupByLibrary.simpleMessage("Hello"),
-		"title" : MessageLookupByLibrary.simpleMessage("Hello world App"),
-		"dialogLoading" : MessageLookupByLibrary.simpleMessage("載入中 ..."),
-		"homeEmptyList" : MessageLookupByLibrary.simpleMessage("沒有結果"),
-		"homeSearchHint" : MessageLookupByLibrary.simpleMessage("搜索 ..."),
-		"homeRecommend" : MessageLookupByLibrary.simpleMessage("推介"),
-		"detailRate" : MessageLookupByLibrary.simpleMessage("評論"),
 
+  final messages = {
+    "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "title": MessageLookupByLibrary.simpleMessage("Hello world App"),
+    "dialogLoading": MessageLookupByLibrary.simpleMessage("載入中 ..."),
+    "homeEmptyList": MessageLookupByLibrary.simpleMessage("沒有結果"),
+    "homeSearchHint": MessageLookupByLibrary.simpleMessage("搜索 ..."),
+    "homeRecommend": MessageLookupByLibrary.simpleMessage("推介"),
+    "detailRate": MessageLookupByLibrary.simpleMessage("評論"),
   };
 }
 
@@ -45,16 +43,15 @@ final _$en = $en();
 
 class $en extends MessageLookupByLibrary {
   get localeName => 'en';
-  
-  final messages = {
-		"hello" : MessageLookupByLibrary.simpleMessage("Hello"),
-		"title" : MessageLookupByLibrary.simpleMessage("Hello world App"),
-		"dialogLoading" : MessageLookupByLibrary.simpleMessage("Loading ..."),
-		"homeEmptyList" : MessageLookupByLibrary.simpleMessage("No results"),
-		"homeSearchHint" : MessageLookupByLibrary.simpleMessage("Search ..."),
-		"homeRecommend" : MessageLookupByLibrary.simpleMessage("Recommend"),
-		"detailRate" : MessageLookupByLibrary.simpleMessage("Comments"),
 
+  final messages = {
+    "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "title": MessageLookupByLibrary.simpleMessage("Hello world App"),
+    "dialogLoading": MessageLookupByLibrary.simpleMessage("Loading ..."),
+    "homeEmptyList": MessageLookupByLibrary.simpleMessage("No results"),
+    "homeSearchHint": MessageLookupByLibrary.simpleMessage("Search ..."),
+    "homeRecommend": MessageLookupByLibrary.simpleMessage("Recommend"),
+    "detailRate": MessageLookupByLibrary.simpleMessage("Comments"),
   };
 }
 
@@ -62,40 +59,36 @@ final _$de = $de();
 
 class $de extends MessageLookupByLibrary {
   get localeName => 'de';
-  
-  final messages = {
-		"hello" : MessageLookupByLibrary.simpleMessage("Hello"),
-		"title" : MessageLookupByLibrary.simpleMessage("Hello world App"),
-		"dialogLoading" : MessageLookupByLibrary.simpleMessage("Wird geladen ..."),
-		"homeEmptyList" : MessageLookupByLibrary.simpleMessage("Keine Ergebnisse"),
-		"homeSearchHint" : MessageLookupByLibrary.simpleMessage("Suche ..."),
-		"homeRecommend" : MessageLookupByLibrary.simpleMessage("Empfehlen"),
-		"detailRate" : MessageLookupByLibrary.simpleMessage("Bemerkungen"),
 
+  final messages = {
+    "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+    "title": MessageLookupByLibrary.simpleMessage("Hello world App"),
+    "dialogLoading": MessageLookupByLibrary.simpleMessage("Wird geladen ..."),
+    "homeEmptyList": MessageLookupByLibrary.simpleMessage("Keine Ergebnisse"),
+    "homeSearchHint": MessageLookupByLibrary.simpleMessage("Suche ..."),
+    "homeRecommend": MessageLookupByLibrary.simpleMessage("Empfehlen"),
+    "detailRate": MessageLookupByLibrary.simpleMessage("Bemerkungen"),
   };
 }
 
-
-
 typedef Future<dynamic> LibraryLoader();
 Map<String, LibraryLoader> _deferredLibraries = {
-	"ja": () => Future.value(null),
-	"zh_TW": () => Future.value(null),
-	"en": () => Future.value(null),
-	"de": () => Future.value(null),
-
+  "ja": () => Future.value(null),
+  "zh_TW": () => Future.value(null),
+  "en": () => Future.value(null),
+  "de": () => Future.value(null),
 };
 
 MessageLookupByLibrary _findExact(localeName) {
   switch (localeName) {
     case "ja":
-        return _$ja;
+      return _$ja;
     case "zh_TW":
-        return _$zh_TW;
+      return _$zh_TW;
     case "en":
-        return _$en;
+      return _$en;
     case "de":
-        return _$de;
+      return _$de;
 
     default:
       return null;
@@ -105,8 +98,7 @@ MessageLookupByLibrary _findExact(localeName) {
 /// User programs should call this before using [localeName] for messages.
 Future<bool> initializeMessages(String localeName) async {
   var availableLocale = Intl.verifiedLocale(
-      localeName,
-          (locale) => _deferredLibraries[locale] != null,
+      localeName, (locale) => _deferredLibraries[locale] != null,
       onFailure: (_) => null);
   if (availableLocale == null) {
     return Future.value(false);
@@ -129,8 +121,8 @@ bool _messagesExistFor(String locale) {
 }
 
 MessageLookupByLibrary _findGeneratedMessagesFor(locale) {
-  var actualLocale = Intl.verifiedLocale(locale, _messagesExistFor,
-      onFailure: (_) => null);
+  var actualLocale =
+      Intl.verifiedLocale(locale, _messagesExistFor, onFailure: (_) => null);
   if (actualLocale == null) return null;
   return _findExact(actualLocale);
 }
