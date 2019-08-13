@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class User {
   final String id;
   final String firstName;
@@ -7,18 +5,14 @@ class User {
   final String profileImageURL;
   final String email;
   final String phone;
-  final DocumentReference reference;
 
-  User.fromMap(Map<dynamic, dynamic> val, {this.reference})
+  User.fromMap(Map<dynamic, dynamic> val)
       : id = val['id'],
         firstName = val['first_name'],
         lastName = val['last_name'],
         email = val['email'],
         phone = val['phone'],
         profileImageURL = val['profile_image_url'];
-
-  User.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
 
   toJson() {
     return {
