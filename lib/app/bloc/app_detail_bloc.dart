@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter_plate/app/model/core/app_store_application.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/core/application_impl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
 
 class AppDetailBloc {
-  final AppStoreApplication _application;
+  final ApplicationImpl _application;
   CompositeSubscription _compositeSubscription = CompositeSubscription();
 
   final _isShowLoading = BehaviorSubject<bool>();

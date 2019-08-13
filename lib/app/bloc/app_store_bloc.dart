@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
-import 'package:flutter_plate/app/model/core/app_store_application.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/core/application_impl.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AppStoreBloc {
-  final AppStoreApplication _application;
+  final ApplicationImpl _application;
   final _searchText = BehaviorSubject<String>();
   final _feedList = BehaviorSubject<List<HomeListItem>>();
   final _isShowLoading = BehaviorSubject<bool>();

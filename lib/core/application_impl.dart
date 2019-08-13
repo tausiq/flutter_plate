@@ -3,16 +3,17 @@ import 'dart:async';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_plate/app/model/api/api_provider.dart';
 import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
-import 'package:flutter_plate/app/model/core/app_routes.dart';
 import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
-import 'package:flutter_plate/util/framework/Application.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:logging/logging.dart';
 
-class AppStoreApplication implements Application {
+import 'Application.dart';
+import 'app_routes.dart';
+
+class ApplicationImpl implements Application {
   Router router;
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;

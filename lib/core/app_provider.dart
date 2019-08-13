@@ -1,9 +1,9 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/app/model/core/app_store_application.dart';
+import 'package:flutter_plate/core/application_impl.dart';
 
 class AppProvider extends InheritedWidget {
-  final AppStoreApplication application;
+  final ApplicationImpl application;
 
   AppProvider({Key key, Widget child, this.application})
       : super(key: key, child: child);
@@ -20,7 +20,7 @@ class AppProvider extends InheritedWidget {
         .router;
   }
 
-  static AppStoreApplication getApplication(BuildContext context) {
+  static ApplicationImpl getApplication(BuildContext context) {
     return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider)
         .application;
   }

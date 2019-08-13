@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/bloc/app_detail_bloc.dart';
-import 'package:flutter_plate/app/model/core/app_provider.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
+import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/generated/i18n.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 

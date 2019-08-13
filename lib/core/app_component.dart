@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_plate/app/model/core/app_provider.dart';
-import 'package:flutter_plate/app/model/core/app_store_application.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/generated/i18n.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 
+import 'app_provider.dart';
+import 'application_impl.dart';
+
 class AppComponent extends StatefulWidget {
-  final AppStoreApplication _application;
+  final ApplicationImpl _application;
 
   AppComponent(this._application);
 
@@ -16,7 +17,7 @@ class AppComponent extends StatefulWidget {
 }
 
 class AppComponentState extends State<AppComponent> {
-  final AppStoreApplication _application;
+  final ApplicationImpl _application;
 
   AppComponentState(this._application);
 

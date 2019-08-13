@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/bloc/app_bloc_delegate.dart';
-import 'package:flutter_plate/app/model/core/app_component.dart';
-import 'package:flutter_plate/app/model/core/app_store_application.dart';
+import 'package:flutter_plate/core/app_component.dart';
+import 'package:flutter_plate/core/application_impl.dart';
 import 'package:flutter_stetho/flutter_stetho.dart';
 
 enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, TESTING }
@@ -31,7 +31,7 @@ class Env {
       BlocSupervisor.delegate = AppBlocDelegate();
     }
 
-    var application = AppStoreApplication();
+    var application = ApplicationImpl();
     await application.onCreate();
     runApp(AppComponent(application));
   }
