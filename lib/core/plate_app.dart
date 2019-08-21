@@ -13,7 +13,7 @@ import 'package:logging/logging.dart';
 import 'Application.dart';
 import 'app_routes.dart';
 
-class ApplicationImpl implements Application {
+class PlateApp implements Application {
   Router router;
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;

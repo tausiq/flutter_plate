@@ -5,10 +5,10 @@ import 'package:flutter_plate/generated/i18n.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 
 import 'app_provider.dart';
-import 'application_impl.dart';
+import 'plate_app.dart';
 
 class AppComponent extends StatefulWidget {
-  final ApplicationImpl _application;
+  final PlateApp _application;
 
   AppComponent(this._application);
 
@@ -17,7 +17,7 @@ class AppComponent extends StatefulWidget {
 }
 
 class AppComponentState extends State<AppComponent> {
-  final ApplicationImpl _application;
+  final PlateApp _application;
 
   AppComponentState(this._application);
 
