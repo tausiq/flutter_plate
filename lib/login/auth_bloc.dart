@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_plate/login/user_repo.dart';
+import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 

@@ -6,6 +6,7 @@ import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
 import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
+import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:logging/logging.dart';
@@ -18,6 +19,7 @@ class PlateApp implements Application {
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;
   AppStoreAPIRepository appStoreAPIRepository;
+  UserRepository userRepository;
 
   @override
   Future<void> onCreate() async {
@@ -26,6 +28,7 @@ class PlateApp implements Application {
     await _initDB();
     _initDBRepository();
     _initAPIRepository();
+    _initUserRepository();
   }
 
   @override
@@ -52,6 +55,10 @@ class PlateApp implements Application {
     APIProvider apiProvider = APIProvider();
     appStoreAPIRepository =
         AppStoreAPIRepository(apiProvider, dbAppStoreRepository);
+  }
+
+  void _initUserRepository() {
+    userRepository = UserRepository();
   }
 
   void _initLog() {

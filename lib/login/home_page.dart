@@ -6,6 +6,8 @@ import 'auth_bloc.dart';
 import 'auth_event.dart';
 
 class HomePage extends StatelessWidget {
+  static const String PATH = '/home';
+
   @override
   Widget build(BuildContext context) {
     final AuthenticationBloc authenticationBloc =

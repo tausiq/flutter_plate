@@ -2,8 +2,23 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/ui/page/app_detail_page.dart';
 import 'package:flutter_plate/app/ui/page/app_store_page.dart';
+import 'package:flutter_plate/core/app_provider.dart';
+import 'package:flutter_plate/login/auth_page.dart';
+import 'package:flutter_plate/login/home_page.dart';
 
 var rootHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return HomePage();
+});
+
+var authRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return AuthPage(
+    userRepository: AppProvider.getApplication(context).userRepository,
+  );
+});
+
+var appStoreRouteHander = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return AppStorePage();
 });
@@ -30,7 +45,9 @@ class AppRoutes {
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print('ROUTE WAS NOT FOUND !!!');
     });
-    router.define(AppStorePage.PATH, handler: rootHandler);
+    router.define(AuthPage.PATH, handler: authRouteHandler);
+    router.define(HomePage.PATH, handler: rootHandler);
+    router.define(AppStorePage.PATH, handler: appStoreRouteHander);
     router.define(AppDetailPage.PATH, handler: appDetailRouteHandler);
   }
 }

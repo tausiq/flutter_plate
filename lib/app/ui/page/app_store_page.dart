@@ -11,7 +11,7 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'app_detail_page.dart';
 
 class AppStorePage extends StatefulWidget {
-  static const String PATH = '/';
+  static const String PATH = '/appstore';
 
   AppStorePage({Key key}) : super(key: key);
 
