@@ -8,6 +8,7 @@ import 'package:flutter_plate/timer/timer_actions.dart';
 import 'bloc/timer_bloc.dart';
 
 class TimerPage extends StatelessWidget {
+  static const String PATH = '/timer';
   static const TextStyle timerTextStyle = TextStyle(
     fontSize: 60,
     fontWeight: FontWeight.bold,

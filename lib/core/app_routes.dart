@@ -1,11 +1,15 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/app/ui/page/app_detail_page.dart';
 import 'package:flutter_plate/app/ui/page/app_store_page.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/auth_page.dart';
+import 'package:flutter_plate/timer/bloc/bloc.dart';
+import 'package:flutter_plate/timer/ticker.dart';
+import 'package:flutter_plate/timer/timer_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -24,8 +28,17 @@ var appStoreRouteHander = Handler(
   return AppStorePage();
 });
 
-var counterRouteHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+var counterRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return CounterPage();
+});
+
+var timerRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return BlocProvider(
+    builder: (context) => TimerBloc(ticker: Ticker()),
+    child: TimerPage(),
+  );
 });
 
 var appDetailRouteHandler = Handler(
@@ -54,6 +67,10 @@ class AppRoutes {
     router.define(HomePage.PATH, handler: rootHandler);
     router.define(AppStorePage.PATH, handler: appStoreRouteHander);
     router.define(AppDetailPage.PATH, handler: appDetailRouteHandler);
-    router.define(CounterPage.PATH, handler: counterRouteHandler, transitionType: TransitionType.fadeIn);
+    router.define(CounterPage.PATH,
+        handler: counterRouteHandler, transitionType: TransitionType.fadeIn);
+    router.define(TimerPage.PATH,
+        handler: timerRouteHandler,
+        transitionType: TransitionType.inFromBottom);
   }
 }

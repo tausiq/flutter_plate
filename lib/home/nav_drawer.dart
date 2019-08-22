@@ -54,9 +54,7 @@ class NavDrawer extends StatelessWidget {
               4,
               Icons.rate_review,
               AppLocalizations.of(context).tr('drawer.timer.title'),
-              AppLocalizations.of(context).tr('drawer.timer.subtitle'), () {
-            AppProvider.getRouter(context).pop(context);
-          }),
+              AppLocalizations.of(context).tr('drawer.timer.subtitle'), _homeBloc.openTimerPage),
           _getItem(
               5,
               Icons.new_releases,
