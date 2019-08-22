@@ -27,7 +27,7 @@ class AppComponentState extends State<AppComponent> {
 
   @override
   void dispose() async {
-    Log.info('dispose');
+    Log.i('dispose');
     super.dispose();
     await _application.onTerminate();
   }

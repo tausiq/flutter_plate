@@ -9,14 +9,14 @@ class AppDatabaseMigrationListener implements DatabaseMigrationListener {
 
   @override
   void onCreate(Database db, int version) async {
-    Log.info('onCreate version : $version');
+    Log.i('onCreate version : $version');
     await _createDatabase(db, version);
   }
 
   @override
   void onUpgrade(Database db, int oldVersion, int newVersion) {
-    Log.info('oldVersion : $oldVersion');
-    Log.info('newVersion : $newVersion');
+    Log.i('oldVersion : $oldVersion');
+    Log.i('newVersion : $newVersion');
   }
 
   Future<void> _createDatabase(Database db, int version) async {

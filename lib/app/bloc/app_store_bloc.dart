@@ -73,7 +73,7 @@ class AppStoreBloc {
       _feedList.add(appList);
       _isShowLoading.add(false);
     }, onError: (e, s) {
-      Log.info(e);
+      Log.i(e);
     });
     _compositeSubscription.add(subscription);
   }
@@ -101,7 +101,7 @@ class AppStoreBloc {
       }
       _feedList.add(appList);
     }, onError: (e, s) {
-      Log.info(e);
+      Log.i(e);
     });
     _compositeSubscription.add(subscription);
   }

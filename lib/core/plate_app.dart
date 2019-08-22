@@ -9,7 +9,7 @@ import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/Log.dart';
-import 'package:logging/logging.dart';
+import 'package:logger/logger.dart';
 
 import 'Application.dart';
 import 'app_routes.dart';
@@ -42,7 +42,7 @@ class PlateApp implements Application {
     DatabaseConfig databaseConfig = DatabaseConfig(
         Env.value.dbVersion, Env.value.dbName, migrationListener);
     _db = DatabaseHelper(databaseConfig);
-    Log.info('DB name : ' + Env.value.dbName);
+    Log.i('DB name : ' + Env.value.dbName);
 //    await _db.deleteDB();
     await _db.open();
   }
@@ -69,12 +69,12 @@ class PlateApp implements Application {
       case EnvType.DEVELOPMENT:
       case EnvType.STAGING:
         {
-          Log.setLevel(Level.ALL);
+          Log.setLevel(Level.verbose);
           break;
         }
       case EnvType.PRODUCTION:
         {
-          Log.setLevel(Level.INFO);
+          Log.setLevel(Level.info);
           break;
         }
     }
