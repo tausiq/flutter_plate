@@ -2,6 +2,28 @@
     "ok": "OK",
     "cancel": "Cancel",
     "save": "Save",
+    "drawer": {
+        "home": {
+            "title": "Home",
+            "subtitle": "Home sweet home"
+        },
+        "app_store": {
+            "title": "App Store",
+            "subtitle": "iOS App Store"
+        },
+        "counter": {
+            "title": "Counter",
+            "subtitle": "Counter application"
+        },
+        "post": {
+            "title": "Posts",
+            "subtitle": "Infinite post example"
+        },
+        "timer": {
+            "title": "Timer",
+            "subtitle": "Timer clock"
+        }
+    },
     "title_settings": "Settings",
     "subtitle_settings": "Configure settings",
     "title_logout": "Logout",
