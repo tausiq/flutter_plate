@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Login'),
       ),
-      body: BlocProvider(
+      body: BlocProvider<LoginBloc>(
         builder: (context) {
           return LoginBloc(
             authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),

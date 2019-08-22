@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/ui/page/app_detail_page.dart';
 import 'package:flutter_plate/app/ui/page/app_store_page.dart';
 import 'package:flutter_plate/core/app_provider.dart';
+import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/auth_page.dart';
 
@@ -21,6 +22,10 @@ var authRouteHandler = Handler(
 var appStoreRouteHander = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return AppStorePage();
+});
+
+var counterRouteHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return CounterPage();
 });
 
 var appDetailRouteHandler = Handler(
@@ -49,5 +54,6 @@ class AppRoutes {
     router.define(HomePage.PATH, handler: rootHandler);
     router.define(AppStorePage.PATH, handler: appStoreRouteHander);
     router.define(AppDetailPage.PATH, handler: appDetailRouteHandler);
+    router.define(CounterPage.PATH, handler: counterRouteHandler, transitionType: TransitionType.fadeIn);
   }
 }

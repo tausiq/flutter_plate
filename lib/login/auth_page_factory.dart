@@ -6,7 +6,6 @@ import 'package:flutter_plate/login/splash_page.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
 
 import 'auth_bloc.dart';
-import 'auth_event.dart';
 import 'auth_state.dart';
 import 'login_page.dart';
 
@@ -19,7 +18,7 @@ class AuthPageFactory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationEvent, AuthenticationState>(
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       bloc: BlocProvider.of<AuthenticationBloc>(context),
       builder: (BuildContext context, AuthenticationState state) {
         if (state is AuthenticationUninitialized) {

@@ -32,7 +32,7 @@ dependencies:
   smooth_star_rating: 1.0.2
   flutter_stetho: 0.3.0
   analyzer: 0.33.3
-  flutter_bloc: ^0.18.0
+  flutter_bloc: ^0.21.0
   meta: ^1.1.6
   equatable: ^0.2.0
   wave: ^0.0.8

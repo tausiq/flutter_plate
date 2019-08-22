@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_plate/counter/counter_event.dart';
+
+import 'counter_event.dart';
 
 class CounterBloc extends Bloc<CounterEvent, int> {
   @override
