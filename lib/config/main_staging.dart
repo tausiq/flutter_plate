@@ -7,7 +7,7 @@ class Staging extends Env {
   final String appName = "Flutter Plate Staging";
 
   final String baseUrl = 'https://api.staging.website.org';
-  final Color primarySwatch = Colors.amber;
+  final Color primarySwatch = Colors.deepOrange;
   EnvType environmentType = EnvType.STAGING;
 
   final String dbName = 'stg-app.db';

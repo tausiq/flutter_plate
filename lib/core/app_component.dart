@@ -40,7 +40,7 @@ class AppComponentState extends State<AppComponent> {
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        EasylocaLizationDelegate(locale: data.locale, path: 'langs/')
+        EasylocaLizationDelegate(locale: data.locale, path: 'langs')
       ],
       supportedLocales: [Locale('en', 'US'), Locale('bn'), Locale('fr')],
       locale: data.savedLocale,
