@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/ui/page/app_detail_page.dart';
 import 'package:flutter_plate/app/ui/page/app_store_page.dart';
 import 'package:flutter_plate/core/app_provider.dart';
+import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/auth_page.dart';
-import 'package:flutter_plate/login/home_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {

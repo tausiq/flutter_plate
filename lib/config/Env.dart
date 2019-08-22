@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/bloc/app_bloc_delegate.dart';
 import 'package:flutter_plate/core/app_component.dart';
@@ -33,6 +34,6 @@ class Env {
 
     var application = PlateApp();
     await application.onCreate();
-    runApp(AppComponent(application));
+    runApp(EasyLocalization(child: AppComponent(application)));
   }
 }

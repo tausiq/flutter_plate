@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
+import 'package:flutter_plate/widgets/loading_indicator.dart';
 
 import 'auth_bloc.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
-import 'home_page.dart';
-import 'loading_indicator.dart';
 import 'login_page.dart';
 
 class AuthPageFactory extends StatelessWidget {

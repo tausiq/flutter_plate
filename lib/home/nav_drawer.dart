@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/home/user.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class DrawerPage extends StatelessWidget {
+class NavDrawer extends StatelessWidget {
   final User user;
   final int selectedIndex;
 
-  DrawerPage(this.user, this.selectedIndex);
+  NavDrawer(this.user, this.selectedIndex);
 
   @override
   Widget build(BuildContext context) {
