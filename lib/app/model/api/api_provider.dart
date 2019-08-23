@@ -25,7 +25,7 @@ class APIProvider {
 
     _dio = Dio(dioOptions);
 
-    if (EnvType.DEVELOPMENT == Env.value.environmentType ||
+    if (EnvType.DEVELOPMENT == Env.value.environmentType || EnvType.EARLY == Env.value.environmentType ||
         EnvType.STAGING == Env.value.environmentType) {
       _dio.interceptors
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {

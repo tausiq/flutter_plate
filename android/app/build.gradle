@@ -61,6 +61,10 @@ android {
             dimension "flutter-flavours"
             applicationIdSuffix ".dev"
         }
+        early{
+            dimension "flutter-flavours"
+            applicationIdSuffix ".erly"
+        }
         staging{
             dimension "flutter-flavours"
             applicationIdSuffix ".stg"

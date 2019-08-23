@@ -65,7 +65,7 @@ class PlateApp implements Application {
     Log.init();
 
     switch (Env.value.environmentType) {
-      case EnvType.TESTING:
+      case EnvType.EARLY:
       case EnvType.DEVELOPMENT:
       case EnvType.STAGING:
         {

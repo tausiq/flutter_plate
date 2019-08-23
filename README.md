@@ -13,7 +13,7 @@ A starter kit for beginner learns with Bloc pattern, RxDart, sqflite, Fluro and 
 - Loading Network Image
 - Localization by using [gen_lang](https://github.com/KingWu/gen_lang)
   and [lang_table](https://github.com/KingWu/lang_table)
-- Environment Variable & Project Config (Like App Name, Bundle Id) based on different project flavour (Development, Staging & Production)
+- Environment Variable & Project Config (Like App Name, Bundle Id) based on different project flavour (Development, DevTest, Staging & Production)
 - Build pojo by using json_serializable
 - Update each list item instead of re-rendering whole list view when data set has changed on a list item
 - Hero animation

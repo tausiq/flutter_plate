@@ -6,7 +6,7 @@ import 'package:flutter_plate/core/app_component.dart';
 import 'package:flutter_plate/core/plate_app.dart';
 import 'package:flutter_stetho/flutter_stetho.dart';
 
-enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, TESTING }
+enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, EARLY }
 
 class Env {
   static Env value;
@@ -26,7 +26,7 @@ class Env {
   }
 
   void _init() async {
-    if (EnvType.DEVELOPMENT == environmentType ||
+    if (EnvType.DEVELOPMENT == environmentType || EnvType.EARLY == environmentType ||
         EnvType.STAGING == environmentType) {
       Stetho.initialize();
       BlocSupervisor.delegate = AppBlocDelegate();
