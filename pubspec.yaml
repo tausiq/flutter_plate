@@ -30,10 +30,10 @@ dependencies:
   cached_network_image: 1.1.1
   sqflite: 1.1.6+3
   smooth_star_rating: 1.0.3
-  flutter_stetho: 0.3.0
+  flutter_stetho: 0.5.0
   analyzer: 0.38.1
   flutter_bloc: 0.21.0
-  meta: 1.1.6
+  meta: 1.1.7
   equatable: 0.4.0
   wave: 0.0.8
   http: 0.12.0+2
