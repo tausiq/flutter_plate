@@ -1,9 +1,6 @@
 import 'package:flutter_plate/app/model/api/user_repo.dart';
-import 'package:flutter_plate/login/auth_bloc.dart';
-import 'package:flutter_plate/login/auth_event.dart';
-import 'package:flutter_plate/login/login_bloc.dart';
-import 'package:flutter_plate/login/login_event.dart';
-import 'package:flutter_plate/login/login_state.dart';
+import 'package:flutter_plate/auth/bloc/bloc.dart';
+import 'package:flutter_plate/login/bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -22,19 +19,18 @@ void main() {
     userRepository = MockUserRepository();
     authenticationBloc = MockAuthenticationBloc();
     loginBloc = LoginBloc(
-      userRepository: userRepository,
-      authenticationBloc: authenticationBloc,
+      userRepository: userRepository
     );
   });
 
   test('initial state is correct', () {
-    expect(LoginInitial(), loginBloc.initialState);
+    expect(LoginState.empty(), loginBloc.initialState);
   });
 
   test('dispose does not emit new states', () {
     expectLater(
       loginBloc.state,
-      emitsInOrder([LoginInitial(), emitsDone]),
+      emitsInOrder([LoginState.empty(), emitsDone]),
     );
     loginBloc.dispose();
   });
@@ -42,9 +38,9 @@ void main() {
   group('LoginButtonPressed', () {
     test('emits token on success', () {
       final expectedResponse = [
-        LoginInitial(),
-        LoginLoading(),
-        LoginInitial(),
+        LoginState.empty(),
+        LoginState.loading(),
+        LoginState.empty(),
       ];
 
       when(userRepository.authenticate(
@@ -56,11 +52,11 @@ void main() {
         loginBloc.state,
         emitsInOrder(expectedResponse),
       ).then((_) {
-        verify(authenticationBloc.dispatch(LoggedIn(token: 'token'))).called(1);
+        verify(authenticationBloc.dispatch(LoggedIn())).called(1);
       });
 
-      loginBloc.dispatch(LoginButtonPressed(
-        username: 'valid.username',
+      loginBloc.dispatch(LoginWithCredentialsPressed(
+        email: 'valid.email',
         password: 'valid.password',
       ));
     });

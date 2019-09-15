@@ -1,7 +1,5 @@
 import 'package:flutter_plate/app/model/api/user_repo.dart';
-import 'package:flutter_plate/login/auth_bloc.dart';
-import 'package:flutter_plate/login/auth_event.dart';
-import 'package:flutter_plate/login/auth_state.dart';
+import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mockito/mockito.dart';
@@ -18,13 +16,13 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(authenticationBloc.initialState, AuthenticationUninitialized());
+    expect(authenticationBloc.initialState, Uninitialized());
   });
 
   test('dispose does not emit new states', () {
     expectLater(
       authenticationBloc.state,
-      emitsInOrder([AuthenticationUninitialized(), emitsDone]),
+      emitsInOrder([Uninitialized(), emitsDone]),
     );
     authenticationBloc.dispose();
   });
@@ -32,8 +30,8 @@ void main() {
   group('AppStarted', () {
     test('emits [uninitialized, unauthenticated] for invalid token', () {
       final expectedResponse = [
-        AuthenticationUninitialized(),
-        AuthenticationUnauthenticated()
+        Uninitialized(),
+        Unauthenticated()
       ];
 
       when(userRepository.hasToken()).thenAnswer((_) => Future.value(false));
@@ -52,9 +50,8 @@ void main() {
         'emits [uninitialized, loading, authenticated] when token is persisted',
             () {
           final expectedResponse = [
-            AuthenticationUninitialized(),
-            AuthenticationLoading(),
-            AuthenticationAuthenticated(),
+            Uninitialized(),
+            Authenticated("user@email.com"),
           ];
 
           expectLater(
@@ -63,7 +60,7 @@ void main() {
           );
 
           authenticationBloc.dispatch(LoggedIn(
-            token: 'instance.token',
+
           ));
         });
   });
@@ -73,9 +70,8 @@ void main() {
         'emits [uninitialized, loading, unauthenticated] when token is deleted',
             () {
           final expectedResponse = [
-            AuthenticationUninitialized(),
-            AuthenticationLoading(),
-            AuthenticationUnauthenticated(),
+            Uninitialized(),
+            Unauthenticated(),
           ];
 
           expectLater(

@@ -6,7 +6,7 @@ import 'package:flutter_plate/app/ui/page/app_store_page.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
-import 'package:flutter_plate/login/auth_page.dart';
+import 'package:flutter_plate/auth/auth_page.dart';
 import 'package:flutter_plate/timer/bloc/bloc.dart';
 import 'package:flutter_plate/timer/ticker.dart';
 import 'package:flutter_plate/timer/timer_page.dart';

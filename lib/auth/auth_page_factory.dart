@@ -5,9 +5,9 @@ import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
 
-import 'auth_bloc.dart';
-import 'auth_state.dart';
-import 'login_page.dart';
+import 'bloc/auth_bloc.dart';
+import '../login/login_page.dart';
+import 'bloc/bloc.dart';
 
 class AuthPageFactory extends StatelessWidget {
   final UserRepository userRepository;
@@ -21,17 +21,14 @@ class AuthPageFactory extends StatelessWidget {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       bloc: BlocProvider.of<AuthenticationBloc>(context),
       builder: (BuildContext context, AuthenticationState state) {
-        if (state is AuthenticationUninitialized) {
+        if (state is Uninitialized) {
           return SplashPage();
         }
-        if (state is AuthenticationAuthenticated) {
-          return HomePage();
+        if (state is Authenticated) {
+          return HomePage(name: state.displayName);
         }
-        if (state is AuthenticationUnauthenticated) {
+        if (state is Unauthenticated) {
           return LoginPage(userRepository: userRepository);
-        }
-        if (state is AuthenticationLoading) {
-          return LoadingIndicator();
         } else
           return null;
       },

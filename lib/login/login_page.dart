@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/auth/bloc/bloc.dart';
 
-import 'auth_bloc.dart';
-import 'login_bloc.dart';
+
+import 'bloc/login_bloc.dart';
 import 'login_form.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
 
 class LoginPage extends StatelessWidget {
-  final UserRepository userRepository;
+  final UserRepository _userRepository;
 
-  LoginPage({Key key, @required this.userRepository})
+  LoginPage({Key key, @required UserRepository userRepository})
       : assert(userRepository != null),
+        _userRepository = userRepository,
         super(key: key);
 
   @override
@@ -21,13 +23,8 @@ class LoginPage extends StatelessWidget {
         title: Text('Login'),
       ),
       body: BlocProvider<LoginBloc>(
-        builder: (context) {
-          return LoginBloc(
-            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-            userRepository: userRepository,
-          );
-        },
-        child: LoginForm(),
+        builder: (context) => LoginBloc(userRepository: _userRepository),
+        child: LoginForm(userRepository: _userRepository),
       ),
     );
   }
