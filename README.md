@@ -77,6 +77,7 @@ flutter packages pub run gen_lang:generate
 
 #### Bloc Pattern
 - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1)
+- [Bloc](https://felangel.github.io/bloc/#/)
 
 #### Json Serialization
 - [JSON and serialization](https://flutter.io/docs/development/data-and-backend/json)
@@ -85,7 +86,10 @@ flutter packages pub run gen_lang:generate
 - [A new approach of localization in Flutter](https://medium.com/@kingwu/a-new-approach-of-localization-in-flutter-e18bfb2b14ab)
 - [Flutter: internationalization tutorials: Part 3— Android Studio plugin](https://medium.com/@datvt9312/flutter-internationalization-tutorials-part-3-android-studio-plugin-8604e2dc90f0)
 - [讓 Flutter App 支援多國語系的開發流程](https://medium.com/@zonble/%E8%AE%93-flutter-app-%E6%94%AF%E6%8F%B4%E5%A4%9A%E5%9C%8B%E8%AA%9E%E7%B3%BB%E7%9A%84%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B-ceb31532e2e1)
+- [Easy Localization](https://pub.dev/packages/easy_localization)
 
 #### Flavouring
 - [Flavoring Flutter](https://medium.com/@salvatoregiordanoo/flavoring-flutter-392aaa875f36)
 - [Creating flavors of a Flutter app (Flutter & Android setup)](http://cogitas.net/creating-flavors-of-a-flutter-app/)
+
+Influenced by: https://github.com/KingWu/flutter_starter_kit
