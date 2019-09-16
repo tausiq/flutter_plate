@@ -13,7 +13,7 @@ import 'package:flutter_plate/timer/timer_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return HomePage();
+  return HomePage(name: params['name'][0],);
 });
 
 var authRouteHandler = Handler(
