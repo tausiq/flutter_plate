@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_plate/app/model/api/user_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
-class UserRepository {
+class UserRepository implements IUserRepository {
 
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
@@ -85,5 +86,13 @@ class UserRepository {
   /// a lot more information about the user in more complex applications.
   Future<String> getUser() async {
     return (await _firebaseAuth.currentUser()).email;
+  }
+
+  Future<String> getUserId() async {
+    return (await _firebaseAuth.currentUser()).uid;
+  }
+
+  Future<void> authenticateAnonymously() {
+    return _firebaseAuth.signInAnonymously();
   }
 }
