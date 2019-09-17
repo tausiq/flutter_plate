@@ -66,7 +66,7 @@ var todoAddEditRouteHandler = Handler(
 
 var timerRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      return BlocProvider(
+      return BlocProvider<TimerBloc>(
         builder: (context) => TimerBloc(ticker: Ticker()),
         child: TimerPage(),
       );

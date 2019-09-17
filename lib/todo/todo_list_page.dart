@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/core/app_provider.dart';
+import 'package:flutter_plate/todo/todo_addedit_page.dart';
 import 'package:flutter_plate/widgets/extra_actions.dart';
 import 'package:flutter_plate/widgets/filter_button.dart';
 import 'package:flutter_plate/widgets/filtered_todos.dart';
@@ -13,6 +15,7 @@ class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabBloc = BlocProvider.of<TabBloc>(context);
+    final todosBloc = BlocProvider.of<TodosBloc>(context);
     return BlocBuilder<TabBloc, AppTab>(
       builder: (context, activeTab) {
         return Scaffold(
@@ -26,7 +29,8 @@ class TodoListPage extends StatelessWidget {
           body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/addTodo');
+              AppProvider.getRouter(context).navigateTo(context, TodoAddEditPage.generatePath(false));
+
             },
             child: Icon(Icons.add),
             tooltip: 'Add Todo',

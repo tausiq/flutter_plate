@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/todo/todos_bloc.dart';
 import 'model/todo.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
@@ -19,12 +21,22 @@ class TodoAddEditPage extends StatefulWidget {
     this.todo,
   }) : super(key: key);
 
+  static String generatePath(
+      bool isEditing) {
+    Map<String, dynamic> parma = {
+      'isEditing': isEditing.toString(),
+    };
+    Uri uri = Uri(path: PATH, queryParameters: parma);
+    return uri.toString();
+  }
+
   @override
   _TodoAddEditPageState createState() => _TodoAddEditPageState();
 }
 
 class _TodoAddEditPageState extends State<TodoAddEditPage> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
 
   String _task;
   String _note;
