@@ -14,12 +14,10 @@ class TodoAddEditPage extends StatefulWidget {
   static const String PATH = '/addedittodo';
 
   final bool isEditing;
-  final OnSaveCallback onSave;
   final String todoId;
 
   TodoAddEditPage({
     Key key,
-    @required this.onSave,
     @required this.isEditing,
     this.todoId,
   }) : super(key: key);

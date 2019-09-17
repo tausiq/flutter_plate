@@ -96,23 +96,6 @@ class TodoDetailsPage extends StatelessWidget {
                 : () {
               AppProvider.getRouter(context)
                   .navigateTo(context, TodoAddEditPage.generatePath(true, todoId: todo.id));
-//                    Navigator.of(context).push(
-//                      MaterialPageRoute(
-//                        builder: (context) {
-//                          return TodoAddEditPage(
-//                            onSave: (task, note) {
-//                              todoBloc.dispatch(
-//                                UpdateTodo(
-//                                  todo.copyWith(task: task, note: note),
-//                                ),
-//                              );
-//                            },
-//                            isEditing: true,
-//                            todoId: todo.id,
-//                          );
-//                        },
-//                      ),
-//                    );
                   },
           ),
         );
