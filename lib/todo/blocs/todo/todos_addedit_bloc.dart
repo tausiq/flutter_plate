@@ -17,7 +17,7 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
         _todosRepository = todosRepository;
 
   @override
-  TodosState get initialState => TodosNothing();
+  TodosState get initialState => TodosLoading();
 
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
@@ -25,6 +25,8 @@ if (event is AddTodo) {
       yield* _mapAddTodoToState(event);
     } else if (event is UpdateTodo) {
       yield* _mapUpdateTodoToState(event);
+    } else if (event is DeleteTodo) {
+      yield* _mapDeleteTodoToState(event);
     } 
   }
 
@@ -34,5 +36,15 @@ if (event is AddTodo) {
 
   Stream<TodosState> _mapUpdateTodoToState(UpdateTodo event) async* {
     _todosRepository.updateTodo(event.updatedTodo);
+  }
+
+    Stream<TodosState> _mapDeleteTodoToState(DeleteTodo event) async* {
+    _todosRepository.deleteTodo(event.todo);
+  }
+
+    @override
+  void dispose() {
+    _todosSubscription?.cancel();
+    super.dispose();
   }
 }

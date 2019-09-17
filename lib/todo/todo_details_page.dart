@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/todo/blocs/todo/todos_addedit_bloc.dart';
+import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 
 import 'blocs/todo/bloc.dart';
@@ -12,8 +14,9 @@ class TodoDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todosBloc = BlocProvider.of<TodosBloc>(context);
-    return BlocBuilder<TodosBloc, TodosState>(
+    final todosBloc = TodosAddEditBloc(todosRepository: FirebaseTodosRepository());
+    return BlocBuilder<TodosAddEditBloc, TodosState>(
+      bloc: todosBloc,
       builder: (context, state) {
         final todo = (state as TodosLoaded)
             .todos
