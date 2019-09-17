@@ -7,11 +7,11 @@ import 'package:meta/meta.dart';
 import '../../todos_repository.dart';
 import 'bloc.dart';
 
-class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
+class TodosDetailsBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
   StreamSubscription _todosSubscription;
 
-  TodosAddEditBloc({@required TodosRepository todosRepository})
+  TodosDetailsBloc({@required TodosRepository todosRepository})
       : assert(todosRepository != null),
         _todosRepository = todosRepository;
 

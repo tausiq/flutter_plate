@@ -44,11 +44,11 @@ class _HomePageState extends State<HomePage> {
           ),
           drawer: NavDrawer(null, 0),
           body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Center(child: Text('Welcome ${widget.name}!')),
-          ],
-        ),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Center(child: Text('Welcome ${widget.name}!')),
+            ],
+          ),
         ));
   }
 }

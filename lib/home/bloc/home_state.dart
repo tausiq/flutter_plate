@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 @immutable
 class HomeState extends Equatable {
-    final int selectedIndex;
+  final int selectedIndex;
   final String selectedTitle;
 
   HomeState({
@@ -14,22 +14,22 @@ class HomeState extends Equatable {
 
   factory HomeState.initial() {
     return HomeState(
-        selectedIndex: 0, selectedTitle: Env.value.appName,);
+      selectedIndex: 0,
+      selectedTitle: Env.value.appName,
+    );
   }
 
   HomeState copyWith({int index, String title}) {
     return HomeState(
-        selectedIndex: index ?? this.selectedIndex,
-        selectedTitle: title ?? this.selectedTitle,);
+      selectedIndex: index ?? this.selectedIndex,
+      selectedTitle: title ?? this.selectedTitle,
+    );
   }
 
   @override
   String toString() =>
       'HomeState { selectedIndex: $selectedIndex }, selectedTitle: $selectedTitle';
 }
-
-
-
 
 /*
 

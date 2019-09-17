@@ -19,7 +19,9 @@ import 'package:flutter_plate/todo/todo_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return HomePage(name: params['name'][0],);
+  return HomePage(
+    name: params['name'][0],
+  );
 });
 
 var authRouteHandler = Handler(
@@ -53,23 +55,23 @@ var todoRouteHandler = Handler(
 
 var todoAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      return TodoAddEditPage(
-        onSave: (task, note) {
-          // todosBloc.dispatch(
-          //   AddTodo(Todo(task, note: note)),
-          // );
-        },
-        isEditing: params['isEditing']?.first == 'true',
-      );
-    });
+  return TodoAddEditPage(
+    onSave: (task, note) {
+      // todosBloc.dispatch(
+      //   AddTodo(Todo(task, note: note)),
+      // );
+    },
+    isEditing: params['isEditing']?.first == 'true',
+  );
+});
 
 var timerRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      return BlocProvider<TimerBloc>(
-        builder: (context) => TimerBloc(ticker: Ticker()),
-        child: TimerPage(),
-      );
-    });
+  return BlocProvider<TimerBloc>(
+    builder: (context) => TimerBloc(ticker: Ticker()),
+    child: TimerPage(),
+  );
+});
 
 var appDetailRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {

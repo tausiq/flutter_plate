@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/todo/model/models.dart';
@@ -40,11 +39,11 @@ class TodoItem extends StatelessWidget {
         ),
         subtitle: todo.note.isNotEmpty
             ? Text(
-          todo.note,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.subhead,
-        )
+                todo.note,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.subhead,
+              )
             : null,
       ),
     );

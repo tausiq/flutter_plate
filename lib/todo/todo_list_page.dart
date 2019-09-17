@@ -28,7 +28,8 @@ class TodoListPage extends StatelessWidget {
           body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              AppProvider.getRouter(context).navigateTo(context, TodoAddEditPage.generatePath(false));
+              AppProvider.getRouter(context)
+                  .navigateTo(context, TodoAddEditPage.generatePath(false));
             },
             child: Icon(Icons.add),
             tooltip: 'Add Todo',

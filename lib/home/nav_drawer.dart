@@ -54,12 +54,14 @@ class NavDrawer extends StatelessWidget {
               4,
               Icons.rate_review,
               AppLocalizations.of(context).tr('drawer.timer.title'),
-              AppLocalizations.of(context).tr('drawer.timer.subtitle'), _homeBloc.openTimerPage),
+              AppLocalizations.of(context).tr('drawer.timer.subtitle'),
+              _homeBloc.openTimerPage),
           _getItem(
               5,
               Icons.work,
               AppLocalizations.of(context).tr('drawer.todo.title'),
-              AppLocalizations.of(context).tr('drawer.todo.subtitle'), _homeBloc.openTodoPage),
+              AppLocalizations.of(context).tr('drawer.todo.subtitle'),
+              _homeBloc.openTodoPage),
           Divider(),
           _getItem(
               6,

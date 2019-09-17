@@ -14,7 +14,8 @@ class TodoDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todosBloc = TodosAddEditBloc(todosRepository: FirebaseTodosRepository());
+    final todosBloc =
+        TodosAddEditBloc(todosRepository: FirebaseTodosRepository());
     return BlocBuilder<TodosAddEditBloc, TodosState>(
       bloc: todosBloc,
       builder: (context, state) {
@@ -38,79 +39,79 @@ class TodoDetailsPage extends StatelessWidget {
           body: todo == null
               ? Container()
               : Padding(
-            padding: EdgeInsets.all(16.0),
-            child: ListView(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(right: 8.0),
-                      child: Checkbox(
-                          value: todo.complete,
-                          onChanged: (_) {
-                            todosBloc.dispatch(
-                              UpdateTodo(
-                                todo.copyWith(complete: !todo.complete),
-                              ),
-                            );
-                          }),
-                    ),
-                    Expanded(
-                      child: Column(
+                  padding: EdgeInsets.all(16.0),
+                  child: ListView(
+                    children: [
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Hero(
-                            tag: '${todo.id}__heroTag',
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              padding: EdgeInsets.only(
-                                top: 8.0,
-                                bottom: 16.0,
-                              ),
-                              child: Text(
-                                todo.task,
-                                style:
-                                Theme.of(context).textTheme.headline,
-                              ),
-                            ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.0),
+                            child: Checkbox(
+                                value: todo.complete,
+                                onChanged: (_) {
+                                  todosBloc.dispatch(
+                                    UpdateTodo(
+                                      todo.copyWith(complete: !todo.complete),
+                                    ),
+                                  );
+                                }),
                           ),
-                          Text(
-                            todo.note,
-                            style: Theme.of(context).textTheme.subhead,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Hero(
+                                  tag: '${todo.id}__heroTag',
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    padding: EdgeInsets.only(
+                                      top: 8.0,
+                                      bottom: 16.0,
+                                    ),
+                                    child: Text(
+                                      todo.task,
+                                      style:
+                                          Theme.of(context).textTheme.headline,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  todo.note,
+                                  style: Theme.of(context).textTheme.subhead,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
           floatingActionButton: FloatingActionButton(
             tooltip: 'Edit Todo',
             child: Icon(Icons.edit),
             onPressed: todo == null
                 ? null
                 : () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return TodoAddEditPage(
-                      onSave: (task, note) {
-                        todosBloc.dispatch(
-                          UpdateTodo(
-                            todo.copyWith(task: task, note: note),
-                          ),
-                        );
-                      },
-                      isEditing: true,
-                      todo: todo,
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TodoAddEditPage(
+                            onSave: (task, note) {
+                              todosBloc.dispatch(
+                                UpdateTodo(
+                                  todo.copyWith(task: task, note: note),
+                                ),
+                              );
+                            },
+                            isEditing: true,
+                            todo: todo,
+                          );
+                        },
+                      ),
                     );
                   },
-                ),
-              );
-            },
           ),
         );
       },

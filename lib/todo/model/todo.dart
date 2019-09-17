@@ -28,12 +28,12 @@ class Todo {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Todo &&
-              runtimeType == other.runtimeType &&
-              complete == other.complete &&
-              task == other.task &&
-              note == other.note &&
-              id == other.id;
+      other is Todo &&
+          runtimeType == other.runtimeType &&
+          complete == other.complete &&
+          task == other.task &&
+          note == other.note &&
+          id == other.id;
 
   @override
   String toString() {

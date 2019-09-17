@@ -26,7 +26,8 @@ class Env {
   }
 
   void _init() async {
-    if (EnvType.DEVELOPMENT == environmentType || EnvType.EARLY == environmentType ||
+    if (EnvType.DEVELOPMENT == environmentType ||
+        EnvType.EARLY == environmentType ||
         EnvType.STAGING == environmentType) {
       Stetho.initialize();
       BlocSupervisor.delegate = AppBlocDelegate();

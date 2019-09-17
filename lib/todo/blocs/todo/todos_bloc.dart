@@ -34,7 +34,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   Stream<TodosState> _mapLoadTodosToState() async* {
     _todosSubscription?.cancel();
     _todosSubscription = _todosRepository.todos().listen(
-          (todos) {
+      (todos) {
         dispatch(
           TodosUpdated(todos),
         );
@@ -59,7 +59,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     final state = currentState;
     if (state is TodosLoaded) {
       final List<Todo> completedTodos =
-      state.todos.where((todo) => todo.complete).toList();
+          state.todos.where((todo) => todo.complete).toList();
       completedTodos.forEach((completedTodo) {
         _todosRepository.deleteTodo(completedTodo);
       });

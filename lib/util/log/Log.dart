@@ -6,7 +6,8 @@ class Log {
 
   static void init() {
     Logger.addLogListener((callback) {
-      print('${callback.level.toString()}: ${callback.error}: ${callback.message}');
+      print(
+          '${callback.level.toString()}: ${callback.error}: ${callback.message}');
     });
     _instance = Logger(
       printer: PrettyPrinter(),
