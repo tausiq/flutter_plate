@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/todo/blocs/blocs.dart';
+import 'package:flutter_plate/todo/blocs/todo/todos_addedit_bloc.dart';
 
 import 'blocs/todo/todos_bloc.dart';
+import 'firebase_todos_repository.dart';
 import 'model/todo.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
@@ -46,8 +49,12 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final _bloc = TodosAddEditBloc(todosRepository: FirebaseTodosRepository(),);
 
-    return Scaffold(
+    return BlocBuilder<TodosAddEditBloc, TodosState>(
+      bloc: _bloc,
+      builder: (context, state) {
+return Scaffold(
       appBar: AppBar(
         title: Text(
           isEditing ? 'Edit Todo' : 'Add Todo',
@@ -90,11 +97,16 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
         onPressed: () {
           if (_formKey.currentState.validate()) {
             _formKey.currentState.save();
+            _bloc.dispatch(AddTodo(Todo(_task, note: _note)));
             widget.onSave(_task, _note);
             Navigator.pop(context);
           }
         },
       ),
     );
+      }
+    );
+
+  
   }
 }

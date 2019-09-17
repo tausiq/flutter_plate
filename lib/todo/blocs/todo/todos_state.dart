@@ -8,6 +8,11 @@ abstract class TodosState extends Equatable {
   TodosState([List props = const []]) : super(props);
 }
 
+class TodosNothing extends TodosState {
+  @override
+  String toString() => 'TodosNothing';
+}
+
 class TodosLoading extends TodosState {
   @override
   String toString() => 'TodosLoading';

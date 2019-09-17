@@ -15,7 +15,6 @@ class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabBloc = BlocProvider.of<TabBloc>(context);
-    final todosBloc = BlocProvider.of<TodosBloc>(context);
     return BlocBuilder<TabBloc, AppTab>(
       builder: (context, activeTab) {
         return Scaffold(
@@ -30,7 +29,6 @@ class TodoListPage extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               AppProvider.getRouter(context).navigateTo(context, TodoAddEditPage.generatePath(false));
-
             },
             child: Icon(Icons.add),
             tooltip: 'Add Todo',

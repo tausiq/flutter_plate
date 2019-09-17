@@ -22,10 +22,6 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
     if (event is LoadTodos) {
       yield* _mapLoadTodosToState();
-    } else if (event is AddTodo) {
-      yield* _mapAddTodoToState(event);
-    } else if (event is UpdateTodo) {
-      yield* _mapUpdateTodoToState(event);
     } else if (event is DeleteTodo) {
       yield* _mapDeleteTodoToState(event);
     } else if (event is ToggleAll) {
@@ -48,13 +44,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     );
   }
 
-  Stream<TodosState> _mapAddTodoToState(AddTodo event) async* {
-    _todosRepository.addNewTodo(event.todo);
-  }
 
-  Stream<TodosState> _mapUpdateTodoToState(UpdateTodo event) async* {
-    _todosRepository.updateTodo(event.updatedTodo);
-  }
 
   Stream<TodosState> _mapDeleteTodoToState(DeleteTodo event) async* {
     _todosRepository.deleteTodo(event.todo);
