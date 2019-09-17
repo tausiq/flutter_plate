@@ -28,6 +28,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       yield* _mapClearCompletedToState();
     } else if (event is TodosUpdated) {
       yield* _mapTodosUpdateToState(event);
+    } else if (event is UpdateTodo) {
+      yield* _mapUpdateTodoToState(event);
     }
   }
 
@@ -68,6 +70,10 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   Stream<TodosState> _mapTodosUpdateToState(TodosUpdated event) async* {
     yield TodosLoaded(event.todos);
+  }
+
+  Stream<TodosState> _mapUpdateTodoToState(UpdateTodo event) async* {
+    _todosRepository.updateTodo(event.updatedTodo);
   }
 
   @override

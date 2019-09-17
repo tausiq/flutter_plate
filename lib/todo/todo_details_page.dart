@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 
@@ -93,23 +94,25 @@ class TodoDetailsPage extends StatelessWidget {
             onPressed: todo == null
                 ? null
                 : () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return TodoAddEditPage(
-                            onSave: (task, note) {
-                              todoBloc.dispatch(
-                                UpdateTodo(
-                                  todo.copyWith(task: task, note: note),
-                                ),
-                              );
-                            },
-                            isEditing: true,
-                            todo: todo,
-                          );
-                        },
-                      ),
-                    );
+              AppProvider.getRouter(context)
+                  .navigateTo(context, TodoAddEditPage.generatePath(true, todoId: todo.id));
+//                    Navigator.of(context).push(
+//                      MaterialPageRoute(
+//                        builder: (context) {
+//                          return TodoAddEditPage(
+//                            onSave: (task, note) {
+//                              todoBloc.dispatch(
+//                                UpdateTodo(
+//                                  todo.copyWith(task: task, note: note),
+//                                ),
+//                              );
+//                            },
+//                            isEditing: true,
+//                            todoId: todo.id,
+//                          );
+//                        },
+//                      ),
+//                    );
                   },
           ),
         );

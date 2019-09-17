@@ -15,18 +15,19 @@ class TodoAddEditPage extends StatefulWidget {
 
   final bool isEditing;
   final OnSaveCallback onSave;
-  final Todo todo;
+  final String todoId;
 
   TodoAddEditPage({
     Key key,
     @required this.onSave,
     @required this.isEditing,
-    this.todo,
+    this.todoId,
   }) : super(key: key);
 
-  static String generatePath(bool isEditing) {
+  static String generatePath(bool isEditing, {String todoId}) {
     Map<String, dynamic> parma = {
       'isEditing': isEditing.toString(),
+      'todoId': todoId ?? null,
     };
     Uri uri = Uri(path: PATH, queryParameters: parma);
     return uri.toString();
@@ -44,16 +45,23 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
 
   bool get isEditing => widget.isEditing;
 
+  final TextEditingController _taskController = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final _bloc = TodosAddEditBloc(
       todosRepository: FirebaseTodosRepository(),
-    );
+      todoId: widget.todoId
+    )..dispatch(LoadTodo());
 
     return BlocBuilder<TodosAddEditBloc, TodosState>(
         bloc: _bloc,
         builder: (context, state) {
+          final todo = state is TodoLoaded ? state.todo : null;
+          _taskController.text = isEditing ? todo?.task : '';
+          _noteController.text = isEditing ? todo?.note : '';
           return Scaffold(
             appBar: AppBar(
               title: Text(
@@ -67,7 +75,7 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
                 child: ListView(
                   children: [
                     TextFormField(
-                      initialValue: isEditing ? widget.todo.task : '',
+//                      initialValue: isEditing ? todo?.task : '',
                       autofocus: !isEditing,
                       style: textTheme.headline,
                       decoration: InputDecoration(
@@ -79,15 +87,17 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
                             : null;
                       },
                       onSaved: (value) => _task = value,
+                      controller: _taskController,
                     ),
                     TextFormField(
-                      initialValue: isEditing ? widget.todo.note : '',
+//                      initialValue: isEditing ? todo?.note : '',
                       maxLines: 10,
                       style: textTheme.subhead,
                       decoration: InputDecoration(
                         hintText: 'Additional Notes...',
                       ),
                       onSaved: (value) => _note = value,
+                      controller: _noteController,
                     )
                   ],
                 ),
@@ -99,8 +109,20 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
-                  _bloc.dispatch(AddTodo(Todo(_task, note: _note)));
-                  widget.onSave(_task, _note);
+
+                  if (widget.isEditing) {
+                    _bloc..dispatch(
+                      UpdateTodo(
+                        todo.copyWith(task: _task, note: _note),
+                      ),
+                    );
+                  } else {
+                     _bloc.dispatch(
+                       AddTodo(Todo(_task, note: _note)),
+                     );
+                  }
+
+//                  widget.onSave(_task, _note);
                   Navigator.pop(context);
                 }
               },

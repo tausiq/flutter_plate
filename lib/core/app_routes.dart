@@ -62,6 +62,7 @@ var todoAddEditRouteHandler = Handler(
       // );
     },
     isEditing: params['isEditing']?.first == 'true',
+    todoId: params['todoId']?.first,
   );
 });
 

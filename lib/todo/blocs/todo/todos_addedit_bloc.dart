@@ -10,23 +10,36 @@ import 'bloc.dart';
 class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
   StreamSubscription _todosSubscription;
+  String _todoId;
 
-  TodosAddEditBloc({@required TodosRepository todosRepository})
+  TodosAddEditBloc({@required TodosRepository todosRepository, String todoId})
       : assert(todosRepository != null),
-        _todosRepository = todosRepository;
+        _todosRepository = todosRepository, _todoId = todoId;
 
   @override
-  TodosState get initialState => TodosLoading();
+  TodosState get initialState => TodoLoading();
 
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
-    if (event is AddTodo) {
+    if (event is LoadTodo) {
+      if (_todoId == null) yield TodoLoading();
+      else yield* _mapLoadTodoToState();
+    } else if (event is AddTodo) {
       yield* _mapAddTodoToState(event);
     } else if (event is UpdateTodo) {
       yield* _mapUpdateTodoToState(event);
     } else if (event is DeleteTodo) {
       yield* _mapDeleteTodoToState(event);
+    } else if (event is TodoUpdated) {
+      yield* _mapTodoUpdateToState(event);
     }
+  }
+
+  Stream<TodosState> _mapLoadTodoToState() async* {
+    _todosSubscription?.cancel();
+    _todosRepository.getTodo(_todoId).then((val) {
+      dispatch(TodoUpdated(val));
+    });
   }
 
   Stream<TodosState> _mapAddTodoToState(AddTodo event) async* {
@@ -39,6 +52,10 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
 
   Stream<TodosState> _mapDeleteTodoToState(DeleteTodo event) async* {
     _todosRepository.deleteTodo(event.todo);
+  }
+
+  Stream<TodosState> _mapTodoUpdateToState(TodoUpdated event) async* {
+    yield TodoLoaded(event.todo);
   }
 
   @override
