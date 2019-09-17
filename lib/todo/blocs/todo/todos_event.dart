@@ -13,6 +13,11 @@ class LoadTodos extends TodosEvent {
   String toString() => 'LoadTodos';
 }
 
+class LoadTodo extends TodosEvent {
+  @override
+  String toString() => 'LoadTodo';
+}
+
 class AddTodo extends TodosEvent {
   final Todo todo;
 
@@ -48,6 +53,15 @@ class ClearCompleted extends TodosEvent {
 class ToggleAll extends TodosEvent {
   @override
   String toString() => 'ToggleAll';
+}
+
+class TodoUpdated extends TodosEvent {
+  final Todo todo;
+
+  TodoUpdated(this.todo);
+
+  @override
+  String toString() => 'TodoUpdated';
 }
 
 class TodosUpdated extends TodosEvent {

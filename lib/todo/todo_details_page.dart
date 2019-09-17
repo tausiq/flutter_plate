@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/todo/blocs/todo/todos_addedit_bloc.dart';
 import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 
 import 'blocs/todo/bloc.dart';
+import 'blocs/todo/todo_details_bloc.dart';
+import 'model/todo.dart';
 
 class TodoDetailsPage extends StatelessWidget {
   final String id;
@@ -14,14 +15,12 @@ class TodoDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todosBloc =
-        TodosAddEditBloc(todosRepository: FirebaseTodosRepository());
-    return BlocBuilder<TodosAddEditBloc, TodosState>(
-      bloc: todosBloc,
+    final todoBloc =
+        TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)..dispatch(LoadTodo());
+    return BlocBuilder<TodoDetailsBloc, TodosState>(
+      bloc: todoBloc,
       builder: (context, state) {
-        final todo = (state as TodosLoaded)
-            .todos
-            .firstWhere((todo) => todo.id == id, orElse: () => null);
+        final todo = state is TodoLoaded ? state.todo : null;
         return Scaffold(
           appBar: AppBar(
             title: Text('Todo Details'),
@@ -30,7 +29,7 @@ class TodoDetailsPage extends StatelessWidget {
                 tooltip: 'Delete Todo',
                 icon: Icon(Icons.delete),
                 onPressed: () {
-                  todosBloc.dispatch(DeleteTodo(todo));
+                  todoBloc.dispatch(DeleteTodo(todo));
                   Navigator.pop(context, todo);
                 },
               )
@@ -50,7 +49,7 @@ class TodoDetailsPage extends StatelessWidget {
                             child: Checkbox(
                                 value: todo.complete,
                                 onChanged: (_) {
-                                  todosBloc.dispatch(
+                                  todoBloc.dispatch(
                                     UpdateTodo(
                                       todo.copyWith(complete: !todo.complete),
                                     ),
@@ -99,7 +98,7 @@ class TodoDetailsPage extends StatelessWidget {
                         builder: (context) {
                           return TodoAddEditPage(
                             onSave: (task, note) {
-                              todosBloc.dispatch(
+                              todoBloc.dispatch(
                                 UpdateTodo(
                                   todo.copyWith(task: task, note: note),
                                 ),
