@@ -33,4 +33,9 @@ class FirebaseTodosRepository implements TodosRepository {
         .document(update.id)
         .updateData(update.toEntity().toDocument());
   }
+
+  @override
+  Future<Todo> getTodo(String id) {
+    return todoCollection.document(id).get().then((doc) => Todo.fromEntity(TodoEntity.fromSnapshot(doc)));
+  }
 }

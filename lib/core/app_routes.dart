@@ -53,12 +53,11 @@ var todoRouteHandler = Handler(
 
 var todoAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      final todosBloc = BlocProvider.of<TodosBloc>(context);
       return TodoAddEditPage(
         onSave: (task, note) {
-          todosBloc.dispatch(
-            AddTodo(Todo(task, note: note)),
-          );
+          // todosBloc.dispatch(
+          //   AddTodo(Todo(task, note: note)),
+          // );
         },
         isEditing: params['isEditing']?.first == 'true',
       );

@@ -11,4 +11,6 @@ abstract class TodosRepository {
   Stream<List<Todo>> todos();
 
   Future<void> updateTodo(Todo todo);
+
+  Future<Todo> getTodo(String id);
 }
