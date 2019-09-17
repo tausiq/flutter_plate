@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/todo/model/models.dart';
-import '../todos_repository.dart';
-import './bloc.dart';
 
 import 'package:meta/meta.dart';
+
+import '../../todos_repository.dart';
+import 'bloc.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;

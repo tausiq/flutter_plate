@@ -10,6 +10,12 @@ import 'package:flutter_plate/auth/auth_page.dart';
 import 'package:flutter_plate/timer/bloc/bloc.dart';
 import 'package:flutter_plate/timer/ticker.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
+import 'package:flutter_plate/todo/blocs/todo/todos_bloc.dart';
+import 'package:flutter_plate/todo/blocs/todo/todos_event.dart';
+import 'package:flutter_plate/todo/firebase_todos_repository.dart';
+import 'package:flutter_plate/todo/model/todo.dart';
+import 'package:flutter_plate/todo/todo_addedit_page.dart';
+import 'package:flutter_plate/todo/todo_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -33,13 +39,38 @@ var counterRouteHandler = Handler(
   return CounterPage();
 });
 
-var timerRouteHandler = Handler(
+var todoRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return BlocProvider(
-    builder: (context) => TimerBloc(ticker: Ticker()),
-    child: TimerPage(),
+  return BlocProvider<TodosBloc>(
+    builder: (context) {
+      return TodosBloc(
+        todosRepository: FirebaseTodosRepository(),
+      )..dispatch(LoadTodos());
+    },
+    child: TodoPage(),
   );
 });
+
+var todoAddEditRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      final todosBloc = BlocProvider.of<TodosBloc>(context);
+      return TodoAddEditPage(
+        onSave: (task, note) {
+          todosBloc.dispatch(
+            AddTodo(Todo(task, note: note)),
+          );
+        },
+        isEditing: params['isEditing']?.first == 'true',
+      );
+    });
+
+var timerRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return BlocProvider(
+        builder: (context) => TimerBloc(ticker: Ticker()),
+        child: TimerPage(),
+      );
+    });
 
 var appDetailRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -72,5 +103,7 @@ class AppRoutes {
     router.define(TimerPage.PATH,
         handler: timerRouteHandler,
         transitionType: TransitionType.inFromBottom);
+    router.define(TodoPage.PATH, handler: todoRouteHandler);
+    router.define(TodoAddEditPage.PATH, handler: todoAddEditRouteHandler);
   }
 }

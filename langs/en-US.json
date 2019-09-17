@@ -22,6 +22,10 @@
         "timer": {
             "title": "Timer",
             "subtitle": "Timer clock"
+        },
+        "todo": {
+            "title": "Todo",
+            "subtitle": "Firebase todo"
         }
     },
     "title_settings": "Settings",
