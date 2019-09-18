@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/app/ui/page/app_detail_page.dart';
 import 'package:flutter_plate/app/ui/page/app_store_page.dart';
+import 'package:flutter_plate/auth/bloc/auth_bloc.dart';
+import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
@@ -26,9 +28,17 @@ var rootHandler = Handler(
 
 var authRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-  return AuthPage(
-    userRepository: AppProvider.getApplication(context).userRepository,
-  );
+      var userRepository = AppProvider.getApplication(context).userRepository;
+      return BlocProvider<AuthenticationBloc>(
+          builder: (context) {
+            return AuthenticationBloc(userRepository: userRepository)
+              ..dispatch(AppStarted());
+          },
+          child: AuthPage(
+      userRepository: userRepository,
+      ),
+      );
+
 });
 
 var appStoreRouteHander = Handler(

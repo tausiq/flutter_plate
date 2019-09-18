@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/auth/auth_page_factory.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/home/home_page.dart';
+import 'package:flutter_plate/login/login_page.dart';
+import 'package:flutter_plate/login/splash_page.dart';
+import 'package:flutter_plate/reg/register_page.dart';
 
 import 'bloc/auth_bloc.dart';
 import 'bloc/bloc.dart';
@@ -14,14 +17,23 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthenticationBloc>(
-      builder: (context) {
-        return AuthenticationBloc(userRepository: userRepository)
-          ..dispatch(AppStarted());
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+      bloc: BlocProvider.of<AuthenticationBloc>(context),
+      builder: (BuildContext context, AuthenticationState state) {
+        if (state is Uninitialized) {
+          return SplashPage();
+        }
+        if (state is Authenticated) {
+          return HomePage(name: state.displayName);
+        }
+        if (state is Unauthenticated) {
+          return LoginPage(userRepository: userRepository);
+        }
+        if (state is Unregistered) {
+          return RegisterPage(userRepository: userRepository);
+        }
+          return null;
       },
-      child: AuthPageFactory(
-        userRepository: userRepository,
-      ),
     );
   }
 }

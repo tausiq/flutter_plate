@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -64,10 +66,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   ) async* {
     yield RegisterState.loading();
     try {
-      await _userRepository.signUp(
+      AuthResult result = await _userRepository.signUp(
         email: email,
         password: password,
       );
+      Log.d(result.toString());
       yield RegisterState.success();
     } catch (_) {
       yield RegisterState.failure();

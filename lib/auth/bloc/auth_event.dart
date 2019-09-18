@@ -20,3 +20,8 @@ class LoggedOut extends AuthenticationEvent {
   @override
   String toString() => 'LoggedOut';
 }
+
+class CreateAccount extends AuthenticationEvent {
+  @override
+  String toString() => 'CreateAccount';
+}

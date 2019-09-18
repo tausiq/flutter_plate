@@ -87,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Image.asset('assets/flutter_logo.png', height: 200),
+                    child: Image.asset('images/flutter_logo.png', height: 200),
                   ),
                   TextFormField(
                     controller: _emailController,
