@@ -25,7 +25,7 @@ class TodoAddEditPage extends StatefulWidget {
   static String generatePath(bool isEditing, {String todoId}) {
     Map<String, dynamic> parma = {
       'isEditing': isEditing.toString(),
-      'todoId': todoId ?? null,
+      'todoId': todoId,
     };
     Uri uri = Uri(path: PATH, queryParameters: parma);
     return uri.toString();

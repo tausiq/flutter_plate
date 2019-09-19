@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/todo/model/models.dart';
 
 import 'package:meta/meta.dart';
 
+import '../../todo_service.dart';
 import '../../todos_repository.dart';
 import 'bloc.dart';
 
@@ -11,6 +13,7 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
   StreamSubscription _todosSubscription;
   String _todoId;
+  TodoService _todoService;
 
   TodosAddEditBloc({@required TodosRepository todosRepository, String todoId})
       : assert(todosRepository != null),
@@ -22,7 +25,7 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
     if (event is LoadTodo) {
-      if (_todoId == null) yield TodoLoading();
+      if (_todoId == null || _todoId.isEmpty) yield TodoLoading();
       else yield* _mapLoadTodoToState();
     } else if (event is AddTodo) {
       yield* _mapAddTodoToState(event);
@@ -36,6 +39,7 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Stream<TodosState> _mapLoadTodoToState() async* {
+    _todoService = TodoService((await UserRepository().getUser()).roles);
     _todosSubscription?.cancel();
     _todosRepository.getTodo(_todoId).then((val) {
       dispatch(TodoUpdated(val));
@@ -55,7 +59,7 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Stream<TodosState> _mapTodoUpdateToState(TodoUpdated event) async* {
-    yield TodoLoaded(event.todo);
+    yield TodoLoaded(event.todo, _todoService.canEdit(), _todoService.canDelete());
   }
 
   @override

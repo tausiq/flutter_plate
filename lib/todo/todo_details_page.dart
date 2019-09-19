@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 
 import 'blocs/todo/bloc.dart';
 import 'blocs/todo/todo_details_bloc.dart';
@@ -30,8 +31,12 @@ class TodoDetailsPage extends StatelessWidget {
                 tooltip: 'Delete Todo',
                 icon: Icon(Icons.delete),
                 onPressed: () {
-                  todoBloc.dispatch(DeleteTodo(todo));
-                  Navigator.pop(context, todo);
+                  if ((state as TodoLoaded).canDelete) {
+                    todoBloc.dispatch(DeleteTodo(todo));
+                    Navigator.pop(context, todo);
+                  } else {
+                    Log.w("no permission for delete");
+                  }
                 },
               )
             ],

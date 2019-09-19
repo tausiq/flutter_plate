@@ -29,8 +29,10 @@ class TodosLoaded extends TodosState {
 
 class TodoLoaded extends TodosState {
   final Todo todo;
+  final bool canEdit;
+  final bool canDelete;
 
-  TodoLoaded(this.todo) : super([todo]);
+  TodoLoaded(this.todo, this.canEdit, this.canDelete) : super([todo]);
 
   @override
   String toString() => 'TodoLoaded { todo: $todo }';
