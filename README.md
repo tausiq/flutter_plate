@@ -1,6 +1,6 @@
-# Flutter Starter Kit - App Store Example
+# Flutter Plate - A Starter Kit for Flutter
 
-A starter kit for beginner learns with Bloc pattern, RxDart, sqflite, Fluro and Dio to architect a flutter project. This starter kit build an App Store app as a example
+A starter kit for beginner learns with Bloc pattern, RxDart, sqflite, Fluro and Dio to architect a flutter project. This starter kit builds an App Store, Counter page, Timer page, Firebase Todo, Infinite list and many more as example
 
 ![App Store Flutter Demo](https://i.ibb.co/FsyWhpY/ezgif-3-5dbb34baf658.gif)
 
@@ -11,9 +11,8 @@ A starter kit for beginner learns with Bloc pattern, RxDart, sqflite, Fluro and 
 - Restful api call by using [Dio](https://github.com/flutterchina/dio)
 - Database debugging (Android Only) by using [flutter_stetho](https://github.com/brianegan/flutter_stetho)
 - Loading Network Image
-- Localization by using [gen_lang](https://github.com/KingWu/gen_lang)
-  and [lang_table](https://github.com/KingWu/lang_table)
-- Environment Variable & Project Config (Like App Name, Bundle Id) based on different project flavour (Development, DevTest, Staging & Production)
+- Localization by using [Easy Localization](https://pub.dev/packages/easy_localization)
+- Environment Variable & Project Config (Like App Name, Bundle Id) based on different project flavour (Development, Early, Staging & Production)
 - Build pojo by using json_serializable
 - Update each list item instead of re-rendering whole list view when data set has changed on a list item
 - Hero animation
@@ -39,16 +38,6 @@ A starter kit for beginner learns with Bloc pattern, RxDart, sqflite, Fluro and 
 
 ```
 flutter packages pub run build_runner build --delete-conflicting-outputs
-```
-
-### lang_table
-```
-flutter packages pub run lang_table:generate --platform=airTable --input=https://api.airtable.com/v0/appZmh0WMg3y6APAg/example --api-key={YOUR API KEY} --target=Flutter
-```
-
-### gen_lang
-```
-flutter packages pub run gen_lang:generate
 ```
 
 ## Known Issues
@@ -83,9 +72,6 @@ flutter packages pub run gen_lang:generate
 - [JSON and serialization](https://flutter.io/docs/development/data-and-backend/json)
 
 #### Localization
-- [A new approach of localization in Flutter](https://medium.com/@kingwu/a-new-approach-of-localization-in-flutter-e18bfb2b14ab)
-- [Flutter: internationalization tutorials: Part 3— Android Studio plugin](https://medium.com/@datvt9312/flutter-internationalization-tutorials-part-3-android-studio-plugin-8604e2dc90f0)
-- [讓 Flutter App 支援多國語系的開發流程](https://medium.com/@zonble/%E8%AE%93-flutter-app-%E6%94%AF%E6%8F%B4%E5%A4%9A%E5%9C%8B%E8%AA%9E%E7%B3%BB%E7%9A%84%E9%96%8B%E7%99%BC%E6%B5%81%E7%A8%8B-ceb31532e2e1)
 - [Easy Localization](https://pub.dev/packages/easy_localization)
 
 #### Flavouring
