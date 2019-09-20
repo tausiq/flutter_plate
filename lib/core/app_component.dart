@@ -46,6 +46,7 @@ class AppComponentState extends State<AppComponent> {
       locale: data.savedLocale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Lato',
         primarySwatch: Env.value.primarySwatch,
       ),
       onGenerateRoute: _application.router.generator,
