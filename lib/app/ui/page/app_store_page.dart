@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/bloc/app_store_bloc.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/core/app_provider.dart';
-import 'package:flutter_plate/generated/i18n.dart';
 import 'package:flutter_plate/util/widget/StreamListItem.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
@@ -64,7 +64,7 @@ class _AppStorePageState extends State<AppStorePage> {
                     )
                   : null,
               border: InputBorder.none,
-              hintText: S.of(context).homeSearchHint),
+              hintText: AppLocalizations.of(context).tr('homeSearchHint')),
         );
       },
     );
@@ -97,7 +97,7 @@ class _AppStorePageState extends State<AppStorePage> {
                     CircularProgressIndicator(),
                     Container(
                         margin: EdgeInsets.only(top: 8),
-                        child: Text(S.of(context).dialogLoading))
+                        child: Text(AppLocalizations.of(context).tr('dialogLoading')))
                   ],
                 ))));
   }
@@ -110,14 +110,14 @@ class _AppStorePageState extends State<AppStorePage> {
             case ConnectionState.none:
             case ConnectionState.waiting:
               {
-                return Center(child: Text(S.of(context).dialogLoading));
+                return Center(child: Text(AppLocalizations.of(context).tr('dialogLoading')));
               }
             case ConnectionState.done:
             case ConnectionState.active:
               {
                 List<HomeListItem> feedList = snapshot.data;
                 if (0 == feedList.length) {
-                  return Center(child: Text(S.of(context).homeEmptyList));
+                  return Center(child: Text(AppLocalizations.of(context).tr('homeEmptyList')));
                 }
 
                 return ListView.builder(
@@ -175,7 +175,7 @@ class _AppStorePageState extends State<AppStorePage> {
         Container(
           margin: EdgeInsets.only(left: 20, top: 12, bottom: 16),
           child: Text(
-            S.of(context).homeRecommend,
+            AppLocalizations.of(context).tr('homeRecommend'),
             style: Theme.of(context).textTheme.title,
           ),
         ),

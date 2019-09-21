@@ -34,7 +34,6 @@
     "subtitle_logout": "Logout from app",
     "title_about": "About",
     "subtitle_about": "Get to know the app",
-    "title": "Hello",
     "msg": "Hello {} in the {} world ",
     "clickMe": "Click me",
     "profile": {
@@ -48,5 +47,12 @@
         "zero": "You clicked {} times!",
         "one": "You clicked {} time!",
         "other": "You clicked {} times!"
-    }
+    },
+    "detailRate": "Comments",
+    "hello": "Hello",
+    "title": "Hello world App",
+    "dialogLoading": "Loading ...",
+    "homeEmptyList": "No results",
+    "homeSearchHint": "Search ...",
+    "homeRecommend": "Recommend"
 }

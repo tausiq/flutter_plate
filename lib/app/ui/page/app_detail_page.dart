@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/bloc/app_detail_bloc.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/core/app_provider.dart';
-import 'package:flutter_plate/generated/i18n.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class AppDetailPage extends StatefulWidget {
@@ -92,7 +92,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                     CircularProgressIndicator(),
                     Container(
                         margin: EdgeInsets.only(top: 8),
-                        child: Text(S.of(context).dialogLoading))
+                        child: Text(AppLocalizations.of(context).tr('dialogLoading')))
                   ],
                 ))));
   }
@@ -195,7 +195,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                 Container(
                   width: 4,
                 ),
-                Text(S.of(context).detailRate)
+                Text(AppLocalizations.of(context).tr('detailRate'))
               ],
             )
           ],
