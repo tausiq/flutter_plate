@@ -6,11 +6,13 @@ import 'package:equatable/equatable.dart';
 /// allows us to switch our data provider at any time and only have to change
 /// the the toEntity and fromEntity conversion in our model layer.
 class UserEntity extends Equatable {
+  final String firstName;
+  final String lastName;
   final Map<String, dynamic> roles;
   final String email;
   final String id;
 
-  UserEntity(this.id, this.email, this.roles);
+  UserEntity(this.id, this.email, this.firstName, this.lastName, this.roles);
 
   Map<String, Object> toJson() {
     return {
@@ -20,15 +22,18 @@ class UserEntity extends Equatable {
     };
   }
 
+
   @override
   String toString() {
-    return 'UserEntity { id: $id, roles: $roles, email: $email }';
+    return 'UserEntity{firstName: $firstName, lastName: $lastName, roles: $roles, email: $email, id: $id}';
   }
 
   static UserEntity fromJson(Map<String, Object> json) {
     return UserEntity(
       json['id'] as String,
       json['email'] as String,
+      json['firstName'] as String,
+      json['lastName'] as String,
       json['roles'] as Map,
     );
   }
@@ -37,6 +42,8 @@ class UserEntity extends Equatable {
     return UserEntity(
       snap.documentID,
       snap.data['email'],
+      snap.data['firstName'],
+      snap.data['lastName'],
       new Map<String, dynamic>.from(snap.data['roles']),
     );
   }
@@ -45,6 +52,8 @@ class UserEntity extends Equatable {
     return {
       'id': id,
       'email': email,
+      'firstName': firstName,
+      'lastName': lastName,
       'roles': roles,
     };
   }

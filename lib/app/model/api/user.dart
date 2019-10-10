@@ -47,7 +47,7 @@ class User {
   }
 
   UserEntity toEntity() {
-    return UserEntity(id, email, roles);
+    return UserEntity(id, email, firstName, lastName, roles);
   }
 
   static User fromEntity(UserEntity entity) {

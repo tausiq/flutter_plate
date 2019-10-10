@@ -6,6 +6,25 @@ abstract class RegisterEvent extends Equatable {
   RegisterEvent([List props = const []]) : super(props);
 }
 
+class FirstNameChanged extends RegisterEvent {
+  final String name;
+
+  FirstNameChanged({@required this.name}) : super([name]);
+
+  @override
+  String toString() => 'FirstNameChanged { name :$name }';
+}
+
+class LastNameChanged extends RegisterEvent {
+  final String name;
+
+  LastNameChanged({@required this.name}) : super([name]);
+
+  @override
+  String toString() => 'LastNameChanged { name :$name }';
+}
+
+
 class EmailChanged extends RegisterEvent {
   final String email;
 
@@ -25,14 +44,18 @@ class PasswordChanged extends RegisterEvent {
 }
 
 class Submitted extends RegisterEvent {
+  final String firstName;
+  final String lastName;
   final String email;
   final String password;
 
-  Submitted({@required this.email, @required this.password})
-      : super([email, password]);
+  Submitted({@required this.firstName, @required this.lastName, @required this.email, @required this.password})
+      : super([firstName, lastName, email, password]);
 
   @override
   String toString() {
-    return 'Submitted { email: $email, password: $password }';
+    return 'Submitted{firstName: $firstName, lastName: $lastName, email: $email, password: $password}';
   }
+
+
 }

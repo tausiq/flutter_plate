@@ -10,12 +10,14 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   RegisterBloc _registerBloc;
 
-  bool get isPopulated =>
+  bool get isPopulated => _firstNameController.text.isNotEmpty && _lastNameController.text.isNotEmpty &&
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
   bool isRegisterButtonEnabled(RegisterState state) {
@@ -26,6 +28,8 @@ class _RegisterFormState extends State<RegisterForm> {
   void initState() {
     super.initState();
     _registerBloc = BlocProvider.of<RegisterBloc>(context);
+    _firstNameController.addListener(_onFirstNameChanged);
+    _lastNameController.addListener(_onLastNameChanged);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
   }
@@ -78,6 +82,30 @@ class _RegisterFormState extends State<RegisterForm> {
               child: ListView(
                 children: <Widget>[
                   TextFormField(
+                    controller: _firstNameController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      labelText: 'First Name',
+                    ),
+                    autocorrect: false,
+                    autovalidate: true,
+                    validator: (_) {
+                      return !state.isFirstNameValid ? 'Invalid Name' : null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _lastNameController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      labelText: 'Last Name',
+                    ),
+                    autocorrect: false,
+                    autovalidate: true,
+                    validator: (_) {
+                      return !state.isFirstNameValid ? 'Invalid Name' : null;
+                    },
+                  ),
+                  TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.email),
@@ -118,10 +146,25 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
+
+  void _onFirstNameChanged() {
+    _registerBloc.dispatch(
+      FirstNameChanged(name: _firstNameController.text),
+    );
+  }
+
+  void _onLastNameChanged() {
+    _registerBloc.dispatch(
+      LastNameChanged(name: _lastNameController.text),
+    );
+  }
+
 
   void _onEmailChanged() {
     _registerBloc.dispatch(
@@ -138,6 +181,8 @@ class _RegisterFormState extends State<RegisterForm> {
   void _onFormSubmitted() {
     _registerBloc.dispatch(
       Submitted(
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
         email: _emailController.text,
         password: _passwordController.text,
       ),

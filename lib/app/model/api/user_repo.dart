@@ -66,7 +66,7 @@ class UserRepository implements IUserRepository {
     );
   }
 
-  Future<AuthResult> signUp({String email, String password}) async {
+  Future<AuthResult> signUp({String email, String firstName, String lastName, String password}) async {
     AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
