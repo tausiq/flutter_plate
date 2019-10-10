@@ -53,4 +53,13 @@ class User {
   static User fromEntity(UserEntity entity) {
     return User(id: entity.id, firstName: entity.firstName, lastName: entity.lastName, email: entity.email, roles: entity.roles);
   }
+
+  bool isAdmin() {
+    return roles.containsKey('admin');
+  }
+
+  bool isManager() {
+    return roles.containsKey('manager');
+  }
+
 }

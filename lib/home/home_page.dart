@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
     return BlocProvider<HomeBloc>(
         builder: (BuildContext context) {
-          _homeBloc.setContext(context);
           return _homeBloc;
         },
         child: Scaffold(

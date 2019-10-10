@@ -7,6 +7,8 @@ import 'package:flutter_plate/home/bloc/bloc.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_plate/timer/timer_page.dart';
+import 'package:flutter_plate/todo/todo_page.dart';
 
 class NavDrawer extends StatelessWidget {
   final User user;
@@ -29,7 +31,10 @@ class NavDrawer extends StatelessWidget {
               Icons.home,
               AppLocalizations.of(context).tr('drawer.home.title'),
               AppLocalizations.of(context).tr('drawer.home.subtitle'),
-              _homeBloc.openHomePage),
+              () {
+                    AppProvider.getRouter(context).pop(context);
+    AppProvider.getRouter(context).navigateTo(context, HomePage.PATH);
+              }),
           _getItem(
               1,
               Icons.category,
@@ -42,7 +47,11 @@ class NavDrawer extends StatelessWidget {
               Icons.fastfood,
               AppLocalizations.of(context).tr('drawer.counter.title'),
               AppLocalizations.of(context).tr('drawer.counter.subtitle'),
-              _homeBloc.openCounterPage),
+              () {
+                    AppProvider.getRouter(context).pop(context);
+    AppProvider.getRouter(context).navigateTo(context, CounterPage.PATH);
+              }
+              ),
           _getItem(
               3,
               Icons.favorite,
@@ -55,13 +64,19 @@ class NavDrawer extends StatelessWidget {
               Icons.rate_review,
               AppLocalizations.of(context).tr('drawer.timer.title'),
               AppLocalizations.of(context).tr('drawer.timer.subtitle'),
-              _homeBloc.openTimerPage),
+              () {
+                    AppProvider.getRouter(context).pop(context);
+    AppProvider.getRouter(context).navigateTo(context, TimerPage.PATH);
+              }),
           _getItem(
               5,
               Icons.work,
               AppLocalizations.of(context).tr('drawer.todo.title'),
               AppLocalizations.of(context).tr('drawer.todo.subtitle'),
-              _homeBloc.openTodoPage),
+              (){
+                    AppProvider.getRouter(context).pop(context);
+    AppProvider.getRouter(context).navigateTo(context, TodoPage.PATH);
+              }),
           Divider(),
           _getItem(
               6,

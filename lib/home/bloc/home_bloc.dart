@@ -12,12 +12,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   HomeState get initialState => HomeState.initial();
 
-  BuildContext _context;
-
-  void setContext(BuildContext context) {
-    this._context = context;
-  }
-
   @override
   Stream<HomeState> mapEventToState(
     HomeEvent event,
@@ -25,23 +19,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // TODO: Add Logic
   }
 
-  void openHomePage() async {
-    AppProvider.getRouter(_context).pop(_context);
-    AppProvider.getRouter(_context).navigateTo(_context, HomePage.PATH);
-  }
-
-  void openCounterPage() async {
-    AppProvider.getRouter(_context).pop(_context);
-    AppProvider.getRouter(_context).navigateTo(_context, CounterPage.PATH);
-  }
-
-  void openTimerPage() async {
-    AppProvider.getRouter(_context).pop(_context);
-    AppProvider.getRouter(_context).navigateTo(_context, TimerPage.PATH);
-  }
-
-  void openTodoPage() async {
-    AppProvider.getRouter(_context).pop(_context);
-    AppProvider.getRouter(_context).navigateTo(_context, TodoPage.PATH);
-  }
+//  void openHomePage() async {
+//    AppProvider.getRouter(_context).pop(_context);
+//    AppProvider.getRouter(_context).navigateTo(_context, HomePage.PATH);
+//  }
+//
+//  void openCounterPage() async {
+//    AppProvider.getRouter(_context).pop(_context);
+//    AppProvider.getRouter(_context).navigateTo(_context, CounterPage.PATH);
+//  }
+//
+//  void openTimerPage() async {
+//    AppProvider.getRouter(_context).pop(_context);
+//    AppProvider.getRouter(_context).navigateTo(_context, TimerPage.PATH);
+//  }
+//
+//  void openTodoPage() async {
+//    AppProvider.getRouter(_context).pop(_context);
+//    AppProvider.getRouter(_context).navigateTo(_context, TodoPage.PATH);
+//  }
 }
