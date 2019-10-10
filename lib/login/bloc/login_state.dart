@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class LoginState extends Equatable {
+class LoginState {
   final bool isEmailValid;
   final bool isPasswordValid;
   final bool isSubmitting;
@@ -91,12 +91,6 @@ class LoginState extends Equatable {
 
   @override
   String toString() {
-    return '''LoginState {
-      isEmailValid: $isEmailValid,
-      isPasswordValid: $isPasswordValid,
-      isSubmitting: $isSubmitting,
-      isSuccess: $isSuccess,
-      isFailure: $isFailure,
-    }''';
+    return 'LoginState{isEmailValid: $isEmailValid, isPasswordValid: $isPasswordValid, isSubmitting: $isSubmitting, isSuccess: $isSuccess, isFailure: $isFailure}';
   }
 }
