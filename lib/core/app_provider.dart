@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/core/plate_app.dart';
 
@@ -25,4 +26,9 @@ class AppProvider extends InheritedWidget {
     return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider)
         .application;
   }
+
+  static User getUser(BuildContext context) {
+    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider).application.loggedInUser;
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:meta/meta.dart';
 
 /// Since we're using Equatable to allow us to compare different instances
@@ -17,12 +18,12 @@ class Uninitialized extends AuthenticationState {
 }
 
 class Authenticated extends AuthenticationState {
-  final String displayName;
+  final User user;
 
-  Authenticated(this.displayName) : super([displayName]);
+  Authenticated(this.user) : super([user]);
 
   @override
-  String toString() => 'Authenticated { displayName: $displayName }';
+  String toString() => 'Authenticated { user: $user }';
 }
 
 class Unauthenticated extends AuthenticationState {

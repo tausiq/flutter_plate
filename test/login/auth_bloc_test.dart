@@ -1,3 +1,4 @@
+import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -51,7 +52,7 @@ void main() {
             () {
           final expectedResponse = [
             Uninitialized(),
-            Authenticated("user@email.com"),
+            Authenticated(User()),
           ];
 
           expectLater(

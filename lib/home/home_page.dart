@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
 
 import 'bloc/bloc.dart';
@@ -9,9 +10,9 @@ import 'nav_drawer.dart';
 class HomePage extends StatefulWidget {
   static const String PATH = '/home';
 
-  final String name;
+  final User user;
 
-  HomePage({Key key, @required this.name}) : super(key: key);
+  HomePage({Key key, @required this.user}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -42,11 +43,11 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          drawer: NavDrawer(null, 0),
+          drawer: NavDrawer(widget.user, 0),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Center(child: Text('Welcome ${widget.name}!')),
+              Center(child: Text('Welcome ${widget.user.firstName} ${widget.user.lastName}!')),
             ],
           ),
         ));

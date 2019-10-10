@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
@@ -25,7 +26,9 @@ class AuthPageFactory extends StatelessWidget {
           return SplashPage();
         }
         if (state is Authenticated) {
-          return HomePage(name: state.displayName);
+          AppProvider.getApplication(context).loggedInUser = state.user;
+          return HomePage(user: state.user,);
+
         }
         if (state is Unauthenticated) {
           return LoginPage(userRepository: userRepository);

@@ -51,6 +51,6 @@ class User {
   }
 
   static User fromEntity(UserEntity entity) {
-    return User(id: entity.id, email: entity.email, roles: entity.roles);
+    return User(id: entity.id, firstName: entity.firstName, lastName: entity.lastName, email: entity.email, roles: entity.roles);
   }
 }

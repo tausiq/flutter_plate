@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_plate/app/model/api/api_provider.dart';
 import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
+import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
@@ -20,6 +21,7 @@ class PlateApp implements Application {
   DBAppStoreRepository dbAppStoreRepository;
   AppStoreAPIRepository appStoreAPIRepository;
   UserRepository userRepository;
+  User loggedInUser;
 
   @override
   Future<void> onCreate() async {

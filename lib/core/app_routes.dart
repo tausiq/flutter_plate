@@ -22,23 +22,22 @@ import 'package:flutter_plate/todo/todo_page.dart';
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return HomePage(
-    name: params['name'][0],
+    user: AppProvider.getApplication(context).loggedInUser,
   );
 });
 
 var authRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      var userRepository = AppProvider.getApplication(context).userRepository;
-      return BlocProvider<AuthenticationBloc>(
-          builder: (context) {
-            return AuthenticationBloc(userRepository: userRepository)
-              ..dispatch(AppStarted());
-          },
-          child: AuthPage(
+  var userRepository = AppProvider.getApplication(context).userRepository;
+  return BlocProvider<AuthenticationBloc>(
+    builder: (context) {
+      return AuthenticationBloc(userRepository: userRepository)
+        ..dispatch(AppStarted());
+    },
+    child: AuthPage(
       userRepository: userRepository,
-      ),
-      );
-
+    ),
+  );
 });
 
 var appStoreRouteHander = Handler(
@@ -100,6 +99,7 @@ class AppRoutes {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print('ROUTE WAS NOT FOUND !!!');
+      return;
     });
     router.define(AuthPage.PATH, handler: authRouteHandler);
     router.define(HomePage.PATH, handler: rootHandler);
