@@ -51,6 +51,13 @@ var settingsRouteHandler = Handler(
       return SettingsPage();
     });
 
+var workoutAddEditRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return WorkoutAddEditPage(
+    isEditing: params['isEditing']?.first == 'true',
+    workoutId: params['workoutId']?.first,
+  );
+});
 
 var counterRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -120,5 +127,6 @@ class AppRoutes {
     router.define(TodoPage.PATH, handler: todoRouteHandler);
     router.define(TodoAddEditPage.PATH, handler: todoAddEditRouteHandler);
     router.define(SettingsPage.PATH, handler: settingsRouteHandler);
+    router.define(WorkoutAddEditPage.PATH, handler: workoutAddEditRouteHandler);
   }
 }
