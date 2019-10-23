@@ -40,7 +40,7 @@ var authRouteHandler = Handler(
   );
 });
 
-var appStoreRouteHander = Handler(
+var appStoreRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return AppStorePage();
 });
@@ -103,7 +103,7 @@ class AppRoutes {
     });
     router.define(AuthPage.PATH, handler: authRouteHandler);
     router.define(HomePage.PATH, handler: rootHandler);
-    router.define(AppStorePage.PATH, handler: appStoreRouteHander);
+    router.define(AppStorePage.PATH, handler: appStoreRouteHandler);
     router.define(AppDetailPage.PATH, handler: appDetailRouteHandler);
     router.define(CounterPage.PATH,
         handler: counterRouteHandler, transitionType: TransitionType.fadeIn);
