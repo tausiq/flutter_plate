@@ -9,6 +9,7 @@ import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/auth/auth_page.dart';
+import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/bloc/bloc.dart';
 import 'package:flutter_plate/timer/ticker.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
@@ -44,6 +45,12 @@ var appStoreRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return AppStorePage();
 });
+
+var settingsRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return SettingsPage();
+    });
+
 
 var counterRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -112,5 +119,6 @@ class AppRoutes {
         transitionType: TransitionType.inFromBottom);
     router.define(TodoPage.PATH, handler: todoRouteHandler);
     router.define(TodoAddEditPage.PATH, handler: todoAddEditRouteHandler);
+    router.define(SettingsPage.PATH, handler: settingsRouteHandler);
   }
 }

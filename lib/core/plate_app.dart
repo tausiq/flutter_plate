@@ -8,9 +8,11 @@ import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/settings/prefs_const.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:logger/logger.dart';
+import 'package:preferences/preferences.dart';
 
 import 'Application.dart';
 import 'app_routes.dart';
@@ -31,6 +33,7 @@ class PlateApp implements Application {
     _initDBRepository();
     _initAPIRepository();
     _initUserRepository();
+    _initPreference();
   }
 
   @override
@@ -62,6 +65,12 @@ class PlateApp implements Application {
   void _initUserRepository() {
     userRepository = UserRepository();
   }
+
+  void _initPreference() async {
+    await PrefService.init(prefix: PREF_PREFIX);
+    PrefService.setDefaultValues({WORKOUT_MIN_PER_DAY: '60'});
+  }
+
 
   void _initLog() {
     Log.init();

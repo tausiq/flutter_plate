@@ -7,6 +7,7 @@ import 'package:flutter_plate/home/bloc/bloc.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
 
@@ -84,6 +85,7 @@ class NavDrawer extends StatelessWidget {
               AppLocalizations.of(context).tr('title_settings'),
               AppLocalizations.of(context).tr('subtitle_settings'), () {
             AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context).navigateTo(context, SettingsPage.PATH);
           }),
           _getItem(
               7,
