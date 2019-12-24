@@ -4,6 +4,7 @@ import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
+import 'package:preferences/preferences.dart';
 
 import 'bloc/auth_bloc.dart';
 import '../login/login_page.dart';
@@ -26,6 +27,7 @@ class AuthPageFactory extends StatelessWidget {
         }
         if (state is Authenticated) {
           AppProvider.getApplication(context).loggedInUser = state.user;
+          PrefService.setString('user_id', state.user.id);
           return HomePage(user: state.user,);
 
         }

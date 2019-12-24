@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/src/material/time.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
+import 'package:preferences/preferences.dart';
 
 
 import 'workout.dart';
@@ -23,7 +24,7 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
 
   @override
   Stream<List<Workout>> workouts() {
-    return workoutCollection.snapshots().map((snapshot) {
+    return workoutCollection.where('userId', isEqualTo: PrefService.getString('user_id')).snapshots().map((snapshot) {
       return snapshot.documents
           .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
           .toList();
@@ -62,10 +63,11 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
     int tTime = toTime.hour * 60 * 60 * 1000 + toTime.minute * 60 * 1000;
     return workoutCollection.where('dateTime', isGreaterThanOrEqualTo: fromDate.toUtc().millisecondsSinceEpoch)
     .where('dateTime', isLessThanOrEqualTo: toDate.toUtc().millisecondsSinceEpoch).snapshots().map((snapshot) {
-      return snapshot.documents
-          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc))).where((doc) => doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 >= fTime  && 
+return snapshot.documents
+          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc))).where((doc) => doc.userId == PrefService.getString('user_id')).where((doc) => doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 >= fTime  && 
           doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 < tTime)
           .toList();
+
 
     });
   }

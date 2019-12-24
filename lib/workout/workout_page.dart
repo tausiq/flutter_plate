@@ -10,7 +10,9 @@ import 'package:flutter_plate/workout/bloc/workout_bloc.dart';
 import 'package:flutter_plate/workout/bloc/workouts_event.dart';
 import 'package:flutter_plate/workout/bloc/workouts_state.dart';
 import 'package:intl/intl.dart';
+import 'package:preferences/preferences.dart';
 
+import 'calendar_actions.dart';
 import 'filter_actions.dart';
 
 class WorkoutPage extends StatefulWidget {
@@ -66,7 +68,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     if (items == null || items.isEmpty) return Container(child: Center(child: Text('No records found'),),);
         DateTime fromDate, toDate;
     TimeOfDay fromTime, toTime;
-    int calories = 0;
+    int minutes = 0;
     if (state is WorkoutsLoaded) {
       fromDate = state.fromDate ?? DateTime.now();
       toDate = state.toDate ?? DateTime.now();
@@ -76,7 +78,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
           fromTime.hour, fromTime.minute);
       toDate = DateTime(
           toDate.year, toDate.month, toDate.day, toTime.hour, toTime.minute);
-      calories = state.totalMinutes;
+      minutes = state.totalMinutes;
     }
 
 
@@ -101,7 +103,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   style: TextStyle(color: Colors.white, fontSize: 12.0),
                 ),
                 Text(
-                  'Total Calories: $calories',
+                  'Total Mins: $minutes        Allowed Mins: ${PrefService.getString('minutes_per_day')}',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 12.0),
                 )
@@ -155,19 +157,22 @@ class _WorkoutPageState extends State<WorkoutPage> {
     ret.add(IconButton(
       icon: Icon(Icons.settings),
       onPressed: () {
-        AppProvider.getRouter(context).navigateTo(context, SettingsPage.PATH);
+                AppProvider.getRouter(context).navigateTo(context, SettingsPage.PATH).then((val) {
+          bloc.add(LoadWorkouts());
+        });
+
       },
     ));
 
     ret.add(IconButton(
-      icon: Icon(Icons.filter_list),
+      icon: Icon(Icons.calendar_today),
       onPressed: () async {
         await showDialog<Null>(
             context: context,
-            builder: (BuildContext context) => FilterActions(bloc));
+            builder: (BuildContext context) => CalendarActions(bloc));
       },
-
     ));
+
 
     if (user.isManager() || user.isAdmin()) {
       ret.add(IconButton(
