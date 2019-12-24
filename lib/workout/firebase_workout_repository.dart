@@ -32,17 +32,17 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
   }
 
   @override
-  Future<void> updateWorkout(Workout item) {
-    return workoutCollection
+  Future<void> updateWorkout(Workout item) async {
+    return await workoutCollection
         .document(item.id)
         .updateData(item.toEntity().toDocument());
   }
 
   @override
-  Future<Workout> getWorkout(String id) {
-    return workoutCollection.document(id).get().then((doc) {
-      return Workout.fromEntity(WorkoutEntity.fromSnapshot(doc));
-    });
+  Future<Workout> getWorkout(String id) async {
+    return Workout.fromEntity(
+        WorkoutEntity.fromSnapshot(await workoutCollection.document(id).get()));
+
   }
 
   @override
@@ -61,12 +61,25 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
   Stream<List<Workout>> filteredWorkouts(DateTime fromDate, DateTime toDate, TimeOfDay fromTime, TimeOfDay toTime) {
     int fTime = fromTime.hour * 60 * 60 * 1000 + fromTime.minute * 60 * 1000;
     int tTime = toTime.hour * 60 * 60 * 1000 + toTime.minute * 60 * 1000;
-    return workoutCollection.where('dateTime', isGreaterThanOrEqualTo: fromDate.toUtc().millisecondsSinceEpoch)
-    .where('dateTime', isLessThanOrEqualTo: toDate.toUtc().millisecondsSinceEpoch).snapshots().map((snapshot) {
-return snapshot.documents
-          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc))).where((doc) => doc.userId == PrefService.getString('user_id')).where((doc) => doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 >= fTime  && 
-          doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 < tTime)
+    return workoutCollection
+        .where('dateTime',
+        isGreaterThanOrEqualTo: fromDate.toUtc().millisecondsSinceEpoch)
+        .where('dateTime',
+        isLessThanOrEqualTo: toDate.toUtc().millisecondsSinceEpoch)
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.documents
+          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
+          .where((doc) => doc.userId == PrefService.getString('user_id'))
+          .where((doc) =>
+      doc.timeOfDay.hour * 60 * 60 * 1000 +
+          doc.timeOfDay.minute * 60 * 1000 >=
+          fTime &&
+          doc.timeOfDay.hour * 60 * 60 * 1000 +
+              doc.timeOfDay.minute * 60 * 1000 <
+              tTime)
           .toList();
+
 
 
     });

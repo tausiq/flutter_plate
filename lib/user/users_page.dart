@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/widgets/empty_view.dart';
+import 'package:flutter_plate/widgets/loading_indicator.dart';
+
+import 'bloc/bloc.dart';
+import 'firebase_user_repository.dart';
+
+class UsersPage extends StatefulWidget {
+  static const String PATH = '/users';
+
+  final User user;
+
+  UsersPage({Key key, @required this.user}) : super(key: key);
+
+  @override
+  _UsersPageState createState() => _UsersPageState();
+}
+
+class _UsersPageState extends State<UsersPage> {
+  final UserBloc bloc = UserBloc(userRepository: FirebaseUserRepository());
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<UserBloc>(
+      create: (BuildContext context) {
+        return bloc..add(LoadUsers());
+      },
+      child: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+        if (state is UserLoading) return LoadingIndicator();
+        return _buildBody(state);
+      }),
+    );
+  }
+
+  Widget _buildBody(UserState state) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Users')),
+      body: SafeArea(child: _buildUsers(state)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+//          AppProvider.getRouter(context)
+//              .navigateTo(context, MealAddEditPage.generatePath(false));
+        },
+        child: Icon(Icons.add),
+        tooltip: 'Add Meal',
+      ),
+    );
+  }
+
+  _buildUsers(UserState state) {
+    final items = state is UsersLoaded ? state.items : null;
+    if (items == null || items.isEmpty) return EmptyView('No users found');
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: items != null ? items.length : 0,
+      itemBuilder: (context, index) {
+        final item = items[index];
+        return ListTile(
+          title: Text(item.firstName + ' ' + item.lastName),
+          subtitle: Text(item.email),
+          trailing: _getRoleChip(item),
+          onTap: () async {
+//            AppProvider.getRouter(context).navigateTo(context,
+//                MealAddEditPage.generatePath(true, mealId: item.id));
+          },
+        );
+      },
+    );
+  }
+
+  _getRoleChip(User item) {
+    MaterialColor color;
+    String role;
+    if (item.roles.containsKey('admin') && item.roles['admin']) {
+      color = Colors.red;
+      role = 'Admin';
+    } else if (item.roles.containsKey('manager') && item.roles['manager']) {
+      color = Colors.green;
+      role = 'Manager';
+    } else {
+      color = Colors.blue;
+      role = 'User';
+    }
+
+    return Chip(
+      label: Text(
+        role,
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: color,
+    );
+  }
+}

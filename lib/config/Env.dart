@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/app/bloc/app_bloc_delegate.dart';
+import 'package:flutter_plate/core/app_bloc_delegate.dart';
 import 'package:flutter_plate/core/app_component.dart';
 import 'package:flutter_plate/core/plate_app.dart';
 import 'package:flutter_stetho/flutter_stetho.dart';

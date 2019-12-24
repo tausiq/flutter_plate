@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:preferences/preferences.dart';
 
 import 'bloc/auth_bloc.dart';
@@ -11,7 +11,7 @@ import '../login/login_page.dart';
 import 'bloc/bloc.dart';
 
 class AuthPageFactory extends StatelessWidget {
-  final UserRepository userRepository;
+  final FirebaseUserRepository userRepository;
 
   AuthPageFactory({Key key, @required this.userRepository})
       : assert(userRepository != null),

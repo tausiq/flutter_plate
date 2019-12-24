@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_plate/login/bloc/bloc.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 
 import 'create_account_button.dart';
 import 'google_login_button.dart';
 import 'login_button.dart';
 
 class LoginForm extends StatefulWidget {
-  final UserRepository _userRepository;
+  final FirebaseUserRepository _userRepository;
 
-  LoginForm({Key key, @required UserRepository userRepository})
+  LoginForm({Key key, @required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(key: key);
@@ -25,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
 
   LoginBloc _loginBloc;
 
-  UserRepository get _userRepository => widget._userRepository;
+  FirebaseUserRepository get _userRepository => widget._userRepository;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;

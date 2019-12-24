@@ -1,12 +1,12 @@
 import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_plate/login/bloc/bloc.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 
 
-class MockUserRepository extends Mock implements UserRepository {}
+class MockUserRepository extends Mock implements FirebaseUserRepository {}
 
 class MockAuthenticationBloc extends Mock implements AuthenticationBloc {}
 

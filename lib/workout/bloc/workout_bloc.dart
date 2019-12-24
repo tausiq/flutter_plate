@@ -22,7 +22,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
         _workoutsRepository = workoutsRepository, _user = user;
 
   @override
-  WorkoutsState get initialState => WorkoutsLoading();
+  WorkoutsState get initialState => WorkoutLoading();
 
   @override
   Stream<WorkoutsState> mapEventToState(WorkoutsEvent event) async* {

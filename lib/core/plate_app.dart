@@ -8,7 +8,7 @@ import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/settings/prefs_const.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:logger/logger.dart';
@@ -22,7 +22,7 @@ class PlateApp implements Application {
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;
   AppStoreAPIRepository appStoreAPIRepository;
-  UserRepository userRepository;
+  FirebaseUserRepository userRepository;
   User loggedInUser;
 
   @override
@@ -63,7 +63,7 @@ class PlateApp implements Application {
   }
 
   void _initUserRepository() {
-    userRepository = UserRepository();
+    userRepository = FirebaseUserRepository();
   }
 
   void _initPreference() async {

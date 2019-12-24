@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 
 class CreateAccountButton extends StatelessWidget {
-  final UserRepository _userRepository;
+  final FirebaseUserRepository _userRepository;
 
-  CreateAccountButton({Key key, @required UserRepository userRepository})
+  CreateAccountButton({Key key, @required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(key: key);

@@ -5,7 +5,7 @@ import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/login_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
 import 'package:flutter_plate/reg/register_page.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:preferences/preferences.dart';
 
 import 'bloc/auth_bloc.dart';
@@ -13,7 +13,7 @@ import 'bloc/bloc.dart';
 
 class AuthPage extends StatelessWidget {
   static const String PATH = '/';
-  final UserRepository userRepository;
+  final FirebaseUserRepository userRepository;
 
   AuthPage({Key key, @required this.userRepository}) : super(key: key);
 

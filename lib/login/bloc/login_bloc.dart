@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -8,10 +8,10 @@ import 'package:rxdart/rxdart.dart';
 import 'bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  UserRepository _userRepository;
+  FirebaseUserRepository _userRepository;
 
   LoginBloc({
-    @required UserRepository userRepository,
+    @required FirebaseUserRepository userRepository,
   })  : assert(userRepository != null),
         _userRepository = userRepository;
 

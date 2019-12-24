@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/reg/register_form.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 
 import 'bloc/bloc.dart';
 
 class RegisterPage extends StatelessWidget {
-  final UserRepository _userRepository;
+  final FirebaseUserRepository _userRepository;
 
-  RegisterPage({Key key, @required UserRepository userRepository})
+  RegisterPage({Key key, @required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(key: key);

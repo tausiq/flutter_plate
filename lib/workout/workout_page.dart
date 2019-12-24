@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
+import 'package:flutter_plate/user/users_page.dart';
+import 'package:flutter_plate/widgets/empty_view.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
 import 'package:flutter_plate/workout/firebase_workout_repository.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';
@@ -38,7 +40,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
         return _workoutBloc..add(LoadWorkouts());
       },
       child: BlocBuilder<WorkoutBloc, WorkoutsState>(builder: (context, state) {
-        if (state is WorkoutsLoading) return LoadingIndicator();
+        if (state is WorkoutLoading) return LoadingIndicator();
         return _buildBody(state);
       }),
     );
@@ -65,7 +67,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   _buildWorkoutList(WorkoutsState state) {
     final items = state is WorkoutsLoaded ? state.items : null;
-    if (items == null || items.isEmpty) return Container(child: Center(child: Text('No records found'),),);
+    if (items == null || items.isEmpty) return EmptyView('No Meals Found');
         DateTime fromDate, toDate;
     TimeOfDay fromTime, toTime;
     int minutes = 0;
@@ -177,7 +179,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
     if (user.isManager() || user.isAdmin()) {
       ret.add(IconButton(
         icon: Icon(Icons.group),
-        onPressed: () {},
+        onPressed: () {
+          AppProvider.getRouter(context).navigateTo(context, UsersPage.PATH);
+        },
       ));
     }
 

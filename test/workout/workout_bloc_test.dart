@@ -16,13 +16,13 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(workoutsBloc.initialState, WorkoutsLoading());
+    expect(workoutsBloc.initialState, WorkoutLoading());
   });
 
   test('dispose does not emit new states', () {
     expectLater(
       workoutsBloc.state,
-      emitsInOrder([WorkoutsLoading(), emitsDone]),
+      emitsInOrder([WorkoutLoading(), emitsDone]),
     );
     workoutsBloc.close();
   });

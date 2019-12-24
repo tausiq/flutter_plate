@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 
 import 'package:meta/meta.dart';
 
@@ -38,7 +38,7 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Stream<TodosState> _mapLoadTodoToState() async* {
-    _todoService = TodoService((await UserRepository().getUser()).roles);
+    _todoService = TodoService((await FirebaseUserRepository().getUser()).roles);
     _todosSubscription?.cancel();
     _todosRepository.getTodo(_todoId).then((val) {
       add(TodoUpdated(val));

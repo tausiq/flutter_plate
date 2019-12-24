@@ -8,15 +8,15 @@ import 'package:flutter_plate/user/user_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
-class UserRepository implements IUserRepository {
+class FirebaseUserRepository implements UserRepository {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final _usercollection;
+  final CollectionReference _usercollection;
 
   /// If FirebaseAuth and/or GoogleSignIn are not injected into the UserRepository,
   /// then we instantiate them internally. This allows us to be able to inject
   /// mock instances so that we can easily test the UserRepository
-  UserRepository({FirebaseAuth firebaseAuth, GoogleSignIn googleSignin})
+  FirebaseUserRepository({FirebaseAuth firebaseAuth, GoogleSignIn googleSignin})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         _googleSignIn = googleSignin ?? GoogleSignIn(),
       _usercollection = Firestore.instance.collection('users');
@@ -103,4 +103,25 @@ class UserRepository implements IUserRepository {
   Future<void> authenticateAnonymously() {
     return _firebaseAuth.signInAnonymously();
   }
+
+  @override
+  Future<void> updateUser(User item) {
+    return _usercollection
+        .document(item.id)
+        .updateData(item.toEntity().toDocument());
+  }
+
+  @override
+  Stream<List<User>> users() {
+    return _usercollection.snapshots().map((item) {
+      return item.documents.map((doc) => User.fromEntity(UserEntity.fromSnapshot(doc))).toList();
+    });
+  }
+
+  @override
+  Future<User> getUserById(String id) async {
+    return User.fromEntity(
+        UserEntity.fromSnapshot(await _usercollection.document(id).get()));
+  }
+
 }

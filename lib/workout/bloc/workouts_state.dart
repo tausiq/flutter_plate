@@ -16,14 +16,6 @@ class WorkoutLoading extends WorkoutsState {
   List<Object> get props => [];
 }
 
-class WorkoutsLoading extends WorkoutsState {
-  @override
-  String toString() => 'WorkoutsLoading';
-
-  @override
-  List<Object> get props => [];
-}
-
 class WorkoutsLoaded extends WorkoutsState {
   final List<Workout> items;
   final int minutesDiff;

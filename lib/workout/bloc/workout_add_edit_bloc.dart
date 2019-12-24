@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_plate/user/user_repo.dart';
+import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
 import 'package:flutter_plate/workout/workout_service.dart';
 import 'package:flutter_plate/workout/bloc/workouts_event.dart';
@@ -46,7 +46,7 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   }
 
   Stream<WorkoutsState> _mapLoadTodoToState() async* {
-    _workoutService = WorkoutService((await UserRepository().getUser()));
+    _workoutService = WorkoutService((await FirebaseUserRepository().getUser()));
     _workoutsSubscription?.cancel();
     _workoutsRepository.getWorkout(_workoutId).then((val) {
       _workoutService.workout = val;
