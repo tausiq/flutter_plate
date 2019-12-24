@@ -79,24 +79,34 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   BoxDecoration(color: Theme.of(context).primaryColorDark)),
         ),
         ListView.builder(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            itemCount: items != null ? items.length : 0,
-            itemBuilder: (context, index) {
-              final item = items[index];
-              return ListTile(
-                  title: Text(item.title),
-                  subtitle: Text(
-                    DateFormat('MMM dd, yyyy h:mm a').format(item.dateTime),
-                  ),
-                  trailing: Chip(
-                    label: Text(
-                      item.calory.toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ));
-            }),
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: items != null ? items.length : 0,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return ListTile(
+              title: Text(item.title),
+              subtitle: Text(
+                DateFormat('MMM dd, yyyy h:mm a').format(item.dateTime),
+              ),
+              trailing: Chip(
+                label: Text(
+                  item.calory.toString(),
+                  style: TextStyle(color: Colors.white),
+                ),
+                backgroundColor: (state is WorkoutsLoaded)
+                    ? state.minutesDiff <= 0
+                        ? Theme.of(context).primaryColor
+                        : Colors.red
+                    : Theme.of(context).primaryColor,
+              ),
+              onTap: () async {
+                AppProvider.getRouter(context).navigateTo(context,
+                    WorkoutAddEditPage.generatePath(true, workoutId: item.id));
+              },
+            );
+          },
+        ),
       ],
     );
   }

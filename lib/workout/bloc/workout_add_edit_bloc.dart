@@ -49,6 +49,7 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     _workoutService = WorkoutService((await UserRepository().getUser()));
     _workoutsSubscription?.cancel();
     _workoutsRepository.getWorkout(_workoutId).then((val) {
+      _workoutService.workout = val;
       add(WorkoutUpdated(val));
     });
   }

@@ -104,7 +104,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
       toTime = event.toTime;
     }
 
-    int diff =(_user == null) ? 0 : totalCalories - int.tryParse(PrefService.getString('calories_per_day_${_user.id}'));
+    int diff =(_user == null) ? 0 : totalCalories - int.tryParse(PrefService.getString('minutes_per_day_${_user.id}'));
     if (toDate.year != fromDate.year || toDate.month != fromDate.month || toDate.day != fromDate.day) diff = 0;
 
     yield WorkoutsLoaded(event.items, diff, totalCalories, fromDate,

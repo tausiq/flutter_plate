@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:flutter_plate/widgets/date_time_picker.dart';
 import 'package:flutter_plate/workout/workout.dart';
 import 'package:flutter_plate/workout/bloc/workout_add_edit_bloc.dart';
@@ -43,7 +44,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
   String _calory;
 
   final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _caloryController = TextEditingController();
+  final TextEditingController _minutesController = TextEditingController();
 
   bool get isEditing => widget.isEditing;
 
@@ -62,7 +63,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
           final workout = state is WorkoutLoaded ? state.item : null;
           if (state is WorkoutLoaded) {
             _titleController.text = isEditing ? workout?.title : '';
-            _caloryController.text = isEditing ? workout?.calory : '';
+            _minutesController.text = isEditing ? workout?.calory.toString() : '';
             _dateTime = isEditing ? workout.dateTime : DateTime.now();
           } else if (state is FormValueChanged) {
             _dateTime = state.dateTime;
@@ -72,6 +73,23 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
               title: Text(
                 isEditing ? 'Edit Workout' : 'Add Workout',
               ),
+              actions: isEditing
+                  ? [
+                IconButton(
+                  tooltip: 'Delete Workout',
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    if ((state as WorkoutLoaded).canDelete) {
+                      _bloc.add(DeleteWorkout(workout));
+                      Navigator.pop(context, workout);
+                    } else {
+                      Log.w("no permission for delete");
+                    }
+                  },
+                )
+              ]
+                  : [],
+
             ),
             body: Padding(
               padding: EdgeInsets.all(16.0),
@@ -117,7 +135,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                         hintText: 'Work minutes',
                       ),
                       onSaved: (value) => _calory = value,
-                      controller: _caloryController,
+                      controller: _minutesController,
                     )
                   ],
                 ),
