@@ -64,28 +64,65 @@ class _WorkoutPageState extends State<WorkoutPage> {
   _buildWorkoutList(WorkoutsState state) {
     final items = state is WorkoutsLoaded ? state.items : null;
     if (items == null || items.isEmpty) return Container();
+        DateTime fromDate, toDate;
+    TimeOfDay fromTime, toTime;
+    int calories = 0;
+    if (state is WorkoutsLoaded) {
+      fromDate = state.fromDate ?? DateTime.now();
+      toDate = state.toDate ?? DateTime.now();
+      fromTime = state.fromTime ?? TimeOfDay(hour: 0, minute: 0);
+      toTime = state.toTime ?? TimeOfDay(hour: 23, minute: 59);
+      fromDate = DateTime(fromDate.year, fromDate.month, fromDate.day,
+          fromTime.hour, fromTime.minute);
+      toDate = DateTime(
+          toDate.year, toDate.month, toDate.day, toTime.hour, toTime.minute);
+      calories = state.totalMinutes;
+    }
+
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        SizedBox(
-          width: double.infinity,
-          height: 16.0,
-          child: DecoratedBox(
-              child: Text(
-                'Today',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontSize: 12.0),
-              ),
-              decoration:
-                  BoxDecoration(color: Theme.of(context).primaryColorDark)),
-        ),
+        Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "From Date: ${DateFormat('MMM dd, yyyy').format(fromDate)}       To Date: ${DateFormat('MMM dd, yyyy').format(toDate)}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 12.0),
+                ),
+                Text(
+                  "From Time: ${DateFormat('hh:mm a').format(fromDate)}            To Time: ${DateFormat('hh:mm a').format(toDate)}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 12.0),
+                ),
+                Text(
+                  'Total Calories: $calories',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 12.0),
+                )
+              ],
+            ),
+            decoration:
+                BoxDecoration(color: Theme.of(context).primaryColorDark)),
+
         ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: items != null ? items.length : 0,
           itemBuilder: (context, index) {
             final item = items[index];
+                        DateTime fullDateTime = DateTime(
+                item.dateTime.year,
+                item.dateTime.month,
+                item.dateTime.day,
+                item.timeOfDay.hour,
+                item.timeOfDay.minute);
+
             return ListTile(
               title: Text(item.title),
               subtitle: Text(
@@ -93,7 +130,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
               ),
               trailing: Chip(
                 label: Text(
-                  item.calory.toString(),
+                  item.minutes.toString(),
                   style: TextStyle(color: Colors.white),
                 ),
                 backgroundColor: (state is WorkoutsLoaded)

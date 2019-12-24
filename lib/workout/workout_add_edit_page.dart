@@ -40,6 +40,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DateTime _dateTime = DateTime.now();
+  TimeOfDay _timeOfDay = TimeOfDay.now();
   String _title;
   String _calory;
 
@@ -63,8 +64,9 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
           final workout = state is WorkoutLoaded ? state.item : null;
           if (state is WorkoutLoaded) {
             _titleController.text = isEditing ? workout?.title : '';
-            _minutesController.text = isEditing ? workout?.calory.toString() : '';
-            _dateTime = isEditing ? workout.dateTime : DateTime.now();
+            _minutesController.text = isEditing ? workout?.minutes.toString() : '';
+            _dateTime = isEditing ? workout?.dateTime : DateTime.now();
+            _timeOfDay = isEditing ? workout?.timeOfDay : TimeOfDay.now();
           } else if (state is FormValueChanged) {
             _dateTime = state.dateTime;
           }
@@ -101,17 +103,16 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       key: ValueKey('date_today'),
                       labelText: 'Date',
                       selectedDate: _dateTime,
-                      selectedTime: TimeOfDay(
-                          hour: _dateTime.hour, minute: _dateTime.minute),
+                      selectedTime: _timeOfDay,
                       selectDate: (DateTime dt) {
                         _dateTime = DateTime(dt.year, dt.month, dt.day,
                             _dateTime.hour, _dateTime.minute);
-                        _bloc.add(DateTimeChanged(_dateTime));
+                        _bloc.add(DateTimeChanged(_dateTime, _timeOfDay));
                       },
                       selectTime: (TimeOfDay td) {
                         _dateTime = DateTime(_dateTime.year, _dateTime.month,
                             _dateTime.day, td.hour, td.minute);
-                        _bloc.add(DateTimeChanged(_dateTime));
+                        _bloc.add(DateTimeChanged(_dateTime, _timeOfDay));
                       },
                     ),
                     TextFormField(
@@ -154,15 +155,16 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                         UpdateWorkout(
                           workout.copyWith(
                               dateTime: _dateTime,
+                              timeOfDay: _timeOfDay,
                               calory: int.tryParse(_calory),
                               title: _title),
                         ),
                       );
                   } else {
                     _bloc.add(
-                      AddWorkout(Workout(_title, _dateTime,
+                      AddWorkout(Workout(_title, _dateTime, _timeOfDay,
                           AppProvider.getApplication(context).loggedInUser.id,
-                          calory: int.tryParse(_calory))),
+                          minutes: int.tryParse(_calory))),
                     );
                   }
                   Navigator.pop(context);

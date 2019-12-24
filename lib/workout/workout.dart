@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import 'workout_entity.dart';
@@ -5,22 +6,24 @@ import 'workout_entity.dart';
 @immutable
 class Workout {
   final DateTime dateTime;
+  final TimeOfDay timeOfDay;
   final String id;
-  final int calory;
+  final int minutes;
   final String title;
   final String userId;
 
-  Workout(this.title, this.dateTime, this.userId, {int calory = 500, String id})
+  Workout(this.title, this.dateTime, this.timeOfDay, this.userId, {int minutes = 30, String id})
       : this.id = id,
-        this.calory = calory;
+        this.minutes = minutes;
 
   Workout copyWith(
-      {DateTime dateTime, String id, String userId, int calory, String title}) {
+      {DateTime dateTime, TimeOfDay timeOfDay, String id, String userId, int calory, String title}) {
     return Workout(
       title ?? this.title,
       dateTime ?? this.dateTime,
+      timeOfDay ?? this.timeOfDay,
       userId ?? this.userId,
-      calory: calory ?? this.calory,
+      minutes: calory ?? this.minutes,
       id: id ?? this.id,
     );
   }
@@ -31,30 +34,32 @@ class Workout {
           other is Workout &&
               runtimeType == other.runtimeType &&
               dateTime == other.dateTime &&
+              timeOfDay == other.timeOfDay && 
               id == other.id &&
-              calory == other.calory &&
+              minutes == other.minutes &&
               title == other.title &&
               userId == other.userId;
 
   @override
   int get hashCode =>
       dateTime.hashCode ^
+      timeOfDay.hashCode ^ 
       id.hashCode ^
-      calory.hashCode ^
+      minutes.hashCode ^
       title.hashCode ^
       userId.hashCode;
 
   @override
   String toString() {
-    return 'Workout{dateTime: $dateTime, id: $id, calory: $calory, title: $title, userId: $userId}';
+    return 'Workout{dateTime: $dateTime, timeOfDay: $timeOfDay, id: $id, calory: $minutes, title: $title, userId: $userId}';
   }
 
   WorkoutEntity toEntity() {
-    return WorkoutEntity(dateTime, id, userId, title, calory);
+    return WorkoutEntity(dateTime, timeOfDay, id, userId, title, minutes);
   }
 
   static Workout fromEntity(WorkoutEntity entity) {
-    return Workout(entity.title, entity.dateTime ?? DateTime.now(), entity.userId,
-        calory: entity.calory, id: entity.id);
+    return Workout(entity.title, entity.dateTime ?? DateTime.now(), entity.timeOfDay ?? TimeOfDay.now(), entity.userId,
+        minutes: entity.minutes, id: entity.id);
   }
 }

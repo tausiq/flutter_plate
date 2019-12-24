@@ -20,14 +20,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeBloc _homeBloc = new HomeBloc();
+  AuthenticationBloc authenticationBloc;
 
   @override
   Widget build(BuildContext context) {
-    final AuthenticationBloc authenticationBloc =
+    authenticationBloc =
         BlocProvider.of<AuthenticationBloc>(context);
 
     return BlocProvider<HomeBloc>(
-        builder: (BuildContext context) {
+        create: (BuildContext context) {
           return _homeBloc;
         },
         child: Scaffold(
@@ -50,5 +51,12 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ));
+  }
+
+  @override 
+  void dispose() {
+    _homeBloc.close();
+    authenticationBloc.close();
+    super.dispose();
   }
 }

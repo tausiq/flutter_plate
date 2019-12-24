@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 /// Models will contain plain dart classes which we will work with in our
 /// Flutter Application. Having the separation between models and entities
@@ -7,18 +8,20 @@ import 'package:equatable/equatable.dart';
 /// the the toEntity and fromEntity conversion in our model layer.
 class WorkoutEntity extends Equatable {
   final DateTime dateTime;
+  final TimeOfDay timeOfDay;
   final String id;
-  final int calory;
+  final int minutes;
   final String title;
   final String userId;
 
-  WorkoutEntity(this.dateTime, this.id, this.userId, this.title, this.calory);
+  WorkoutEntity(this.dateTime, this.timeOfDay, this.id, this.userId, this.title, this.minutes);
 
   Map<String, Object> toJson() {
     return {
       'dateTime': dateTime,
+      'timeOfDay': timeOfDay,
       'title': title,
-      'calory': calory,
+      'calory': minutes,
       'id': id,
       'userId': userId,
     };
@@ -26,12 +29,13 @@ class WorkoutEntity extends Equatable {
 
   @override
   String toString() {
-    return 'WorkoutEntity{dateTime: $dateTime, id: $id, calory: $calory, title: $title, userId: $userId}';
+    return 'WorkoutEntity{dateTime: $dateTime, timeOfDay: $timeOfDay, id: $id, calory: $minutes, title: $title, userId: $userId}';
   }
 
   static WorkoutEntity fromJson(Map<String, Object> json) {
     return WorkoutEntity(
       json['dateTime'] as DateTime,
+      json['timeOfDay'] as TimeOfDay,
       json['id'] as String,
       json['userId'] as String,
       json['title'] as String,
@@ -42,6 +46,7 @@ class WorkoutEntity extends Equatable {
   static WorkoutEntity fromSnapshot(DocumentSnapshot snap) {
     return WorkoutEntity(
       DateTime.fromMillisecondsSinceEpoch(snap.data['dateTime']),
+            TimeOfDay.fromDateTime(DateTime.fromMillisecondsSinceEpoch(snap.data['dateTime'] + snap.data['timeOfDay'])),
       snap.documentID,
       snap.data['userId'],
       snap.data['title'],
@@ -52,12 +57,13 @@ class WorkoutEntity extends Equatable {
   Map<String, Object> toDocument() {
     return {
       'dateTime': dateTime.toUtc().millisecondsSinceEpoch,
+            'timeOfDay': DateTime(dateTime.year, dateTime.month, dateTime.day, timeOfDay.hour, timeOfDay.minute).toUtc().millisecondsSinceEpoch - dateTime.toUtc().millisecondsSinceEpoch,
       'title': title,
-      'calory': calory,
+      'calory': minutes,
       'userId': userId,
     };
   }
 
   @override
-  List<Object> get props => [dateTime, id, calory, title, userId];
+  List<Object> get props => [dateTime, timeOfDay, id, minutes, title, userId];
 }

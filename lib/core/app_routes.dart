@@ -16,7 +16,6 @@ import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/blocs/todo/todos_bloc.dart';
 import 'package:flutter_plate/todo/blocs/todo/todos_event.dart';
 import 'package:flutter_plate/todo/firebase_todos_repository.dart';
-import 'package:flutter_plate/todo/model/todo.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';

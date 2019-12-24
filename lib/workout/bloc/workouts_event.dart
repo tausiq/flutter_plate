@@ -99,8 +99,13 @@ class DeleteWorkout extends WorkoutsEvent {
 
 class WorkoutUpdated extends WorkoutsEvent {
   final Workout item;
+      final DateTime fromDate;
+  final DateTime toDate;
+  final TimeOfDay fromTime;
+  final TimeOfDay toTime;
 
-  WorkoutUpdated(this.item);
+
+  WorkoutUpdated(this.item, {this.fromDate, this.toDate, this.fromTime, this.toTime});
 
   @override
   String toString() {
@@ -108,7 +113,7 @@ class WorkoutUpdated extends WorkoutsEvent {
   }
 
   @override
-  List<Object> get props => [item];
+  List<Object> get props => [item, fromDate, toDate, fromTime, toTime];
 }
 
 class WorkoutsUpdated extends WorkoutsEvent {
@@ -132,14 +137,15 @@ class WorkoutsUpdated extends WorkoutsEvent {
 
 class DateTimeChanged extends WorkoutsEvent {
   final DateTime dateTime;
+  final TimeOfDay timeOfDay;
 
-  DateTimeChanged(this.dateTime);
+  DateTimeChanged(this.dateTime, this.timeOfDay);
 
   @override
   String toString() {
-    return 'DateTimeChanged{dateTime: $dateTime}';
+    return 'DateTimeChanged{dateTime: $dateTime timeOfDay: $timeOfDay}';
   }
 
   @override
-  List<Object> get props => [dateTime];
+  List<Object> get props => [dateTime, timeOfDay];
 }

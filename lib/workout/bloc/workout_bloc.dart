@@ -89,7 +89,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     int maxYear = DateTime.now().year;
 
     event.items.forEach((item) {
-      totalCalories += item.calory;
+      totalCalories += item.minutes;
       minYear = math.min(item.dateTime.year, minYear);
       maxYear = math.max(item.dateTime.year, maxYear);
     });

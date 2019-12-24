@@ -165,6 +165,7 @@ class _AppStorePageState extends State<AppStorePage> {
                     });
               }
           }
+          return null;
         });
   }
 

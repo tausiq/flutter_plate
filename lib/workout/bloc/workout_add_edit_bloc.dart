@@ -41,7 +41,7 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     } else if (event is WorkoutUpdated) {
       yield* _mapTodoUpdateToState(event);
     } else if (event is DateTimeChanged) {
-      yield FormValueChanged(event.dateTime);
+      yield FormValueChanged(event.dateTime, event.timeOfDay);
     }
   }
 

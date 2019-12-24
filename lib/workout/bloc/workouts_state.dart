@@ -81,14 +81,15 @@ class WorkoutsNotLoaded extends WorkoutsState {
 
 class FormValueChanged extends WorkoutsState {
   final DateTime dateTime;
+  final TimeOfDay timeOfDay;
 
-  FormValueChanged(this.dateTime);
+  FormValueChanged(this.dateTime, this.timeOfDay);
 
   @override
   String toString() {
-    return 'ValueChanged{dateTime: $dateTime}';
+    return 'ValueChanged{dateTime: $dateTime, timeOfDay: $timeOfDay}';
   }
 
   @override
-  List<Object> get props => [dateTime];
+  List<Object> get props => [dateTime, timeOfDay];
 }
