@@ -4,17 +4,23 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class PostState extends Equatable {
-  PostState([List props = const []]) : super(props);
+  PostState();
 }
 
 class PostUninitialized extends PostState {
   @override
   String toString() => 'PostUninitialized';
+
+  @override
+  List<Object> get props => [];
 }
 
 class PostError extends PostState {
   @override
   String toString() => 'PostError';
+
+  @override
+  List<Object> get props => [];
 }
 
 class PostLoaded extends PostState {
@@ -24,7 +30,7 @@ class PostLoaded extends PostState {
   PostLoaded({
     this.posts,
     this.hasReachedMax,
-  }) : super([posts, hasReachedMax]);
+  });
 
   PostLoaded copyWith({
     List<Post> posts,
@@ -40,4 +46,7 @@ class PostLoaded extends PostState {
   String toString() {
     return 'PostLoaded{posts: $posts, hasReachedMax: $hasReachedMax}';
   }
+
+  @override
+  List<Object> get props => [posts, hasReachedMax];
 }

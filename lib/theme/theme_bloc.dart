@@ -12,7 +12,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
   Stream<ThemeData> mapEventToState(ThemeEvent event) async* {
     switch (event) {
       case ThemeEvent.toggle:
-        yield currentState == ThemeData.dark()
+        yield state == ThemeData.dark()
             ? ThemeData.light()
             : ThemeData.dark();
         break;

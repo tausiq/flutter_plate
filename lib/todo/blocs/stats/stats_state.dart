@@ -3,23 +3,28 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class StatsState extends Equatable {
-  StatsState([List props = const []]) : super(props);
+  StatsState();
 }
 
 class StatsLoading extends StatsState {
   @override
   String toString() => 'StatsLoading';
+
+  @override
+  List<Object> get props => [];
 }
 
 class StatsLoaded extends StatsState {
   final int numActive;
   final int numCompleted;
 
-  StatsLoaded(this.numActive, this.numCompleted)
-      : super([numActive, numCompleted]);
+  StatsLoaded(this.numActive, this.numCompleted);
 
   @override
   String toString() {
     return 'StatsLoaded { numActive: $numActive, numCompleted: $numCompleted }';
   }
+
+  @override
+  List<Object> get props => [numActive, numCompleted];
 }

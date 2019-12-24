@@ -19,7 +19,7 @@ class CreateAccountButton extends StatelessWidget {
         'Create an Account',
       ),
       onPressed: () {
-        BlocProvider.of<AuthenticationBloc>(context)..dispatch(CreateAccount());
+        BlocProvider.of<AuthenticationBloc>(context)..add(CreateAccount());
 //        Navigator.of(context).push(
 //          MaterialPageRoute(builder: (context) {
 //            return RegisterPage(userRepository: _userRepository);

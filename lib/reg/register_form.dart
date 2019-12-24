@@ -54,7 +54,7 @@ class _RegisterFormState extends State<RegisterForm> {
             );
         }
         if (state.isSuccess) {
-          BlocProvider.of<AuthenticationBloc>(context).dispatch(LoggedIn());
+          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
         }
         if (state.isFailure) {
           Scaffold.of(context)
@@ -153,32 +153,32 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _onFirstNameChanged() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       FirstNameChanged(name: _firstNameController.text),
     );
   }
 
   void _onLastNameChanged() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       LastNameChanged(name: _lastNameController.text),
     );
   }
 
 
   void _onEmailChanged() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       EmailChanged(email: _emailController.text),
     );
   }
 
   void _onPasswordChanged() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       PasswordChanged(password: _passwordController.text),
     );
   }
 
   void _onFormSubmitted() {
-    _registerBloc.dispatch(
+    _registerBloc.add(
       Submitted(
         firstName: _firstNameController.text,
         lastName: _lastNameController.text,

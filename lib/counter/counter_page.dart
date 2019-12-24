@@ -33,7 +33,7 @@ class CounterPage extends StatelessWidget {
               heroTag: "counterAdd",
               child: Icon(Icons.add),
               onPressed: () {
-                _counterBloc.dispatch(CounterEvent.increment);
+                _counterBloc.add(CounterEvent.increment);
               },
             ),
           ),
@@ -43,7 +43,7 @@ class CounterPage extends StatelessWidget {
               heroTag: "counterDecrement",
               child: Icon(Icons.remove),
               onPressed: () {
-                _counterBloc.dispatch(CounterEvent.decrement);
+                _counterBloc.add(CounterEvent.decrement);
               },
             ),
           ),

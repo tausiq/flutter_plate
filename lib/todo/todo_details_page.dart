@@ -18,7 +18,7 @@ class TodoDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoBloc =
-        TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)..dispatch(LoadTodo());
+        TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)..add(LoadTodo());
     return BlocBuilder<TodoDetailsBloc, TodosState>(
       bloc: todoBloc,
       builder: (context, state) {
@@ -32,7 +32,7 @@ class TodoDetailsPage extends StatelessWidget {
                 icon: Icon(Icons.delete),
                 onPressed: () {
                   if ((state as TodoLoaded).canDelete) {
-                    todoBloc.dispatch(DeleteTodo(todo));
+                    todoBloc.add(DeleteTodo(todo));
                     Navigator.pop(context, todo);
                   } else {
                     Log.w("no permission for delete");
@@ -55,7 +55,7 @@ class TodoDetailsPage extends StatelessWidget {
                             child: Checkbox(
                                 value: todo.complete,
                                 onChanged: (_) {
-                                  todoBloc.dispatch(
+                                  todoBloc.add(
                                     UpdateTodo(
                                       todo.copyWith(complete: !todo.complete),
                                     ),

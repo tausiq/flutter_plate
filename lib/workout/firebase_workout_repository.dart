@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/src/material/time.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
 
 
@@ -41,5 +42,23 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
     return workoutCollection.document(id).get().then((doc) {
       return Workout.fromEntity(WorkoutEntity.fromSnapshot(doc));
     });
+  }
+
+  @override
+  Stream<List<Workout>> workoutsByUserId(String userId) {
+    return workoutCollection
+        .where('userId', isEqualTo: userId)
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.documents
+          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
+          .toList();
+    });
+  }
+
+  @override
+  Stream<List<Workout>> filteredWorkouts(DateTime fromDate, DateTime toDate, TimeOfDay fromTime, TimeOfDay toTime) {
+    // TODO: implement filteredWorkouts
+    return null;
   }
 }

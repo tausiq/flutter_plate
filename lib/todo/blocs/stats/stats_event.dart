@@ -4,14 +4,17 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class StatsEvent extends Equatable {
-  StatsEvent([List props = const []]) : super(props);
+  StatsEvent();
 }
 
 class UpdateStats extends StatsEvent {
   final List<Todo> todos;
 
-  UpdateStats(this.todos) : super([todos]);
+  UpdateStats(this.todos);
 
   @override
   String toString() => 'UpdateStats { todos: $todos }';
+
+  @override
+  List<Object> get props => [todos];
 }

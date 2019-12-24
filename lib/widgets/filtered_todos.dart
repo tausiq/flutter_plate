@@ -29,10 +29,10 @@ class FilteredTodos extends StatelessWidget {
               return TodoItem(
                 todo: todo,
                 onDismissed: (direction) {
-                  todosBloc.dispatch(DeleteTodo(todo));
+                  todosBloc.add(DeleteTodo(todo));
                   Scaffold.of(context).showSnackBar(DeleteTodoSnackBar(
                     todo: todo,
-                    onUndo: () => todosBloc.dispatch(AddTodo(todo)),
+                    onUndo: () => todosBloc.add(AddTodo(todo)),
                   ));
                 },
                 onTap: () async {
@@ -44,12 +44,12 @@ class FilteredTodos extends StatelessWidget {
                   if (removedTodo != null) {
                     Scaffold.of(context).showSnackBar(DeleteTodoSnackBar(
                       todo: todo,
-                      onUndo: () => todosBloc.dispatch(AddTodo(todo)),
+                      onUndo: () => todosBloc.add(AddTodo(todo)),
                     ));
                   }
                 },
                 onCheckboxChanged: (_) {
-                  todosBloc.dispatch(
+                  todosBloc.add(
                     UpdateTodo(todo.copyWith(complete: !todo.complete)),
                   );
                 },

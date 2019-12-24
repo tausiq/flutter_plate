@@ -3,11 +3,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class HomeEvent extends Equatable {
-  HomeEvent([List props = const <dynamic>[]]) : super(props);
+  const HomeEvent();
 }
 
 class DrawerItemSelected extends HomeEvent {
   final int index;
   final String title;
   DrawerItemSelected(this.index, this.title);
+
+  @override
+  List<Object> get props => [index, title];
 }

@@ -49,7 +49,7 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     _workoutService = WorkoutService((await UserRepository().getUser()));
     _workoutsSubscription?.cancel();
     _workoutsRepository.getWorkout(_workoutId).then((val) {
-      dispatch(WorkoutUpdated(val));
+      add(WorkoutUpdated(val));
     });
   }
 
@@ -71,8 +71,8 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   }
 
   @override
-  void dispose() {
+  Future<void> close() {
     _workoutsSubscription?.cancel();
-    super.dispose();
+    return super.close();
   }
 }

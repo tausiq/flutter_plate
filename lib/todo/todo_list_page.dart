@@ -36,7 +36,7 @@ class TodoListPage extends StatelessWidget {
           ),
           bottomNavigationBar: TabSelector(
             activeTab: activeTab,
-            onTabSelected: (tab) => tabBloc.dispatch(UpdateTab(tab)),
+            onTabSelected: (tab) => tabBloc.add(UpdateTab(tab)),
           ),
         );
       },

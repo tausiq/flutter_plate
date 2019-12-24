@@ -5,8 +5,10 @@ import 'package:meta/meta.dart';
 abstract class TimerState extends Equatable {
   final int duration;
 
-  TimerState(this.duration, [List props = const []])
-      : super([duration]..addAll(props));
+  TimerState(this.duration);
+
+  @override
+  List<Object> get props => [duration];
 }
 
 class Ready extends TimerState {

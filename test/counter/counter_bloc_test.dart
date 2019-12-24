@@ -9,7 +9,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(counterBloc.currentState, 0);
+    expect(counterBloc.state, 0);
   });
 
   test('Counter value should be incremented', () {
@@ -18,7 +18,7 @@ void main() {
       counterBloc.state,
       emitsInOrder([0, 1]),
     );
-    counterBloc.dispatch(CounterEvent.increment);
+    counterBloc.add(CounterEvent.increment);
   });
 
   test('Counter value should be decremented', () {
@@ -28,6 +28,6 @@ void main() {
       emitsInOrder([0, -1]),
     );
 
-    counterBloc.dispatch(CounterEvent.decrement);
+    counterBloc.add(CounterEvent.decrement);
   });
 }

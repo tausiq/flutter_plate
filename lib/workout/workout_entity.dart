@@ -57,4 +57,7 @@ class WorkoutEntity extends Equatable {
       'userId': userId,
     };
   }
+
+  @override
+  List<Object> get props => [dateTime, id, calory, title, userId];
 }

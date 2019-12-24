@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                 icon: Icon(Icons.exit_to_app),
                 onPressed: () {
-                  authenticationBloc.dispatch(LoggedOut());
+                  authenticationBloc.add(LoggedOut());
                 },
               )
             ],

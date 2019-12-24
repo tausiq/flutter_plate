@@ -4,14 +4,17 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class TabEvent extends Equatable {
-  TabEvent([List props = const []]) : super(props);
+  TabEvent();
 }
 
 class UpdateTab extends TabEvent {
   final AppTab tab;
 
-  UpdateTab(this.tab) : super([tab]);
+  UpdateTab(this.tab);
 
   @override
   String toString() => 'UpdateTab { tab: $tab }';
+
+  @override
+  List<Object> get props => [tab];
 }

@@ -37,7 +37,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     _todosSubscription?.cancel();
     _todosSubscription = _todosRepository.todos().listen(
       (todos) {
-        dispatch(
+        add(
           TodosUpdated(todos),
         );
       },
@@ -45,10 +45,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Stream<TodosState> _mapToggleAllToState() async* {
-    final state = currentState;
     if (state is TodosLoaded) {
-      final allComplete = state.todos.every((todo) => todo.complete);
-      final List<Todo> updatedTodos = state.todos
+      final allComplete = (state as TodosLoaded).todos.every((todo) => todo.complete);
+      final List<Todo> updatedTodos = (state as TodosLoaded).todos
           .map((todo) => todo.copyWith(complete: !allComplete))
           .toList();
       updatedTodos.forEach((updatedTodo) {
@@ -58,10 +57,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Stream<TodosState> _mapClearCompletedToState() async* {
-    final state = currentState;
     if (state is TodosLoaded) {
       final List<Todo> completedTodos =
-          state.todos.where((todo) => todo.complete).toList();
+      (state as TodosLoaded).todos.where((todo) => todo.complete).toList();
       completedTodos.forEach((completedTodo) {
         _todosRepository.deleteTodo(completedTodo);
       });
@@ -77,8 +75,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   @override
-  void dispose() {
+  Future<void> close() {
     _todosSubscription?.cancel();
-    super.dispose();
+    return super.close();
   }
 }

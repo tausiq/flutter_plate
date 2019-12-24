@@ -20,7 +20,7 @@ class FilterButton extends StatelessWidget {
         builder: (context, state) {
       final button = _Button(
         onSelected: (filter) {
-          filteredTodosBloc.dispatch(UpdateFilter(filter));
+          filteredTodosBloc.add(UpdateFilter(filter));
         },
         activeFilter: state is FilteredTodosLoaded
             ? state.activeFilter

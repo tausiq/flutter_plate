@@ -6,23 +6,29 @@ import 'package:equatable/equatable.dart';
 
 @immutable
 abstract class FilteredTodosEvent extends Equatable {
-  FilteredTodosEvent([List props = const []]) : super(props);
+  FilteredTodosEvent();
 }
 
 class UpdateFilter extends FilteredTodosEvent {
   final VisibilityFilter filter;
 
-  UpdateFilter(this.filter) : super([filter]);
+  UpdateFilter(this.filter);
 
   @override
   String toString() => 'UpdateFilter { filter: $filter }';
+
+  @override
+  List<Object> get props => [filter];
 }
 
 class UpdateTodos extends FilteredTodosEvent {
   final List<Todo> todos;
 
-  UpdateTodos(this.todos) : super([todos]);
+  UpdateTodos(this.todos);
 
   @override
   String toString() => 'UpdateTodos { todos: $todos }';
+
+  @override
+  List<Object> get props => [todos];
 }

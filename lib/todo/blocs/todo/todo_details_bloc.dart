@@ -40,7 +40,7 @@ class TodoDetailsBloc extends Bloc<TodosEvent, TodosState> {
     _todoService = TodoService((await UserRepository().getUser()).roles);
     _todosSubscription?.cancel();
     _todosRepository.getTodo(_todoId).then((val) {
-        dispatch(TodoUpdated(val));
+        add(TodoUpdated(val));
     });
   }
 
@@ -58,8 +58,8 @@ class TodoDetailsBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   @override
-  void dispose() {
+  Future<void> close() {
     _todosSubscription?.cancel();
-    super.dispose();
+    return super.close();
   }
 }

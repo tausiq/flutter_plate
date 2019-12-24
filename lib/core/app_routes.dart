@@ -19,6 +19,7 @@ import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/model/todo.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
+import 'package:flutter_plate/workout/workout_add_edit_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -31,9 +32,9 @@ var authRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   var userRepository = AppProvider.getApplication(context).userRepository;
   return BlocProvider<AuthenticationBloc>(
-    builder: (context) {
+    create: (context) {
       return AuthenticationBloc(userRepository: userRepository)
-        ..dispatch(AppStarted());
+        ..add(AppStarted());
     },
     child: AuthPage(
       userRepository: userRepository,
@@ -67,10 +68,10 @@ var counterRouteHandler = Handler(
 var todoRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return BlocProvider<TodosBloc>(
-    builder: (context) {
+    create: (context) {
       return TodosBloc(
         todosRepository: FirebaseTodosRepository(),
-      )..dispatch(LoadTodos());
+      )..add(LoadTodos());
     },
     child: TodoPage(),
   );
@@ -87,7 +88,7 @@ var todoAddEditRouteHandler = Handler(
 var timerRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return BlocProvider<TimerBloc>(
-    builder: (context) => TimerBloc(ticker: Ticker()),
+    create: (context) => TimerBloc(ticker: Ticker()),
     child: TimerPage(),
   );
 });

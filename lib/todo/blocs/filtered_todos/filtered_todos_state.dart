@@ -6,23 +6,28 @@ import 'package:equatable/equatable.dart';
 
 @immutable
 abstract class FilteredTodosState extends Equatable {
-  FilteredTodosState([List props = const []]) : super(props);
+  FilteredTodosState();
 }
 
 class FilteredTodosLoading extends FilteredTodosState {
   @override
   String toString() => 'FilteredTodosLoading';
+
+  @override
+  List<Object> get props => [];
 }
 
 class FilteredTodosLoaded extends FilteredTodosState {
   final List<Todo> filteredTodos;
   final VisibilityFilter activeFilter;
 
-  FilteredTodosLoaded(this.filteredTodos, this.activeFilter)
-      : super([filteredTodos, activeFilter]);
+  FilteredTodosLoaded(this.filteredTodos, this.activeFilter);
 
   @override
   String toString() {
     return 'FilteredTodosLoaded { filteredTodos: $filteredTodos, activeFilter: $activeFilter }';
   }
+
+  @override
+  List<Object> get props => [filteredTodos, activeFilter];
 }

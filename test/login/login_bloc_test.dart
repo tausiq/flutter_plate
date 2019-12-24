@@ -32,7 +32,7 @@ void main() {
       loginBloc.state,
       emitsInOrder([LoginState.empty(), emitsDone]),
     );
-    loginBloc.dispose();
+    loginBloc.close();
   });
 
   group('LoginButtonPressed', () {
@@ -52,10 +52,10 @@ void main() {
         loginBloc.state,
         emitsInOrder(expectedResponse),
       ).then((_) {
-        verify(authenticationBloc.dispatch(LoggedIn())).called(1);
+        verify(authenticationBloc.add(LoggedIn())).called(1);
       });
 
-      loginBloc.dispatch(LoginWithCredentialsPressed(
+      loginBloc.add(LoginWithCredentialsPressed(
         email: 'valid.email',
         password: 'valid.password',
       ));

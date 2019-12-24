@@ -52,7 +52,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
     final textTheme = Theme.of(context).textTheme;
     final _bloc = WorkoutsAddEditBloc(
         workoutsRepository: FirebaseWorkoutsRepository(), workoutId: widget.workoutId)
-      ..dispatch(LoadWorkout());
+      ..add(LoadWorkout());
 
     return BlocBuilder<WorkoutsAddEditBloc, WorkoutsState>(
         bloc: _bloc,
@@ -86,12 +86,12 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       selectDate: (DateTime dt) {
                         _dateTime = DateTime(dt.year, dt.month, dt.day,
                             _dateTime.hour, _dateTime.minute);
-                        _bloc.dispatch(DateTimeChanged(_dateTime));
+                        _bloc.add(DateTimeChanged(_dateTime));
                       },
                       selectTime: (TimeOfDay td) {
                         _dateTime = DateTime(_dateTime.year, _dateTime.month,
                             _dateTime.day, td.hour, td.minute);
-                        _bloc.dispatch(DateTimeChanged(_dateTime));
+                        _bloc.add(DateTimeChanged(_dateTime));
                       },
                     ),
                     TextFormField(
@@ -130,7 +130,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
 
                   if (widget.isEditing) {
                     _bloc
-                      ..dispatch(
+                      ..add(
                         UpdateWorkout(
                           workout.copyWith(
                               dateTime: _dateTime,
@@ -139,7 +139,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                         ),
                       );
                   } else {
-                    _bloc.dispatch(
+                    _bloc.add(
                       AddWorkout(Workout(_title, _dateTime,
                           AppProvider.getApplication(context).loggedInUser.id,
                           calory: int.tryParse(_calory))),

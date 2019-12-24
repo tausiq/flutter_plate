@@ -29,6 +29,9 @@ class HomeState extends Equatable {
   @override
   String toString() =>
       'HomeState { selectedIndex: $selectedIndex }, selectedTitle: $selectedTitle';
+
+  @override
+  List<Object> get props => [selectedIndex, selectedTitle];
 }
 
 /*

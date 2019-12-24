@@ -23,18 +23,18 @@ dependencies:
     sdk: flutter
   fluro: 1.5.1
   dio: 2.1.13
-  logger: 0.7.0+2
+  logger: 0.8.0
   json_annotation: 3.0.0
   sprintf: 4.0.2
   rxdart: 0.22.1+1
-  cached_network_image: 1.1.1
+  cached_network_image: 2.0.0-rc.1
   sqflite: 1.1.6+3
   smooth_star_rating: 1.0.3
   flutter_stetho: 0.5.0
   analyzer: 0.36.4
-  flutter_bloc: 0.21.0
-  meta: 1.1.7
-  equatable: 0.4.0
+  flutter_bloc: ^2.0.0
+  meta: 1.1.8
+  equatable: ^1.0.0
   wave: 0.0.8
   http: 0.12.0+2
   flutter_secure_storage: 3.2.1+1
@@ -57,7 +57,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: 1.6.7
   json_serializable: 3.2.2
-  test: 1.6.3
+  test: 1.9.4
   mockito: 4.0.0
 
 

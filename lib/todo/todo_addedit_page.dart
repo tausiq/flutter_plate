@@ -52,7 +52,7 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
     final _bloc = TodosAddEditBloc(
       todosRepository: FirebaseTodosRepository(),
       todoId: widget.todoId
-    )..dispatch(LoadTodo());
+    )..add(LoadTodo());
 
     return BlocBuilder<TodosAddEditBloc, TodosState>(
         bloc: _bloc,
@@ -109,13 +109,13 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
                   _formKey.currentState.save();
 
                   if (widget.isEditing) {
-                    _bloc..dispatch(
+                    _bloc..add(
                       UpdateTodo(
                         todo.copyWith(task: _task, note: _note),
                       ),
                     );
                   } else {
-                     _bloc.dispatch(
+                     _bloc.add(
                        AddTodo(Todo(_task, note: _note)),
                      );
                   }

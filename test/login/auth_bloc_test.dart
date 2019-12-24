@@ -25,7 +25,7 @@ void main() {
       authenticationBloc.state,
       emitsInOrder([Uninitialized(), emitsDone]),
     );
-    authenticationBloc.dispose();
+    authenticationBloc.close();
   });
 
   group('AppStarted', () {
@@ -42,7 +42,7 @@ void main() {
         emitsInOrder(expectedResponse),
       );
 
-      authenticationBloc.dispatch(AppStarted());
+      authenticationBloc.add(AppStarted());
     });
   });
 
@@ -60,7 +60,7 @@ void main() {
             emitsInOrder(expectedResponse),
           );
 
-          authenticationBloc.dispatch(LoggedIn(
+          authenticationBloc.add(LoggedIn(
 
           ));
         });
@@ -80,7 +80,7 @@ void main() {
             emitsInOrder(expectedResponse),
           );
 
-          authenticationBloc.dispatch(LoggedOut());
+          authenticationBloc.add(LoggedOut());
         });
   });
 }

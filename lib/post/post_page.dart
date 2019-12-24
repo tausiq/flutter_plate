@@ -67,7 +67,7 @@ class _PostPageState extends State<PostPage> {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
     if (maxScroll - currentScroll <= _scrollThreshold) {
-      _postBloc.dispatch(Fetch());
+      _postBloc.add(Fetch());
     }
   }
 }

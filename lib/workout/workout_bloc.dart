@@ -26,7 +26,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
 
   @override
   Stream<WorkoutsState> mapEventToState(WorkoutsEvent event) async* {
-    if (event is LoadAllWorkouts) {
+    if (event is LoadWorkouts) {
       yield* _mapLoadWorkoutsToState();
     } else if (event is LoadWorkoutsByUserId) {
       yield* _mapLoadWorkoutsByUserIdToState(event);
@@ -40,9 +40,9 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   Stream<WorkoutsState> _mapLoadWorkoutsByUserIdToState(
       LoadWorkoutsByUserId event) async* {
     _workoutsSubscription?.cancel();
-    _workoutsSubscription = _workoutsRepository.workouts(event.userId).listen(
+    _workoutsSubscription = _workoutsRepository.workoutsByUserId(event.userId).listen(
           (workouts) {
-        dispatch(
+        add(
           WorkoutsUpdated(workouts),
         );
       },
@@ -52,9 +52,9 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   Stream<WorkoutsState> _mapLoadWorkoutsToState() async* {
     _workoutsSubscription?.cancel();
     _workoutsSubscription =
-        _workoutsRepository.workouts(PrefService.getString('user_id')).listen(
+        _workoutsRepository.workoutsByUserId(PrefService.getString('user_id')).listen(
               (workouts) {
-            dispatch(
+            add(
               WorkoutsUpdated(workouts),
             );
           },
@@ -69,7 +69,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
         event.fromDate, event.toDate, event.fromTime, event.toTime)
         .listen(
           (workouts) {
-        dispatch(WorkoutsUpdated(workouts,
+        add(WorkoutsUpdated(workouts,
             fromDate: event.fromDate,
             toDate: event.toDate,
             fromTime: event.fromTime,
@@ -112,10 +112,8 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   }
 
   @override
-  void dispose() {
+  Future<void> close() {
     _workoutsSubscription?.cancel();
-    super.dispose();
+    return super.close();
   }
-
-
 }

@@ -5,26 +5,35 @@ import 'package:equatable/equatable.dart';
 
 @immutable
 abstract class TodosState extends Equatable {
-  TodosState([List props = const []]) : super(props);
+  const TodosState();
 }
 
 class TodoLoading extends TodosState {
   @override
   String toString() => 'TodoLoading';
+
+  @override
+  List<Object> get props => [];
 }
 
 class TodosLoading extends TodosState {
   @override
   String toString() => 'TodosLoading';
+
+  @override
+  List<Object> get props => [];
 }
 
 class TodosLoaded extends TodosState {
   final List<Todo> todos;
 
-  TodosLoaded([this.todos = const []]) : super([todos]);
+  TodosLoaded(this.todos);
 
   @override
   String toString() => 'TodosLoaded { todos: $todos }';
+
+  @override
+  List<Object> get props => [todos];
 }
 
 class TodoLoaded extends TodosState {
@@ -32,18 +41,27 @@ class TodoLoaded extends TodosState {
   final bool canEdit;
   final bool canDelete;
 
-  TodoLoaded(this.todo, this.canEdit, this.canDelete) : super([todo]);
+  TodoLoaded(this.todo, this.canEdit, this.canDelete);
 
   @override
   String toString() => 'TodoLoaded { todo: $todo }';
+
+  @override
+  List<Object> get props => [todo, canEdit, canDelete];
 }
 
 class TodoNotLoaded extends TodosState {
   @override
   String toString() => 'TodoNotLoaded';
+
+  @override
+  List<Object> get props => [];
 }
 
 class TodosNotLoaded extends TodosState {
   @override
   String toString() => 'TodosNotLoaded';
+
+  @override
+  List<Object> get props => [];
 }

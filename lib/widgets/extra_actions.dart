@@ -16,10 +16,10 @@ class ExtraActions extends StatelessWidget {
             onSelected: (action) {
               switch (action) {
                 case ExtraAction.clearCompleted:
-                  todosBloc.dispatch(ClearCompleted());
+                  todosBloc.add(ClearCompleted());
                   break;
                 case ExtraAction.toggleAllComplete:
-                  todosBloc.dispatch(ToggleAll());
+                  todosBloc.add(ToggleAll());
                   break;
               }
             },
