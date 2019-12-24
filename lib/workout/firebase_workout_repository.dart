@@ -58,10 +58,15 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
 
   @override
   Stream<List<Workout>> filteredWorkouts(DateTime fromDate, DateTime toDate, TimeOfDay fromTime, TimeOfDay toTime) {
-    return workoutCollection.snapshots().map((snapshot) {
+    int fTime = fromTime.hour * 60 * 60 * 1000 + fromTime.minute * 60 * 1000;
+    int tTime = toTime.hour * 60 * 60 * 1000 + toTime.minute * 60 * 1000;
+    return workoutCollection.where('dateTime', isGreaterThanOrEqualTo: fromDate.toUtc().millisecondsSinceEpoch)
+    .where('dateTime', isLessThanOrEqualTo: toDate.toUtc().millisecondsSinceEpoch).snapshots().map((snapshot) {
       return snapshot.documents
-          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
+          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc))).where((doc) => doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 >= fTime  && 
+          doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 < tTime)
           .toList();
+
     });
   }
 }

@@ -63,7 +63,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   _buildWorkoutList(WorkoutsState state) {
     final items = state is WorkoutsLoaded ? state.items : null;
-    if (items == null || items.isEmpty) return Container();
+    if (items == null || items.isEmpty) return Container(child: Center(child: Text('No records found'),),);
         DateTime fromDate, toDate;
     TimeOfDay fromTime, toTime;
     int calories = 0;
