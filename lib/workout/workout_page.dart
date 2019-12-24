@@ -11,6 +11,8 @@ import 'package:flutter_plate/workout/bloc/workouts_event.dart';
 import 'package:flutter_plate/workout/bloc/workouts_state.dart';
 import 'package:intl/intl.dart';
 
+import 'filter_actions.dart';
+
 class WorkoutPage extends StatefulWidget {
   static const String PATH = '/workout';
 
@@ -44,7 +46,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Workout'),
-        actions: getActions(widget.user),
+        actions: getActions(_workoutBloc, widget.user),
       ),
       // drawer: NavDrawer(widget.user, 0),
       body: _buildWorkoutList(state),
@@ -111,7 +113,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     );
   }
 
-  getActions(User user) {
+  getActions(WorkoutBloc bloc, User user) {
     final ret = <Widget>[];
     ret.add(IconButton(
       icon: Icon(Icons.settings),
@@ -122,7 +124,12 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
     ret.add(IconButton(
       icon: Icon(Icons.filter_list),
-      onPressed: () {},
+      onPressed: () async {
+        await showDialog<Null>(
+            context: context,
+            builder: (BuildContext context) => FilterActions(bloc));
+      },
+
     ));
 
     if (user.isManager() || user.isAdmin()) {

@@ -58,7 +58,10 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
 
   @override
   Stream<List<Workout>> filteredWorkouts(DateTime fromDate, DateTime toDate, TimeOfDay fromTime, TimeOfDay toTime) {
-    // TODO: implement filteredWorkouts
-    return null;
+    return workoutCollection.snapshots().map((snapshot) {
+      return snapshot.documents
+          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
+          .toList();
+    });
   }
 }

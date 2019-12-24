@@ -71,7 +71,7 @@ class UserRepository implements IUserRepository {
       email: email,
       password: password,
     );
-    _usercollection.add(User(email: result.user.email, roles: {'user': true}, id: result.user.uid).toEntity().toDocument());
+    _usercollection.document(result.user.uid).setData(User(email: result.user.email, roles: {'user': true}, id: result.user.uid).toEntity().toDocument());
     return result;
   }
 
@@ -91,12 +91,9 @@ class UserRepository implements IUserRepository {
   /// of simplicity but we can define our own User model and populate it with
   /// a lot more information about the user in more complex applications.
   Future<User> getUser() async {
-    final QuerySnapshot result = await _usercollection
-        .where("id", isEqualTo: (await _firebaseAuth.currentUser()).uid).getDocuments();
-    return User.fromEntity(UserEntity.fromSnapshot(result.documents[0]));
-//    return _usercollection.document((await _firebaseAuth.currentUser()).uid).get().then((user) {
-//      return User.fromEntity(UserEntity.fromSnapshot(user));
-//    });
+    return User.fromEntity(UserEntity.fromSnapshot(await _usercollection
+        .document((await _firebaseAuth.currentUser()).uid)
+        .get()));
   }
 
   Future<String> getUserId() async {
