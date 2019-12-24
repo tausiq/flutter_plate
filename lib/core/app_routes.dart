@@ -7,6 +7,7 @@ import 'package:flutter_plate/auth/bloc/auth_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
+import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/auth/auth_page.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
@@ -105,6 +106,12 @@ var todoRouteHandler = Handler(
   );
 });
 
+var helpRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return HelpPage();
+    });
+
+
 var todoAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return TodoAddEditPage(
@@ -161,5 +168,6 @@ class AppRoutes {
     router.define(UsersPage.PATH, handler: usersRouteHandler);
     router.define(UserWorkoutPage.PATH, handler: userWorkoutRouteHandler);
     router.define(UserAddEditPage.PATH, handler: userAddEditRouteHandler);
+    router.define(HelpPage.PATH, handler: helpRouteHandler);
   }
 }

@@ -1,8 +1,11 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/auth/bloc/auth_bloc.dart';
+import 'package:flutter_plate/auth/bloc/auth_event.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
+import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/bloc/bloc.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/user/user.dart';
@@ -10,6 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
+import 'package:flutter_plate/user/users_page.dart';
 import 'package:flutter_plate/workout/workout_page.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -21,6 +25,7 @@ class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeBloc _homeBloc = BlocProvider.of<HomeBloc>(context);
+    final AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
 
     return Drawer(
       child: ListView(
@@ -84,9 +89,19 @@ class NavDrawer extends StatelessWidget {
             AppProvider.getRouter(context)
                 .navigateTo(context, WorkoutPage.PATH);
           }),
-          Divider(),
+        _getItem(
+            7,
+            Icons.group,
+            AppLocalizations.of(context).tr('drawer.users.title'),
+            AppLocalizations.of(context).tr('drawer.users.subtitle'),
+                () {
+              AppProvider.getRouter(context).pop(context);
+              AppProvider.getRouter(context).navigateTo(context, UsersPage.PATH);
+            }),
+
+        Divider(),
           _getItem(
-              7,
+              8,
               Icons.settings,
               AppLocalizations.of(context).tr('title_settings'),
               AppLocalizations.of(context).tr('subtitle_settings'), () {
@@ -95,18 +110,22 @@ class NavDrawer extends StatelessWidget {
                 .navigateTo(context, SettingsPage.PATH);
           }),
           _getItem(
-              8,
+              9,
               Icons.exit_to_app,
               AppLocalizations.of(context).tr('title_logout'),
               AppLocalizations.of(context).tr('subtitle_logout'), () {
             AppProvider.getRouter(context).pop(context);
+            _authBloc.add(LoggedOut());
           }),
           _getItem(
-              9,
+              10,
               Icons.help,
-              AppLocalizations.of(context).tr('title_about'),
-              AppLocalizations.of(context).tr('subtitle_about'),
-              () => {}),
+              AppLocalizations.of(context).tr('drawer.help.title'),
+              AppLocalizations.of(context).tr('drawer.help.subtitle'),
+              () {
+              AppProvider.getRouter(context).pop(context);
+              AppProvider.getRouter(context).navigateTo(context, HelpPage.PATH);
+    }),
         ],
       ),
     );

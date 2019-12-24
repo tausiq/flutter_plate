@@ -30,7 +30,20 @@
         "workout": {
             "title": "Workout",
             "subtitle": "Workout record"
+        },
+        "help": {
+            "title": "Help",
+            "subtitle": "Contact with us"
+        },
+        "logout": {
+            "title": "Logout",
+            "subtitle": "Logout from app"
+        },
+        "users": {
+            "title": "Users",
+            "subtitle": "Manage users"
         }
+
     },
     "title_settings": "Settings",
     "subtitle_settings": "Configure settings",
