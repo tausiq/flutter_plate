@@ -48,7 +48,7 @@ class _UserMealsPageState extends State<UserWorkoutPage> {
 
   Widget _buildBody(WorkoutsState state) {
     return Scaffold(
-      appBar: AppBar(title: Text('Calories'), actions: <Widget>[
+      appBar: AppBar(title: Text('Workouts'), actions: <Widget>[
         IconButton(
           icon: Icon(Icons.edit),
           onPressed: () {

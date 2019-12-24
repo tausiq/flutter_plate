@@ -66,8 +66,13 @@ class _UsersPageState extends State<UsersPage> {
           subtitle: Text(item.email),
           trailing: _getRoleChip(item),
           onTap: () async {
-            AppProvider.getRouter(context)
-                .navigateTo(context, UserWorkoutPage.generatePath(item.id));
+            if (widget.user.isManager()) {
+              AppProvider.getRouter(context).navigateTo(context, UserAddEditPage.generatePath(true, userId: item.id));
+            } else if(widget.user.isAdmin()) {
+              AppProvider.getRouter(context)
+                  .navigateTo(context, UserWorkoutPage.generatePath(item.id));
+            }
+
           },
         );
       },

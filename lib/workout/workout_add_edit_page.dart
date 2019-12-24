@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/util.dart';
 import 'package:flutter_plate/widgets/date_time_picker.dart';
 import 'package:flutter_plate/workout/workout.dart';
 import 'package:flutter_plate/workout/bloc/workout_add_edit_bloc.dart';
@@ -165,8 +166,9 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       );
                   } else {
                     _bloc.add(
-                      AddWorkout(Workout(_title, _dateTime, _timeOfDay, widget.userId ??
-                          AppProvider.getApplication(context).loggedInUser.id,
+                      AddWorkout(Workout(_title, _dateTime, _timeOfDay, Util.isNullOrEmpty(widget.userId) ?
+
+                          AppProvider.getApplication(context).loggedInUser.id : widget.userId,
                           minutes: int.tryParse(_calory))),
                     );
                   }

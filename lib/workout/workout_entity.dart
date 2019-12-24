@@ -56,8 +56,8 @@ class WorkoutEntity extends Equatable {
 
   Map<String, Object> toDocument() {
     return {
-      'dateTime': dateTime.toUtc().millisecondsSinceEpoch,
-            'timeOfDay': DateTime(dateTime.year, dateTime.month, dateTime.day, timeOfDay.hour, timeOfDay.minute).toUtc().millisecondsSinceEpoch - dateTime.toUtc().millisecondsSinceEpoch,
+      'dateTime': DateTime(dateTime.year, dateTime.month, dateTime.day).toUtc().millisecondsSinceEpoch,
+      'timeOfDay': DateTime(dateTime.year, dateTime.month, dateTime.day, timeOfDay.hour, timeOfDay.minute).toUtc().millisecondsSinceEpoch - DateTime(dateTime.year, dateTime.month, dateTime.day).toUtc().millisecondsSinceEpoch,
       'title': title,
       'calory': minutes,
       'userId': userId,

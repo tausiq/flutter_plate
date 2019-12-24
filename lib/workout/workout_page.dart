@@ -115,7 +115,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
                 BoxDecoration(color: Theme.of(context).primaryColorDark)),
 
         ListView.builder(
-          scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: items != null ? items.length : 0,
           itemBuilder: (context, index) {
