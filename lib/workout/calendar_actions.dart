@@ -14,7 +14,8 @@ class CalendarActions extends StatefulWidget {
 }
 
 class _FilterActionsState extends State<CalendarActions> {
-  DateTime dateTime = DateTime.now();
+  static DateTime now = DateTime.now();
+  DateTime dateTime = DateTime(now.year, now.month, now.day);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _FilterActionsState extends State<CalendarActions> {
                   onPressed: () {
                     widget._bloc.add(LoadFilteredWorkouts(
                         dateTime,
-                        dateTime.add(Duration(days: 1)),
+                        dateTime,
                         TimeOfDay(hour: 0, minute: 0),
                         TimeOfDay(hour: 23, minute: 59)));
                     Navigator.of(context).pop();

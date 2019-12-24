@@ -79,7 +79,7 @@ class FormValueChanged extends WorkoutsState {
 
   @override
   String toString() {
-    return 'ValueChanged{dateTime: $dateTime, timeOfDay: $timeOfDay}';
+    return 'FormValueChanged{dateTime: $dateTime, timeOfDay: $timeOfDay}';
   }
 
   @override

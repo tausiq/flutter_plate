@@ -37,7 +37,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
         workoutsRepository: FirebaseWorkoutsRepository(), user: widget.user);
     return BlocProvider<WorkoutBloc>(
       create: (BuildContext context) {
-        return _workoutBloc..add(LoadWorkouts());
+        return _workoutBloc..add(LoadTodayWorkouts());
       },
       child: BlocBuilder<WorkoutBloc, WorkoutsState>(builder: (context, state) {
         if (state is WorkoutLoading) return LoadingIndicator();
@@ -68,7 +68,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
   _buildWorkoutList(WorkoutsState state) {
     final items = state is WorkoutsLoaded ? state.items : null;
     if (items == null || items.isEmpty) return EmptyView('No Meals Found');
-        DateTime fromDate, toDate;
+        DateTime fromDate = DateTime.now(), toDate = DateTime.now();
     TimeOfDay fromTime, toTime;
     int minutes = 0;
     if (state is WorkoutsLoaded) {
@@ -105,7 +105,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   style: TextStyle(color: Colors.white, fontSize: 12.0),
                 ),
                 Text(
-                  'Total Mins: $minutes        Allowed Mins: ${PrefService.getString('minutes_per_day')}',
+                  'Total Mins: $minutes        Allowed Mins: ${PrefService.getString('minutes_per_day')}/day',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 12.0),
                 )
@@ -156,10 +156,17 @@ class _WorkoutPageState extends State<WorkoutPage> {
   getActions(WorkoutBloc bloc, User user) {
     final ret = <Widget>[];
     ret.add(IconButton(
+      icon: Icon(Icons.filter_none),
+      tooltip: 'See all workouts',
+      onPressed: () async {
+        _workoutBloc.add(LoadAllWorkouts());
+      },
+    ));
+    ret.add(IconButton(
       icon: Icon(Icons.settings),
       onPressed: () {
                 AppProvider.getRouter(context).navigateTo(context, SettingsPage.PATH).then((val) {
-          bloc.add(LoadWorkouts());
+          bloc.add(LoadAllWorkouts());
         });
 
       },
@@ -167,6 +174,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
     ret.add(IconButton(
       icon: Icon(Icons.calendar_today),
+      tooltip: 'Select a day',
       onPressed: () async {
         await showDialog<Null>(
             context: context,
@@ -183,6 +191,16 @@ class _WorkoutPageState extends State<WorkoutPage> {
         },
       ));
     }
+
+    ret.add(IconButton(
+      icon: Icon(Icons.filter_list),
+      tooltip: 'Select a range of time',
+      onPressed: () async {
+        await showDialog<Null>(
+            context: context,
+            builder: (BuildContext context) => FilterActions(_workoutBloc));
+      },
+    ));
 
     return ret;
   }

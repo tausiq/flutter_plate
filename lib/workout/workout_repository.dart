@@ -6,6 +6,7 @@ import 'package:flutter_plate/workout/workout.dart';
 abstract class WorkoutRepository {
   Future<void> addNewWorkout(Workout item);
   Future<void> deleteWorkout(Workout item);
+  Stream<List<Workout>> todayWorkout(String userId);
   Stream<List<Workout>> workouts(String userId);
   Stream<List<Workout>> workoutsByUserId(String userId);
   Future<void> updateWorkout(Workout todo);

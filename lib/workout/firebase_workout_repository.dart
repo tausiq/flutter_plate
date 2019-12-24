@@ -84,4 +84,20 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
 
     });
   }
+
+  @override
+  Stream<List<Workout>> todayWorkout(String userId) {
+    DateTime now = DateTime.now();
+    DateTime today = DateTime(now.year, now.month, now.day);
+    return workoutCollection
+        .where('userId', isEqualTo: userId)
+        .where('dateTime', isEqualTo: today.toUtc().millisecondsSinceEpoch)
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.documents
+          .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
+          .toList();
+    });
+  }
+
 }
