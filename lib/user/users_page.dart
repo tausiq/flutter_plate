@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/widgets/empty_view.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
+import 'package:flutter_plate/workout/user_workout_page.dart';
 
 import 'bloc/bloc.dart';
 import 'firebase_user_repository.dart';
@@ -63,8 +65,8 @@ class _UsersPageState extends State<UsersPage> {
           subtitle: Text(item.email),
           trailing: _getRoleChip(item),
           onTap: () async {
-//            AppProvider.getRouter(context).navigateTo(context,
-//                MealAddEditPage.generatePath(true, mealId: item.id));
+            AppProvider.getRouter(context)
+                .navigateTo(context, UserWorkoutPage.generatePath(item.id));
           },
         );
       },

@@ -23,8 +23,8 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
   }
 
   @override
-  Stream<List<Workout>> workouts() {
-    return workoutCollection.where('userId', isEqualTo: PrefService.getString('user_id')).snapshots().map((snapshot) {
+  Stream<List<Workout>> workouts(String userId) {
+    return workoutCollection.where('userId', isEqualTo: userId).snapshots().map((snapshot) {
       return snapshot.documents
           .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
           .toList();

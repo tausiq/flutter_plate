@@ -19,6 +19,7 @@ import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
 import 'package:flutter_plate/user/users_page.dart';
+import 'package:flutter_plate/workout/user_workout_page.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';
 import 'package:flutter_plate/workout/workout_page.dart';
 
@@ -62,6 +63,12 @@ var workoutRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   return WorkoutPage(user: AppProvider.getApplication(context).loggedInUser);
 });
+
+var userWorkoutRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return UserWorkoutPage(userId: params['userId']?.first);
+    });
+
 
 var workoutAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -142,5 +149,6 @@ class AppRoutes {
     router.define(WorkoutPage.PATH, handler: workoutRouteHandler);
     router.define(WorkoutAddEditPage.PATH, handler: workoutAddEditRouteHandler);
     router.define(UsersPage.PATH, handler: usersRouteHandler);
+    router.define(UserWorkoutPage.PATH, handler: userWorkoutRouteHandler);
   }
 }
