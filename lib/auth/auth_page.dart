@@ -26,7 +26,7 @@ class AuthPage extends StatelessWidget {
           return SplashPage();
         }
         if (state is Authenticated) {
-          AppProvider.getApplication(context).loggedInUser = state.user;
+          AppProvider.getApplication(context).setLoggedInUser(state.user);
           PrefService.setString('user_id', state.user.id);
           return HomePage(user: state.user,);
 

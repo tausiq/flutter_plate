@@ -36,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
             [
               TextFieldPreference(
                 'Enter Workout Minute',
-                WORKOUT_MIN_PER_DAY,
+                WORKOUT_MIN_PER_DAY + '_${user.id}',
                 padding: const EdgeInsets.only(top: 8.0),
                 autofocus: true,
                 maxLines: 1,

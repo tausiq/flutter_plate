@@ -18,7 +18,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   User _user;
 
   WorkoutBloc({@required WorkoutRepository workoutsRepository, @required User user})
-      : assert(workoutsRepository != null),
+      : assert(workoutsRepository != null), assert(user != null),
         _workoutsRepository = workoutsRepository, _user = user;
 
   @override

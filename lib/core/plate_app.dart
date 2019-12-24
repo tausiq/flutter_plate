@@ -91,6 +91,11 @@ class PlateApp implements Application {
     }
   }
 
+  void setLoggedInUser(User user) {
+    loggedInUser = user;
+    PrefService.setDefaultValues({'minutes_per_day_${user.id}': '30'});
+  }
+
   void _initRouter() {
     router = Router();
     AppRoutes.configureRoutes(router);

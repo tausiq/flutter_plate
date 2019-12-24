@@ -76,7 +76,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       );
       Log.d(result.toString());
       yield RegisterState.success();
-    } catch (_) {
+    } catch (e) {
+      Log.e(e.toString());
       yield RegisterState.failure();
     }
   }
