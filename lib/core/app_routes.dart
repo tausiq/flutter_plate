@@ -18,6 +18,7 @@ import 'package:flutter_plate/todo/blocs/todo/todos_event.dart';
 import 'package:flutter_plate/todo/firebase_todos_repository.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
+import 'package:flutter_plate/user/user_add_edit_page.dart';
 import 'package:flutter_plate/user/users_page.dart';
 import 'package:flutter_plate/workout/user_workout_page.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';
@@ -75,8 +76,17 @@ var workoutAddEditRouteHandler = Handler(
   return WorkoutAddEditPage(
     isEditing: params['isEditing']?.first == 'true',
     workoutId: params['workoutId']?.first,
+    userId: params['userId']?.first,
   );
 });
+
+var userAddEditRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return UserAddEditPage(
+        isEditing: params['isEditing']?.first == 'true',
+        userId: params['userId']?.first,
+      );
+    });
 
 var counterRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -150,5 +160,6 @@ class AppRoutes {
     router.define(WorkoutAddEditPage.PATH, handler: workoutAddEditRouteHandler);
     router.define(UsersPage.PATH, handler: usersRouteHandler);
     router.define(UserWorkoutPage.PATH, handler: userWorkoutRouteHandler);
+    router.define(UserAddEditPage.PATH, handler: userAddEditRouteHandler);
   }
 }

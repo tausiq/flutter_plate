@@ -16,17 +16,20 @@ class WorkoutAddEditPage extends StatefulWidget {
 
   final bool isEditing;
   final String workoutId;
+  final String userId;
 
   WorkoutAddEditPage({
     Key key,
     @required this.isEditing,
     this.workoutId,
+    this.userId
   }) : super(key: key);
 
-  static String generatePath(bool isEditing, {String workoutId}) {
+  static String generatePath(bool isEditing, {String workoutId, String userId}) {
     Map<String, dynamic> param = {
       'isEditing': isEditing.toString(),
       'workoutId': workoutId,
+      'userId': userId,
     };
     Uri uri = Uri(path: PATH, queryParameters: param);
     return uri.toString();
@@ -162,7 +165,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       );
                   } else {
                     _bloc.add(
-                      AddWorkout(Workout(_title, _dateTime, _timeOfDay,
+                      AddWorkout(Workout(_title, _dateTime, _timeOfDay, widget.userId ??
                           AppProvider.getApplication(context).loggedInUser.id,
                           minutes: int.tryParse(_calory))),
                     );

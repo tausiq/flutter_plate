@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
+import 'package:flutter_plate/user/user_add_edit_page.dart';
 import 'package:flutter_plate/widgets/empty_view.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
 import 'package:flutter_plate/workout/firebase_workout_repository.dart';
@@ -50,7 +51,15 @@ class _UserMealsPageState extends State<UserWorkoutPage> {
       appBar: AppBar(title: Text('Calories'), actions: <Widget>[
         IconButton(
           icon: Icon(Icons.edit),
-          onPressed: () {},
+          onPressed: () {
+            AppProvider.getRouter(context)
+                .navigateTo(context,
+                UserAddEditPage.generatePath(true, userId: widget.userId))
+                .then((val) {
+              if (val != null) AppProvider.getRouter(context).pop(context);
+            });
+          },
+
         )
       ]),
       // drawer: NavDrawer(widget.user, 0),
@@ -58,7 +67,7 @@ class _UserMealsPageState extends State<UserWorkoutPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           AppProvider.getRouter(context)
-              .navigateTo(context, WorkoutAddEditPage.generatePath(false));
+              .navigateTo(context, WorkoutAddEditPage.generatePath(false, userId: widget.userId));
         },
         child: Icon(Icons.add),
         tooltip: 'Add Meal',

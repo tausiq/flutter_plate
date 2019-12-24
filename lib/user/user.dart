@@ -25,6 +25,26 @@ class User {
         this.phone = phone ?? '',
         this.roles = roles ?? Map();
 
+  User copyWith(
+      {String id,
+        String firstName,
+        String lastName,
+        String profileImageURL,
+        String email,
+        String phone,
+        Map<String, dynamic> roles}) {
+    return User(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      profileImageURL: profileImageURL ?? this.profileImageURL,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      roles: roles ?? this.roles,
+    );
+  }
+
+
   User.fromMap(Map<dynamic, dynamic> val)
       : id = val['id'],
         firstName = val['first_name'],

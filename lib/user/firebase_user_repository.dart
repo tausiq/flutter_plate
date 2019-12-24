@@ -124,4 +124,18 @@ class FirebaseUserRepository implements UserRepository {
         UserEntity.fromSnapshot(await _usercollection.document(id).get()));
   }
 
+  @override
+  Future<void> addNewUser(User item, String password) {
+    return signUp(
+        firstName: item.firstName,
+        lastName: item.lastName,
+        email: item.email,
+        password: password);
+  }
+
+  @override
+  Future<void> deleteUser(User item) async {
+    return await _usercollection.document(item.id).delete();
+  }
+
 }

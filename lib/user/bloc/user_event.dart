@@ -28,12 +28,13 @@ class LoadUser extends UserEvent {
 
 class AddUser extends UserEvent {
   final User user;
+  final String password;
 
-  AddUser(this.user);
+  AddUser(this.user, this.password);
 
   @override
   String toString() {
-    return 'AddUser{user: $user}';
+    return 'AddUser{user: $user, password: $password}';
   }
 
   @override

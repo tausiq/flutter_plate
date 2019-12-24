@@ -9,5 +9,7 @@ abstract class UserRepository {
   Stream<List<User>> users();
   Future<void> updateUser(User item);
   Future<User> getUserById(String id);
+  Future<void> addNewUser(User item, String password);
+  Future<void> deleteUser(User item);
 
 }

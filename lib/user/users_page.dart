@@ -8,6 +8,7 @@ import 'package:flutter_plate/workout/user_workout_page.dart';
 
 import 'bloc/bloc.dart';
 import 'firebase_user_repository.dart';
+import 'user_add_edit_page.dart';
 
 class UsersPage extends StatefulWidget {
   static const String PATH = '/users';
@@ -42,8 +43,8 @@ class _UsersPageState extends State<UsersPage> {
       body: SafeArea(child: _buildUsers(state)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-//          AppProvider.getRouter(context)
-//              .navigateTo(context, MealAddEditPage.generatePath(false));
+          AppProvider.getRouter(context)
+              .navigateTo(context, UserAddEditPage.generatePath(false));
         },
         child: Icon(Icons.add),
         tooltip: 'Add Meal',
