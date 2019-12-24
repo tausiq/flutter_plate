@@ -31,21 +31,21 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
       if (_workoutId == null || _workoutId.isEmpty)
         yield WorkoutLoading();
       else
-        yield* _mapLoadTodoToState();
+        yield* _mapLoadWorkoutToState();
     } else if (event is AddWorkout) {
-      yield* _mapAddTodoToState(event);
+      yield* _mapAddWorkoutToState(event);
     } else if (event is UpdateWorkout) {
-      yield* _mapUpdateTodoToState(event);
+      yield* _mapUpdateWorkoutToState(event);
     } else if (event is DeleteWorkout) {
-      yield* _mapDeleteTodoToState(event);
+      yield* _mapDeleteWorkoutToState(event);
     } else if (event is WorkoutUpdated) {
-      yield* _mapTodoUpdateToState(event);
+      yield* _mapWorkoutUpdateToState(event);
     } else if (event is DateTimeChanged) {
       yield FormValueChanged(event.dateTime, event.timeOfDay);
     }
   }
 
-  Stream<WorkoutsState> _mapLoadTodoToState() async* {
+  Stream<WorkoutsState> _mapLoadWorkoutToState() async* {
     _workoutService = WorkoutService((await FirebaseUserRepository().getUser()));
     _workoutsSubscription?.cancel();
     _workoutsRepository.getWorkout(_workoutId).then((val) {
@@ -54,19 +54,19 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     });
   }
 
-  Stream<WorkoutsState> _mapAddTodoToState(AddWorkout event) async* {
+  Stream<WorkoutsState> _mapAddWorkoutToState(AddWorkout event) async* {
     _workoutsRepository.addNewWorkout(event.item);
   }
 
-  Stream<WorkoutsState> _mapUpdateTodoToState(UpdateWorkout event) async* {
+  Stream<WorkoutsState> _mapUpdateWorkoutToState(UpdateWorkout event) async* {
     _workoutsRepository.updateWorkout(event.item);
   }
 
-  Stream<WorkoutsState> _mapDeleteTodoToState(DeleteWorkout event) async* {
+  Stream<WorkoutsState> _mapDeleteWorkoutToState(DeleteWorkout event) async* {
     _workoutsRepository.deleteWorkout(event.item);
   }
 
-  Stream<WorkoutsState> _mapTodoUpdateToState(WorkoutUpdated event) async* {
+  Stream<WorkoutsState> _mapWorkoutUpdateToState(WorkoutUpdated event) async* {
     yield WorkoutLoaded(
         event.item, _workoutService.canEdit(), _workoutService.canDelete());
   }
