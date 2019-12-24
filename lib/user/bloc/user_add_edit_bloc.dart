@@ -11,10 +11,10 @@ class UserAddEditBloc extends Bloc<UserEvent, UserState> {
   StreamSubscription _userSubscription;
   String _userId;
 
-  UserAddEditBloc({@required UserRepository userRepository, String mealId})
+  UserAddEditBloc({@required UserRepository userRepository, String userId})
       : assert(userRepository != null),
         _userRepository = userRepository,
-        _userId = mealId;
+        _userId = userId;
 
   @override
   UserState get initialState => UserLoading();

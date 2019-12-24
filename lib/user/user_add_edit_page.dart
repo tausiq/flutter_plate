@@ -48,7 +48,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     _bloc = UserAddEditBloc(
-        userRepository: FirebaseUserRepository(), mealId: widget.userId)
+        userRepository: FirebaseUserRepository(), userId: widget.userId)
       ..add(LoadUser());
 
     return BlocBuilder<UserAddEditBloc, UserState>(
