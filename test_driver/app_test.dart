@@ -37,4 +37,41 @@ void main() {
       expect(await driver.getText(counterTextFinder), "1");
     });
   });
+
+  group('Login', () {
+    // First, define the Finders and use them to locate widgets from the
+    // test suite. Note: the Strings provided to the `byValueKey` method must
+    // be the same as the Strings we used for the Keys in step 1.
+    final emailTextField = find.byValueKey('login_email');
+    final passTextField = find.byValueKey('login_password');
+    final loginButton = find.byValueKey('login_button');
+
+    FlutterDriver driver;
+
+    // Connect to the Flutter driver before running any tests.
+    setUpAll(() async {
+      driver = await FlutterDriver.connect();
+    });
+
+    // Close the connection to the driver after the tests have completed.
+    tearDownAll(() async {
+      if (driver != null) {
+        driver.close();
+      }
+    });
+
+    test('login', () async {
+      await driver.tap(emailTextField); // acquire focus
+      await driver.enterText('a1@email.com'); // enter text
+      await driver
+          .waitFor(find.text('a1@email.com')); // verify text appears on UI
+
+      await driver.tap(passTextField); // acquire focus
+      await driver.enterText('123456'); // enter text
+      await driver.waitFor(find.text('123456'));
+
+      await driver.tap(loginButton);
+    });
+  });
+
 }

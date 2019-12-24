@@ -10,6 +10,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
+      key: ValueKey('login_button'),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),

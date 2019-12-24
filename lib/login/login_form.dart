@@ -97,6 +97,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                     autovalidate: true,
                     autocorrect: false,
+                    key: ValueKey('login_email'),
                     validator: (_) {
                       return !state.isEmailValid ? 'Invalid Email' : null;
                     },
@@ -110,6 +111,7 @@ class _LoginFormState extends State<LoginForm> {
                     obscureText: true,
                     autovalidate: true,
                     autocorrect: false,
+                    key: ValueKey('login_password'),
                     validator: (_) {
                       return !state.isPasswordValid ? 'Invalid Password' : null;
                     },

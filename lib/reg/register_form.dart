@@ -134,6 +134,17 @@ class _RegisterFormState extends State<RegisterForm> {
                         ? _onFormSubmitted
                         : null,
                   ),
+                  RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    onPressed: () {
+                      BlocProvider.of<AuthenticationBloc>(context)
+                          .add(LoggedOut());
+                    },
+                    child: Text('Go back to Login'),
+                  )
+
                 ],
               ),
             ),
