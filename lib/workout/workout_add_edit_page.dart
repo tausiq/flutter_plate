@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/widgets/date_time_picker.dart';
 import 'package:flutter_plate/workout/workout.dart';
-import 'package:flutter_plate/workout/workout_add_edit_bloc.dart';
-import 'package:flutter_plate/workout/workouts_state.dart';
+import 'package:flutter_plate/workout/bloc/workout_add_edit_bloc.dart';
+import 'package:flutter_plate/workout/bloc/workouts_state.dart';
 
 import 'firebase_workout_repository.dart';
-import 'workouts_event.dart';
+import 'bloc/workouts_event.dart';
 
 class WorkoutAddEditPage extends StatefulWidget {
   static const String PATH = '/addeditworkout';
@@ -47,10 +47,12 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
 
   bool get isEditing => widget.isEditing;
 
+  WorkoutsAddEditBloc _bloc;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final _bloc = WorkoutsAddEditBloc(
+    _bloc = WorkoutsAddEditBloc(
         workoutsRepository: FirebaseWorkoutsRepository(), workoutId: widget.workoutId)
       ..add(LoadWorkout());
 
@@ -112,7 +114,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       style: textTheme.subhead,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: 'Calory',
+                        hintText: 'Work minutes',
                       ),
                       onSaved: (value) => _calory = value,
                       controller: _caloryController,
@@ -123,7 +125,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
             ),
             floatingActionButton: FloatingActionButton(
               tooltip: isEditing ? 'Save changes' : 'Add Workout',
-              child: Icon(isEditing ? Icons.check : Icons.add),
+              child: Icon(Icons.check),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   _formKey.currentState.save();
@@ -151,5 +153,11 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
             ),
           );
         });
+  }
+
+  @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
   }
 }

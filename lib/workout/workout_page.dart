@@ -3,11 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
+import 'package:flutter_plate/widgets/loading_indicator.dart';
+import 'package:flutter_plate/workout/firebase_workout_repository.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';
-import 'package:flutter_plate/workout/workout_bloc.dart';
+import 'package:flutter_plate/workout/bloc/workout_bloc.dart';
+import 'package:flutter_plate/workout/bloc/workouts_event.dart';
+import 'package:flutter_plate/workout/bloc/workouts_state.dart';
+import 'package:intl/intl.dart';
 
 class WorkoutPage extends StatefulWidget {
-  static const String PATH = '/home';
+  static const String PATH = '/workout';
 
   final User user;
 
@@ -18,38 +23,82 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
-  final WorkoutBloc _workoutBloc = new WorkoutBloc();
+  WorkoutBloc _workoutBloc;
 
   @override
   Widget build(BuildContext context) {
-
+    _workoutBloc = new WorkoutBloc(
+        workoutsRepository: FirebaseWorkoutsRepository(), user: widget.user);
     return BlocProvider<WorkoutBloc>(
-        builder: (BuildContext context) {
-          return _workoutBloc;
+      create: (BuildContext context) {
+        return _workoutBloc..add(LoadWorkouts());
+      },
+      child: BlocBuilder<WorkoutBloc, WorkoutsState>(builder: (context, state) {
+        if (state is WorkoutsLoading) return LoadingIndicator();
+        return _buildBody(state);
+      }),
+    );
+  }
+
+  Widget _buildBody(WorkoutsState state) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Workout'),
+        actions: getActions(widget.user),
+      ),
+      // drawer: NavDrawer(widget.user, 0),
+      body: _buildWorkoutList(state),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          AppProvider.getRouter(context)
+              .navigateTo(context, WorkoutAddEditPage.generatePath(false));
         },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Calories'),
-            actions: getActions(widget.user),
-          ),
-          // drawer: NavDrawer(widget.user, 0),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Center(
-                  child: Text(
-                      'Welcome ${widget.user.firstName} ${widget.user.lastName}!')),
-            ],
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              AppProvider.getRouter(context)
-                  .navigateTo(context, WorkoutAddEditPage.generatePath(false));
-            },
-            child: Icon(Icons.add),
-            tooltip: 'Add Meal',
-          ),
-        ));
+        child: Icon(Icons.add),
+        tooltip: 'Add Meal',
+      ),
+    );
+  }
+
+  _buildWorkoutList(WorkoutsState state) {
+    final items = state is WorkoutsLoaded ? state.items : null;
+    if (items == null || items.isEmpty) return Container();
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          width: double.infinity,
+          height: 16.0,
+          child: DecoratedBox(
+              child: Text(
+                'Today',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontSize: 12.0),
+              ),
+              decoration:
+                  BoxDecoration(color: Theme.of(context).primaryColorDark)),
+        ),
+        ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: items != null ? items.length : 0,
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return ListTile(
+                  title: Text(item.title),
+                  subtitle: Text(
+                    DateFormat('MMM dd, yyyy h:mm a').format(item.dateTime),
+                  ),
+                  trailing: Chip(
+                    label: Text(
+                      item.calory.toString(),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ));
+            }),
+      ],
+    );
   }
 
   getActions(User user) {
@@ -74,5 +123,11 @@ class _WorkoutPageState extends State<WorkoutPage> {
     }
 
     return ret;
+  }
+
+  @override
+  void dispose() {
+    _workoutBloc.close();
+    super.dispose();
   }
 }

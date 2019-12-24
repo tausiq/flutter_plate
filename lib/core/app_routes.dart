@@ -20,6 +20,7 @@ import 'package:flutter_plate/todo/model/todo.dart';
 import 'package:flutter_plate/todo/todo_addedit_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';
+import 'package:flutter_plate/workout/workout_page.dart';
 
 var rootHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -49,8 +50,13 @@ var appStoreRouteHandler = Handler(
 
 var settingsRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      return SettingsPage();
-    });
+  return SettingsPage();
+});
+
+var workoutRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+  return WorkoutPage(user: AppProvider.getApplication(context).loggedInUser);
+});
 
 var workoutAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -128,6 +134,7 @@ class AppRoutes {
     router.define(TodoPage.PATH, handler: todoRouteHandler);
     router.define(TodoAddEditPage.PATH, handler: todoAddEditRouteHandler);
     router.define(SettingsPage.PATH, handler: settingsRouteHandler);
+    router.define(WorkoutPage.PATH, handler: workoutRouteHandler);
     router.define(WorkoutAddEditPage.PATH, handler: workoutAddEditRouteHandler);
   }
 }

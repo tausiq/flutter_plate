@@ -10,6 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
+import 'package:flutter_plate/workout/workout_page.dart';
 
 class NavDrawer extends StatelessWidget {
   final User user;
@@ -31,11 +32,10 @@ class NavDrawer extends StatelessWidget {
               0,
               Icons.home,
               AppLocalizations.of(context).tr('drawer.home.title'),
-              AppLocalizations.of(context).tr('drawer.home.subtitle'),
-              () {
-                    AppProvider.getRouter(context).pop(context);
-    AppProvider.getRouter(context).navigateTo(context, HomePage.PATH);
-              }),
+              AppLocalizations.of(context).tr('drawer.home.subtitle'), () {
+            AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context).navigateTo(context, HomePage.PATH);
+          }),
           _getItem(
               1,
               Icons.category,
@@ -47,12 +47,11 @@ class NavDrawer extends StatelessWidget {
               2,
               Icons.fastfood,
               AppLocalizations.of(context).tr('drawer.counter.title'),
-              AppLocalizations.of(context).tr('drawer.counter.subtitle'),
-              () {
-                    AppProvider.getRouter(context).pop(context);
-    AppProvider.getRouter(context).navigateTo(context, CounterPage.PATH);
-              }
-              ),
+              AppLocalizations.of(context).tr('drawer.counter.subtitle'), () {
+            AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context)
+                .navigateTo(context, CounterPage.PATH);
+          }),
           _getItem(
               3,
               Icons.favorite,
@@ -64,38 +63,46 @@ class NavDrawer extends StatelessWidget {
               4,
               Icons.rate_review,
               AppLocalizations.of(context).tr('drawer.timer.title'),
-              AppLocalizations.of(context).tr('drawer.timer.subtitle'),
-              () {
-                    AppProvider.getRouter(context).pop(context);
-    AppProvider.getRouter(context).navigateTo(context, TimerPage.PATH);
-              }),
+              AppLocalizations.of(context).tr('drawer.timer.subtitle'), () {
+            AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context).navigateTo(context, TimerPage.PATH);
+          }),
           _getItem(
               5,
               Icons.work,
               AppLocalizations.of(context).tr('drawer.todo.title'),
-              AppLocalizations.of(context).tr('drawer.todo.subtitle'),
-              (){
-                    AppProvider.getRouter(context).pop(context);
-    AppProvider.getRouter(context).navigateTo(context, TodoPage.PATH);
-              }),
-          Divider(),
+              AppLocalizations.of(context).tr('drawer.todo.subtitle'), () {
+            AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context).navigateTo(context, TodoPage.PATH);
+          }),
           _getItem(
               6,
+              Icons.airline_seat_recline_extra,
+              AppLocalizations.of(context).tr('drawer.workout.title'),
+              AppLocalizations.of(context).tr('drawer.workout.subtitle'), () {
+            AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context)
+                .navigateTo(context, WorkoutPage.PATH);
+          }),
+          Divider(),
+          _getItem(
+              7,
               Icons.settings,
               AppLocalizations.of(context).tr('title_settings'),
               AppLocalizations.of(context).tr('subtitle_settings'), () {
             AppProvider.getRouter(context).pop(context);
-            AppProvider.getRouter(context).navigateTo(context, SettingsPage.PATH);
+            AppProvider.getRouter(context)
+                .navigateTo(context, SettingsPage.PATH);
           }),
           _getItem(
-              7,
+              8,
               Icons.exit_to_app,
               AppLocalizations.of(context).tr('title_logout'),
               AppLocalizations.of(context).tr('subtitle_logout'), () {
             AppProvider.getRouter(context).pop(context);
           }),
           _getItem(
-              8,
+              9,
               Icons.help,
               AppLocalizations.of(context).tr('title_about'),
               AppLocalizations.of(context).tr('subtitle_about'),

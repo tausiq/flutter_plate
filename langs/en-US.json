@@ -26,6 +26,10 @@
         "todo": {
             "title": "Todo",
             "subtitle": "Firebase todo"
+        },
+        "workout": {
+            "title": "Workout",
+            "subtitle": "Workout record"
         }
     },
     "title_settings": "Settings",

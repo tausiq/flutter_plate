@@ -14,13 +14,13 @@ class TodoPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TabBloc>(
-          builder: (context) => TabBloc(),
+          create: (context) => TabBloc(),
         ),
         BlocProvider<FilteredTodosBloc>(
-          builder: (context) => FilteredTodosBloc(todosBloc: todosBloc),
+          create: (context) => FilteredTodosBloc(todosBloc: todosBloc),
         ),
         BlocProvider<StatsBloc>(
-          builder: (context) => StatsBloc(todosBloc: todosBloc),
+          create: (context) => StatsBloc(todosBloc: todosBloc),
         ),
       ],
       child: TodoListPage(),

@@ -41,7 +41,7 @@ class WorkoutEntity extends Equatable {
 
   static WorkoutEntity fromSnapshot(DocumentSnapshot snap) {
     return WorkoutEntity(
-      snap.data['dateTime'],
+      DateTime.fromMillisecondsSinceEpoch(snap.data['dateTime']),
       snap.documentID,
       snap.data['userId'],
       snap.data['title'],
@@ -51,7 +51,7 @@ class WorkoutEntity extends Equatable {
 
   Map<String, Object> toDocument() {
     return {
-      'dateTime': dateTime,
+      'dateTime': dateTime.toUtc().millisecondsSinceEpoch,
       'title': title,
       'calory': calory,
       'userId': userId,

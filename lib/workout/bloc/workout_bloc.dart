@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/app/model/api/user.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
-import 'package:flutter_plate/workout/workouts_event.dart';
-import 'package:flutter_plate/workout/workouts_state.dart';
+import 'package:flutter_plate/workout/bloc/workouts_event.dart';
+import 'package:flutter_plate/workout/bloc/workouts_state.dart';
 import 'package:meta/meta.dart';
 import 'package:preferences/preference_service.dart';
 
