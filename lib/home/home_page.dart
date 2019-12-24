@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/app/model/api/user.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
 
 import 'bloc/bloc.dart';

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_plate/app/model/api/user.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:meta/meta.dart';
 
 /// Since we're using Equatable to allow us to compare different instances

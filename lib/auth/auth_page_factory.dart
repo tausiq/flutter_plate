@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/login/splash_page.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 import 'package:preferences/preferences.dart';
 
 import 'bloc/auth_bloc.dart';

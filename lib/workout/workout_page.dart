@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/app/model/api/user.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';

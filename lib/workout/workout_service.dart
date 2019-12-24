@@ -1,4 +1,4 @@
-import 'package:flutter_plate/app/model/api/user.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/workout/workout.dart';
 
 class WorkoutService {

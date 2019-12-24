@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
 import 'package:flutter_plate/workout/workout_service.dart';
 import 'package:flutter_plate/workout/bloc/workouts_event.dart';

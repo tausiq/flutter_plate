@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 
 import 'bloc/login_bloc.dart';
 import 'login_form.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
 
 class LoginPage extends StatelessWidget {
   final UserRepository _userRepository;

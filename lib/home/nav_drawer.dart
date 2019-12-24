@@ -5,7 +5,7 @@ import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/home/bloc/bloc.dart';
 import 'package:flutter_plate/home/home_page.dart';
-import 'package:flutter_plate/app/model/api/user.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
-import 'package:flutter_plate/reg/register_page.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 
 class CreateAccountButton extends StatelessWidget {
   final UserRepository _userRepository;

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_plate/app/model/api/user.dart';
-import 'package:flutter_plate/app/model/api/user_entity.dart';
-import 'package:flutter_plate/app/model/api/user_repository.dart';
+import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/user_entity.dart';
+import 'package:flutter_plate/user/user_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 

@@ -1,6 +1,6 @@
-import 'package:flutter_plate/app/model/api/user.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mockito/mockito.dart';

@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_plate/app/model/api/user_repo.dart';
-import 'package:flutter_plate/todo/model/models.dart';
 import 'package:flutter_plate/todo/todo_service.dart';
+import 'package:flutter_plate/user/user_repo.dart';
 
 import 'package:meta/meta.dart';
 
