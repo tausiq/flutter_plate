@@ -5,6 +5,7 @@ import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/util/log/Log.dart';
 import 'package:flutter_plate/util/util.dart';
 import 'package:flutter_plate/widgets/date_time_picker.dart';
+import 'package:flutter_plate/workout/bloc/bloc.dart';
 import 'package:flutter_plate/workout/workout.dart';
 import 'package:flutter_plate/workout/bloc/workout_add_edit_bloc.dart';
 import 'package:flutter_plate/workout/bloc/workouts_state.dart';
@@ -53,16 +54,16 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
 
   bool get isEditing => widget.isEditing;
 
-  WorkoutsAddEditBloc _bloc;
+  WorkoutAddEditBloc _bloc;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    _bloc = WorkoutsAddEditBloc(
+    _bloc = WorkoutAddEditBloc(
         workoutsRepository: FirebaseWorkoutsRepository(), workoutId: widget.workoutId)
       ..add(LoadWorkout());
 
-    return BlocBuilder<WorkoutsAddEditBloc, WorkoutsState>(
+    return BlocBuilder<WorkoutAddEditBloc, WorkoutAddEditState>(
         bloc: _bloc,
         builder: (context, state) {
           final workout = state is WorkoutLoaded ? state.item : null;

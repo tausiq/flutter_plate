@@ -4,11 +4,11 @@ import 'package:flutter_plate/workout/workout.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class WorkoutsState extends Equatable {
-  WorkoutsState();
+abstract class WorkoutListState extends Equatable {
+  WorkoutListState();
 }
 
-class WorkoutLoading extends WorkoutsState {
+class WorkoutListLoading extends WorkoutListState {
   @override
   String toString() => 'WorkoutLoading';
 
@@ -16,7 +16,7 @@ class WorkoutLoading extends WorkoutsState {
   List<Object> get props => [];
 }
 
-class WorkoutsLoaded extends WorkoutsState {
+class WorkoutListLoaded extends WorkoutListState {
   final List<Workout> items;
   final int minutesDiff;
   final int totalMinutes;
@@ -25,7 +25,7 @@ class WorkoutsLoaded extends WorkoutsState {
   final TimeOfDay fromTime;
   final TimeOfDay toTime;
 
-  WorkoutsLoaded(
+  WorkoutListLoaded(
       [this.items,
         this.minutesDiff,
         this.totalMinutes,
@@ -41,47 +41,10 @@ class WorkoutsLoaded extends WorkoutsState {
   List<Object> get props => [items, minutesDiff, totalMinutes, fromDate, toDate, fromTime, toTime];
 }
 
-class WorkoutLoaded extends WorkoutsState {
-  final Workout item;
-  final bool canEdit;
-  final bool canDelete;
-
-  WorkoutLoaded(this.item, this.canEdit, this.canDelete);
-
-  @override
-  String toString() => 'WorkoutLoaded { todo: $item }';
-
-  @override
-  List<Object> get props => [item, canEdit, canDelete];
-}
-
-class WorkoutNotLoaded extends WorkoutsState {
-  @override
-  String toString() => 'WorkoutNotLoaded';
-
-  @override
-  List<Object> get props => [];
-}
-
-class WorkoutsNotLoaded extends WorkoutsState {
+class WorkoutListNotLoaded extends WorkoutListState {
   @override
   String toString() => 'WorkoutsNotLoaded';
 
   @override
   List<Object> get props => [];
-}
-
-class FormValueChanged extends WorkoutsState {
-  final DateTime dateTime;
-  final TimeOfDay timeOfDay;
-
-  FormValueChanged(this.dateTime, this.timeOfDay);
-
-  @override
-  String toString() {
-    return 'FormValueChanged{dateTime: $dateTime, timeOfDay: $timeOfDay}';
-  }
-
-  @override
-  List<Object> get props => [dateTime, timeOfDay];
 }

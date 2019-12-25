@@ -59,75 +59,6 @@ class LoadFilteredWorkouts extends WorkoutsEvent {
   List<Object> get props => [fromDate, toDate, fromTime, toTime];
 }
 
-class LoadWorkout extends WorkoutsEvent {
-  @override
-  String toString() => 'LoadWorkout';
-
-  @override
-  List<Object> get props => [];
-}
-
-class AddWorkout extends WorkoutsEvent {
-  final Workout item;
-
-  AddWorkout(this.item);
-
-  @override
-  String toString() {
-    return 'AddWorkout{item: $item}';
-  }
-
-  @override
-  List<Object> get props => [item];
-}
-
-class UpdateWorkout extends WorkoutsEvent {
-  final Workout item;
-
-  UpdateWorkout(this.item);
-
-  @override
-  String toString() {
-    return 'UpdateWorkout{item: $item}';
-  }
-
-  @override
-  List<Object> get props => [item];
-}
-
-class DeleteWorkout extends WorkoutsEvent {
-  final Workout item;
-
-  DeleteWorkout(this.item);
-
-  @override
-  String toString() {
-    return 'DeleteWorkout{item: $item}';
-  }
-
-  @override
-  List<Object> get props => [item];
-}
-
-class WorkoutUpdated extends WorkoutsEvent {
-  final Workout item;
-      final DateTime fromDate;
-  final DateTime toDate;
-  final TimeOfDay fromTime;
-  final TimeOfDay toTime;
-
-
-  WorkoutUpdated(this.item, {this.fromDate, this.toDate, this.fromTime, this.toTime});
-
-  @override
-  String toString() {
-    return 'WorkoutUpdated{item: $item}';
-  }
-
-  @override
-  List<Object> get props => [item, fromDate, toDate, fromTime, toTime];
-}
-
 class WorkoutsUpdated extends WorkoutsEvent {
   final List<Workout> items;
   final DateTime fromDate;
@@ -145,19 +76,4 @@ class WorkoutsUpdated extends WorkoutsEvent {
 
   @override
   List<Object> get props => [items, fromDate, toDate, fromTime, toTime];
-}
-
-class DateTimeChanged extends WorkoutsEvent {
-  final DateTime dateTime;
-  final TimeOfDay timeOfDay;
-
-  DateTimeChanged(this.dateTime, this.timeOfDay);
-
-  @override
-  String toString() {
-    return 'DateTimeChanged{dateTime: $dateTime timeOfDay: $timeOfDay}';
-  }
-
-  @override
-  List<Object> get props => [dateTime, timeOfDay];
 }

@@ -39,14 +39,14 @@ class _UserMealsPageState extends State<UserWorkoutPage> {
       create: (BuildContext context) {
         return mealsBloc..add(LoadWorkoutsByUserId(widget.userId));
       },
-      child: BlocBuilder<WorkoutBloc, WorkoutsState>(builder: (context, state) {
-        if (state is WorkoutLoading) return LoadingIndicator();
+      child: BlocBuilder<WorkoutBloc, WorkoutListState>(builder: (context, state) {
+        if (state is WorkoutListLoading) return LoadingIndicator();
         return _buildBody(state);
       }),
     );
   }
 
-  Widget _buildBody(WorkoutsState state) {
+  Widget _buildBody(WorkoutListState state) {
     return Scaffold(
       appBar: AppBar(title: Text('Workouts'), actions: <Widget>[
         IconButton(
@@ -75,8 +75,8 @@ class _UserMealsPageState extends State<UserWorkoutPage> {
     );
   }
 
-  Widget _buildMeals(WorkoutsState state) {
-    final items = state is WorkoutsLoaded ? state.items : null;
+  Widget _buildMeals(WorkoutListState state) {
+    final items = state is WorkoutListLoaded ? state.items : null;
     if (items == null || items.isEmpty) return EmptyView('No Meals Found');
 
     return ListView.builder(

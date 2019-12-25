@@ -9,12 +9,12 @@ import 'package:test/test.dart';
 class MockWorkoutRepository extends Mock implements FirebaseWorkoutsRepository {}
 
 void main() {
-  WorkoutsAddEditBloc bloc;
+  WorkoutAddEditBloc bloc;
   MockWorkoutRepository workoutRepository;
 
   setUp(() {
     workoutRepository = MockWorkoutRepository();
-    bloc = WorkoutsAddEditBloc(workoutsRepository: workoutRepository, workoutId: 'a');
+    bloc = WorkoutAddEditBloc(workoutsRepository: workoutRepository, workoutId: 'a');
   });
 
   test('initial state is correct', () {

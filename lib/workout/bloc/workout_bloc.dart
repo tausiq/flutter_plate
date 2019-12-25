@@ -12,7 +12,7 @@ import 'package:preferences/preference_service.dart';
 
 import 'dart:math' as math;
 
-class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
+class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
   final WorkoutRepository _workoutsRepository;
   StreamSubscription _workoutsSubscription;
   User _user;
@@ -22,10 +22,10 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
         _workoutsRepository = workoutsRepository, _user = user;
 
   @override
-  WorkoutsState get initialState => WorkoutLoading();
+  WorkoutListState get initialState => WorkoutListLoading();
 
   @override
-  Stream<WorkoutsState> mapEventToState(WorkoutsEvent event) async* {
+  Stream<WorkoutListState> mapEventToState(WorkoutsEvent event) async* {
     if (event is LoadAllWorkouts) {
       yield* _mapLoadWorkoutsToState();
     } else if (event is LoadWorkoutsByUserId) {
@@ -39,7 +39,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     }
   }
 
-  Stream<WorkoutsState> _mapLoadTodayWorkoutToState() async*{
+  Stream<WorkoutListState> _mapLoadTodayWorkoutToState() async*{
     _workoutsSubscription?.cancel();
     _workoutsSubscription =
         _workoutsRepository.todayWorkout(PrefService.getString('user_id')).listen(
@@ -54,7 +54,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   }
 
 
-  Stream<WorkoutsState> _mapLoadWorkoutsByUserIdToState(
+  Stream<WorkoutListState> _mapLoadWorkoutsByUserIdToState(
       LoadWorkoutsByUserId event) async* {
     _workoutsSubscription?.cancel();
     _workoutsSubscription = _workoutsRepository.workoutsByUserId(event.userId).listen(
@@ -66,7 +66,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     );
   }
 
-  Stream<WorkoutsState> _mapLoadWorkoutsToState() async* {
+  Stream<WorkoutListState> _mapLoadWorkoutsToState() async* {
     _workoutsSubscription?.cancel();
     _workoutsSubscription =
         _workoutsRepository.workoutsByUserId(PrefService.getString('user_id')).listen(
@@ -78,7 +78,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
         );
   }
 
-  Stream<WorkoutsState> _mapLoadFilteredWorkoutsToState(
+  Stream<WorkoutListState> _mapLoadFilteredWorkoutsToState(
       LoadFilteredWorkouts event) async* {
     _workoutsSubscription?.cancel();
     _workoutsSubscription = _workoutsRepository
@@ -95,7 +95,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     );
   }
 
-  Stream<WorkoutsState> _mapWorkoutsUpdateToState(WorkoutsUpdated event) async* {
+  Stream<WorkoutListState> _mapWorkoutsUpdateToState(WorkoutsUpdated event) async* {
     int totalCalories = 0;
     DateTime fromDate;
     DateTime toDate;
@@ -124,7 +124,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     int diff =(_user == null) ? 0 : totalCalories - int.tryParse(PrefService.getString('minutes_per_day_${_user.id}'));
     if (toDate.year != fromDate.year || toDate.month != fromDate.month || toDate.day != fromDate.day) diff = 0;
 
-    yield WorkoutsLoaded(event.items, diff, totalCalories, fromDate,
+    yield WorkoutListLoaded(event.items, diff, totalCalories, fromDate,
         toDate, fromTime, toTime);
   }
 

@@ -4,29 +4,28 @@ import 'package:bloc/bloc.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
+import 'package:flutter_plate/workout/bloc/bloc.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
 import 'package:flutter_plate/workout/workout_service.dart';
-import 'package:flutter_plate/workout/bloc/workouts_event.dart';
-import 'package:flutter_plate/workout/bloc/workouts_state.dart';
 
 
 
-class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
+class WorkoutAddEditBloc extends Bloc<WorkoutAddEditEvent, WorkoutAddEditState> {
   final WorkoutRepository _workoutsRepository;
   StreamSubscription _workoutsSubscription;
   String _workoutId;
   WorkoutService _workoutService;
 
-  WorkoutsAddEditBloc({@required WorkoutRepository workoutsRepository, String workoutId})
+  WorkoutAddEditBloc({@required WorkoutRepository workoutsRepository, String workoutId})
       : assert(workoutsRepository != null),
         _workoutsRepository = workoutsRepository,
         _workoutId = workoutId;
 
   @override
-  WorkoutsState get initialState => WorkoutLoading();
+  WorkoutAddEditState get initialState => WorkoutLoading();
 
   @override
-  Stream<WorkoutsState> mapEventToState(WorkoutsEvent event) async* {
+  Stream<WorkoutAddEditState> mapEventToState(WorkoutAddEditEvent event) async* {
     if (event is LoadWorkout) {
       if (_workoutId == null || _workoutId.isEmpty)
         yield WorkoutLoading();
@@ -45,7 +44,7 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     }
   }
 
-  Stream<WorkoutsState> _mapLoadWorkoutToState() async* {
+  Stream<WorkoutAddEditState> _mapLoadWorkoutToState() async* {
     _workoutService = WorkoutService((await FirebaseUserRepository().getUser()));
     _workoutsSubscription?.cancel();
     _workoutsRepository.getWorkout(_workoutId).then((val) {
@@ -54,19 +53,19 @@ class WorkoutsAddEditBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     });
   }
 
-  Stream<WorkoutsState> _mapAddWorkoutToState(AddWorkout event) async* {
+  Stream<WorkoutAddEditState> _mapAddWorkoutToState(AddWorkout event) async* {
     _workoutsRepository.addNewWorkout(event.item);
   }
 
-  Stream<WorkoutsState> _mapUpdateWorkoutToState(UpdateWorkout event) async* {
+  Stream<WorkoutAddEditState> _mapUpdateWorkoutToState(UpdateWorkout event) async* {
     _workoutsRepository.updateWorkout(event.item);
   }
 
-  Stream<WorkoutsState> _mapDeleteWorkoutToState(DeleteWorkout event) async* {
+  Stream<WorkoutAddEditState> _mapDeleteWorkoutToState(DeleteWorkout event) async* {
     _workoutsRepository.deleteWorkout(event.item);
   }
 
-  Stream<WorkoutsState> _mapWorkoutUpdateToState(WorkoutUpdated event) async* {
+  Stream<WorkoutAddEditState> _mapWorkoutUpdateToState(WorkoutUpdated event) async* {
     yield WorkoutLoaded(
         event.item, _workoutService.canEdit(), _workoutService.canDelete());
   }
