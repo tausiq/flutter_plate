@@ -81,7 +81,7 @@ void main() {
       final expectedResponse = [
         LoginState.empty(),
         LoginState.loading(),
-        LoginState.empty(),
+        LoginState.success(),
       ];
 
       when(userRepository.authenticate(
