@@ -79,3 +79,9 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 - [Creating flavors of a Flutter app (Flutter & Android setup)](http://cogitas.net/creating-flavors-of-a-flutter-app/)
 
 Influenced by: https://github.com/KingWu/flutter_starter_kit
+
+#### Commands
+Android release:
+`flutter build apk -t lib/config/main_production.dart --target-platform android-arm,android-arm64,android-x64 --split-per-abi --flavor production --release`
+iOS release: 
+`flutter build ios -t lib/config/main_production.dart`
