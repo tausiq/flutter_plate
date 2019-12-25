@@ -35,6 +35,47 @@ void main() {
     loginBloc.close();
   });
 
+  group('EmailChanged', () {
+    test('email changed', () {
+      expectLater(loginBloc.state, LoginState.empty());
+      loginBloc..add(EmailChanged(email: 'hello@gmail.com'));
+    });
+  });
+
+  group('PasswordChanged', () {
+    test('password changed', () {
+      expectLater(loginBloc.state, LoginState.empty());
+      loginBloc..add(PasswordChanged(password: 'hello'));
+    });
+  });
+
+  group('LoginButtonPressed', () {
+    test('emits token on success', () {
+      final expectedResponse = [
+        LoginState.empty(),
+        LoginState.loading(),
+        LoginState.success(),
+        emitsDone
+      ];
+
+      when(userRepository.authenticate(
+        username: 'valid.username',
+        password: 'valid.password',
+      )).thenAnswer((_) => Future.value('token'));
+
+      expectLater(
+        loginBloc.state,
+        emitsInOrder(expectedResponse),
+      );
+
+      loginBloc.add(LoginWithCredentialsPressed(
+        email: 'valid.email',
+        password: 'valid.password',
+      ));
+    });
+  });
+
+
   group('LoginButtonPressed', () {
     test('emits token on success', () {
       final expectedResponse = [

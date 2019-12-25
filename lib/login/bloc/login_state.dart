@@ -89,6 +89,26 @@ class LoginState {
     );
   }
 
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is LoginState &&
+              runtimeType == other.runtimeType &&
+              isEmailValid == other.isEmailValid &&
+              isPasswordValid == other.isPasswordValid &&
+              isSubmitting == other.isSubmitting &&
+              isSuccess == other.isSuccess &&
+              isFailure == other.isFailure;
+
+  @override
+  int get hashCode =>
+      isEmailValid.hashCode ^
+      isPasswordValid.hashCode ^
+      isSubmitting.hashCode ^
+      isSuccess.hashCode ^
+      isFailure.hashCode;
+
   @override
   String toString() {
     return 'LoginState{isEmailValid: $isEmailValid, isPasswordValid: $isPasswordValid, isSubmitting: $isSubmitting, isSuccess: $isSuccess, isFailure: $isFailure}';

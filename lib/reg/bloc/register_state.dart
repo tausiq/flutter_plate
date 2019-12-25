@@ -108,6 +108,30 @@ class RegisterState {
     );
   }
 
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is RegisterState &&
+              runtimeType == other.runtimeType &&
+              isFirstNameValid == other.isFirstNameValid &&
+              isLastNameValid == other.isLastNameValid &&
+              isEmailValid == other.isEmailValid &&
+              isPasswordValid == other.isPasswordValid &&
+              isSubmitting == other.isSubmitting &&
+              isSuccess == other.isSuccess &&
+              isFailure == other.isFailure;
+
+  @override
+  int get hashCode =>
+      isFirstNameValid.hashCode ^
+      isLastNameValid.hashCode ^
+      isEmailValid.hashCode ^
+      isPasswordValid.hashCode ^
+      isSubmitting.hashCode ^
+      isSuccess.hashCode ^
+      isFailure.hashCode;
+
   @override
   String toString() {
     return 'RegisterState{isFirstNameValid: $isFirstNameValid, isLastNameValid: $isLastNameValid, isEmailValid: $isEmailValid, isPasswordValid: $isPasswordValid, isSubmitting: $isSubmitting, isSuccess: $isSuccess, isFailure: $isFailure}';
