@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_plate/user/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -18,13 +19,13 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(userBloc.initialState, UserLoading());
+    expect(userBloc.initialState, UserListLoading());
   });
 
   test('dispose does not emit new states', () {
     expectLater(
       userBloc.state,
-      emitsInOrder([UserLoading(), emitsDone]),
+      emitsInOrder([UserListLoading(), emitsDone]),
     );
     userBloc.close();
   });
@@ -47,4 +48,22 @@ void main() {
 //      userBloc.dispatch(LoadUser());
 //    });
 //  });
+
+  group('UpdateUser', () {
+    test('emits [UserLoading] after updating a user', () {
+      User user = User();
+
+      final expectedResponse = [UserListLoading()];
+
+      when(userRepository.updateUser(user)).thenAnswer((_) => null);
+
+      expectLater(
+        userBloc.state,
+        emitsInOrder(expectedResponse),
+      );
+
+      userBloc.add(UpdateUser(user));
+    });
+  });
+
 }

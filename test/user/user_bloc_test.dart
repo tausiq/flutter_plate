@@ -18,20 +18,20 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(userBloc.initialState, UserLoading());
+    expect(userBloc.initialState, UserListLoading());
   });
 
   test('dispose does not emit new states', () {
     expectLater(
       userBloc.state,
-      emitsInOrder([UserLoading(), emitsDone]),
+      emitsInOrder([UserListLoading(), emitsDone]),
     );
     userBloc.close();
   });
 
   group('LoadUsers', () {
     test('emits [UserLoading] for empty user list', () {
-      final expectedResponse = [UserLoading()];
+      final expectedResponse = [UserListLoading()];
 
       when(userRepository.users())
           .thenAnswer((_) => Stream<List<User>>.empty());
@@ -51,7 +51,7 @@ void main() {
       users.add(User());
       users.add(User());
 
-      final expectedResponse = [UserLoading(), UsersLoaded(users)];
+      final expectedResponse = [UserListLoading(), UserListLoaded(users)];
 
       when(userRepository.users())
           .thenAnswer((_) => Stream<List<User>>.value(users));
@@ -65,20 +65,5 @@ void main() {
     });
   });
 
-  group('UpdateUser', () {
-    test('emits [UserLoading] after updating a user', () {
-      User user = User();
 
-      final expectedResponse = [UserLoading()];
-
-      when(userRepository.updateUser(user)).thenAnswer((_) => null);
-
-      expectLater(
-        userBloc.state,
-        emitsInOrder(expectedResponse),
-      );
-
-      userBloc.add(UpdateUser(user));
-    });
-  });
 }

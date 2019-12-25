@@ -51,7 +51,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
         userRepository: FirebaseUserRepository(), userId: widget.userId)
       ..add(LoadUser());
 
-    return BlocBuilder<UserAddEditBloc, UserState>(
+    return BlocBuilder<UserAddEditBloc, UserAddEditState>(
         bloc: _bloc,
         builder: (context, state) {
           final item = state is UserLoaded ? state.item : null;

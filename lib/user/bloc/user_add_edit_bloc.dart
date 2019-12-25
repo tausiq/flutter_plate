@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 import '../user_repository.dart';
 import 'bloc.dart';
 
-class UserAddEditBloc extends Bloc<UserEvent, UserState> {
+class UserAddEditBloc extends Bloc<UserAddEditEvent, UserAddEditState> {
   final UserRepository _userRepository;
   StreamSubscription _userSubscription;
   String _userId;
@@ -17,10 +17,10 @@ class UserAddEditBloc extends Bloc<UserEvent, UserState> {
         _userId = userId;
 
   @override
-  UserState get initialState => UserLoading();
+  UserAddEditState get initialState => UserLoading();
 
   @override
-  Stream<UserState> mapEventToState(UserEvent event) async* {
+  Stream<UserAddEditState> mapEventToState(UserAddEditEvent event) async* {
     if (event is LoadUser) {
       if (_userId == null || _userId.isEmpty)
         yield UserLoading();
@@ -37,26 +37,26 @@ class UserAddEditBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Stream<UserState> _mapLoadUserToState() async* {
+  Stream<UserAddEditState> _mapLoadUserToState() async* {
     _userSubscription?.cancel();
     _userRepository.getUserById(_userId).then((val) {
       add(UserUpdated(val));
     });
   }
 
-  Stream<UserState> _mapAddUserToState(AddUser event) async* {
+  Stream<UserAddEditState> _mapAddUserToState(AddUser event) async* {
     _userRepository.addNewUser(event.user, event.password);
   }
 
-  Stream<UserState> _mapUpdateUserToState(UpdateUser event) async* {
+  Stream<UserAddEditState> _mapUpdateUserToState(UpdateUser event) async* {
     _userRepository.updateUser(event.item);
   }
 
-  Stream<UserState> _mapDeleteUserToState(DeleteUser event) async* {
+  Stream<UserAddEditState> _mapDeleteUserToState(DeleteUser event) async* {
     _userRepository.deleteUser(event.item);
   }
 
-  Stream<UserState> _mapUserUpdateToState(UserUpdated event) async* {
+  Stream<UserAddEditState> _mapUserUpdateToState(UserUpdated event) async* {
     yield UserLoaded(event.item);
   }
 

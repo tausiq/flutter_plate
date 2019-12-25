@@ -14,7 +14,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         _userRepository = userRepository;
 
   @override
-  UserState get initialState => UserLoading();
+  UserState get initialState => UserListLoading();
 
 
   @override
@@ -25,8 +25,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield* _mapLoadUsersToState();
     } else if (event is UsersUpdated) {
       yield* _mapMealsUpdateToState(event);
-    } else if (event is UpdateUser) {
-      yield* _mapUpdateMealToState(event);
     }
   }
 
@@ -42,11 +40,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Stream<UserState> _mapMealsUpdateToState(UsersUpdated event) async* {
-    yield UsersLoaded(event.items);
-  }
-
-  Stream<UserState> _mapUpdateMealToState(UpdateUser event) async* {
-    _userRepository.updateUser(event.item);
+    yield UserListLoaded(event.items);
   }
 
   @override

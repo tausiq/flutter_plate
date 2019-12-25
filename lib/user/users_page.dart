@@ -31,7 +31,7 @@ class _UsersPageState extends State<UsersPage> {
         return bloc..add(LoadUsers());
       },
       child: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-        if (state is UserLoading) return LoadingIndicator();
+        if (state is UserListLoading) return LoadingIndicator();
         return _buildBody(state);
       }),
     );
@@ -53,7 +53,7 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   _buildUsers(UserState state) {
-    final items = state is UsersLoaded ? state.items : null;
+    final items = state is UserListLoaded ? state.items : null;
     if (items == null || items.isEmpty) return EmptyView('No users found');
     return ListView.builder(
       scrollDirection: Axis.vertical,

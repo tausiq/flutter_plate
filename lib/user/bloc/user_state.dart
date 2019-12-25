@@ -6,20 +6,20 @@ abstract class UserState extends Equatable {
   UserState();
 }
 
-class UserLoading extends UserState {
+class UserListLoading extends UserState {
   @override
   String toString() {
-    return 'UserLoading{}';
+    return 'UserListLoading{}';
   }
 
   @override
   List<Object> get props => [];
 }
 
-class UsersLoaded extends UserState {
+class UserListLoaded extends UserState {
   final List<User> items;
 
-  UsersLoaded([this.items = const []]);
+  UserListLoaded([this.items = const []]);
 
   @override
   String toString() {
@@ -30,21 +30,8 @@ class UsersLoaded extends UserState {
   List<Object> get props => [];
 }
 
-class UserLoaded extends UserState {
-  final User item;
 
-  UserLoaded(this.item);
-
-  @override
-  String toString() {
-    return 'UserLoaded{item: $item}';
-  }
-
-  @override
-  List<Object> get props => [item];
-}
-
-class NotLoaded extends UserState {
+class UserListNotLoaded extends UserState {
   @override
   String toString() {
     return 'NotLoaded{}';
