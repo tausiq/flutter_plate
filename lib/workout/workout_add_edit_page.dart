@@ -57,6 +57,12 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
   WorkoutAddEditBloc _bloc;
 
   @override
+  void initState() {
+    super.initState();
+    _bloc = WorkoutAddEditBloc(workoutsRepository: FirebaseWorkoutsRepository(), workoutId: widget.workoutId)..add(LoadWorkout());
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     _bloc = WorkoutAddEditBloc(

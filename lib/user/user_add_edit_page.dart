@@ -115,6 +115,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                     ),
                     TextFormField(
                       autofocus: !isEditing,
+                      enabled: !isEditing,
                       style: textTheme.headline,
                       decoration: InputDecoration(
                         hintText: 'Email',
