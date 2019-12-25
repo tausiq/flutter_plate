@@ -71,7 +71,8 @@ class FirebaseUserRepository implements UserRepository {
       email: email,
       password: password,
     );
-    _usercollection.document(result.user.uid).setData(User(email: result.user.email, roles: {'user': true}, id: result.user.uid).toEntity().toDocument());
+    _usercollection.document(result.user.uid)
+    .setData(User(email: result.user.email, roles: {'user': true}, id: result.user.uid, firstName: firstName, lastName: lastName).toEntity().toDocument());
     return result;
   }
 
