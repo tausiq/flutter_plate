@@ -34,25 +34,8 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
       yield* _mapWorkoutsUpdateToState(event);
     } else if (event is LoadFilteredWorkouts) {
       yield* _mapLoadFilteredWorkoutsToState(event);
-    } else if (event is LoadTodayWorkouts) {
-      yield* _mapLoadTodayWorkoutToState();
     }
   }
-
-  Stream<WorkoutListState> _mapLoadTodayWorkoutToState() async*{
-    _workoutsSubscription?.cancel();
-    _workoutsSubscription =
-        _workoutsRepository.todayWorkout(PrefService.getString('user_id')).listen(
-              (workout) {
-            DateTime now = DateTime.now();
-            DateTime today = DateTime(now.year, now.month, now.day);
-            add(
-              WorkoutsUpdated(workout, fromDate: today, toDate: today, fromTime: TimeOfDay(hour: 0, minute: 0), toTime: TimeOfDay(hour: 23, minute: 59)),
-            );
-          },
-        );
-  }
-
 
   Stream<WorkoutListState> _mapLoadWorkoutsByUserIdToState(
       LoadWorkoutsByUserId event) async* {

@@ -8,18 +8,6 @@ abstract class WorkoutsEvent extends Equatable {
   WorkoutsEvent();
 }
 
-class LoadTodayWorkouts extends WorkoutsEvent {
-
-  @override
-  String toString() {
-    return 'LoadMeals{}';
-  }
-
-  @override
-  List<Object> get props => [];
-}
-
-
 class LoadAllWorkouts extends WorkoutsEvent {
   @override
   String toString() => 'LoadWorkouts';

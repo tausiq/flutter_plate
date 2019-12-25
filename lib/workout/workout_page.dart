@@ -34,10 +34,15 @@ class _WorkoutPageState extends State<WorkoutPage> {
   List<Workout> items;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     _workoutBloc = new WorkoutBloc(
         workoutsRepository: FirebaseWorkoutsRepository(), user: widget.user)
-      ..add(LoadTodayWorkouts());
+      ..add(LoadAllWorkouts());
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocProvider<WorkoutBloc>(
       create: (BuildContext context) {
         return _workoutBloc;
@@ -158,8 +163,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
   getActions(WorkoutBloc bloc, User user) {
     final ret = <Widget>[];
     ret.add(IconButton(
-      icon: Icon(Icons.filter_none),
-      tooltip: 'See all workouts',
+      icon: Icon(Icons.refresh),
+      tooltip: 'Reload workouts',
       onPressed: () async {
         _workoutBloc.add(LoadAllWorkouts());
       },
