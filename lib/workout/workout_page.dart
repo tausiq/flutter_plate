@@ -90,7 +90,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
       minutes = state.totalMinutes;
     }
 
-    if (items == null || items.isEmpty) return EmptyView('No Meals Found');
+    if (items == null || items.isEmpty) return EmptyView('No records found');
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
+import 'package:flutter_plate/util/log/Log.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -66,7 +67,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       await _userRepository.signInWithGoogle();
       yield LoginState.success();
-    } catch (_) {
+    } catch (e) {
+      Log.e(e.toString());
       yield LoginState.failure();
     }
   }
@@ -79,7 +81,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       await _userRepository.signInWithCredentials(email, password);
       yield LoginState.success();
-    } catch (_) {
+    } catch (e) {
+      Log.e(e.toString());
       yield LoginState.failure();
     }
   }

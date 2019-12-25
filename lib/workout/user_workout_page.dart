@@ -77,7 +77,7 @@ class _UserMealsPageState extends State<UserWorkoutPage> {
 
   Widget _buildMeals(WorkoutListState state) {
     final items = state is WorkoutListLoaded ? state.items : null;
-    if (items == null || items.isEmpty) return EmptyView('No Meals Found');
+    if (items == null || items.isEmpty) return EmptyView('No records found');
 
     return ListView.builder(
       scrollDirection: Axis.vertical,

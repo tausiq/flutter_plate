@@ -41,10 +41,12 @@ class UserEntity extends Equatable {
   static UserEntity fromSnapshot(DocumentSnapshot snap) {
     return UserEntity(
       snap.documentID,
-      snap.data['email'],
-      snap.data['firstName'],
-      snap.data['lastName'],
-      new Map<String, dynamic>.from(snap.data['roles']),
+      (snap.data ?? const {})['email'] ?? '',
+      (snap.data ?? const {})['firstName'] ?? '',
+      (snap.data ?? const {})['lastName'] ?? '',
+      // snap.data['firstName'] ?? '',
+      // snap.data['lastName'] ?? '',
+      new Map<String, dynamic>.from((snap.data ?? const {})['roles'] ?? {}),
     );
   }
 

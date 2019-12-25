@@ -177,12 +177,12 @@ class NavDrawer extends StatelessWidget {
   }
 
   Widget _headerProfileImage() {
-    if (user == null)
+    if (user == null || user.firstName.isEmpty)
       return CircleAvatar(
         backgroundImage:
             NetworkImage('https://randomuser.me/api/portraits/men/64.jpg'),
       );
-    if (user.profileImageURL == null)
+    else if (user.profileImageURL == null)
       return CircleAvatar(
         child: Text(
           user.firstName[0].toUpperCase(),

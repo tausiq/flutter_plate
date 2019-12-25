@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
@@ -20,8 +21,8 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController(text: kReleaseMode ? '' : 'admin@email.com');
+  final TextEditingController _passwordController = TextEditingController(text: kReleaseMode ? '' : '123456');
 
   LoginBloc _loginBloc;
 
