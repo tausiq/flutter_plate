@@ -1,7 +1,7 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/todo/model/models.dart';
-
 import 'package:meta/meta.dart';
 
 import '../../todos_repository.dart';

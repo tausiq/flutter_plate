@@ -6,8 +6,8 @@ import 'package:flutter_plate/login/splash_page.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:preferences/preferences.dart';
 
-import 'bloc/auth_bloc.dart';
 import '../login/login_page.dart';
+import 'bloc/auth_bloc.dart';
 import 'bloc/bloc.dart';
 
 class AuthPageFactory extends StatelessWidget {

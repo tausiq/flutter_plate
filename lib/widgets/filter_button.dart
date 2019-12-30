@@ -15,6 +15,7 @@ class FilterButton extends StatelessWidget {
         .textTheme
         .body1
         .copyWith(color: Theme.of(context).accentColor);
+    //ignore: close_sinks
     final filteredTodosBloc = BlocProvider.of<FilteredTodosBloc>(context);
     return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(
         builder: (context, state) {

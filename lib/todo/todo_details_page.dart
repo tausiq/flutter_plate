@@ -8,7 +8,6 @@ import 'package:flutter_plate/util/log/Log.dart';
 
 import 'blocs/todo/bloc.dart';
 import 'blocs/todo/todo_details_bloc.dart';
-import 'model/todo.dart';
 
 class TodoDetailsPage extends StatelessWidget {
   final String id;
@@ -17,6 +16,7 @@ class TodoDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
     final todoBloc =
         TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)..add(LoadTodo());
     return BlocBuilder<TodoDetailsBloc, TodosState>(

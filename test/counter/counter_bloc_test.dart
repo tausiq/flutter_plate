@@ -8,6 +8,10 @@ void main() {
     counterBloc = CounterBloc();
   });
 
+  tearDown(() {
+    counterBloc.close();
+  });
+
   test('initial state is correct', () {
     expect(counterBloc.state, 0);
   });

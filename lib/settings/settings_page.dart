@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/prefs_const.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:preferences/preferences.dart';
 
 class SettingsPage extends StatefulWidget {

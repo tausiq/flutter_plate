@@ -6,12 +6,10 @@ import 'package:flutter_plate/util/log/Log.dart';
 import 'package:flutter_plate/util/util.dart';
 import 'package:flutter_plate/widgets/date_time_picker.dart';
 import 'package:flutter_plate/workout/bloc/bloc.dart';
-import 'package:flutter_plate/workout/workout.dart';
 import 'package:flutter_plate/workout/bloc/workout_add_edit_bloc.dart';
-import 'package:flutter_plate/workout/bloc/workouts_state.dart';
+import 'package:flutter_plate/workout/workout.dart';
 
 import 'firebase_workout_repository.dart';
-import 'bloc/workouts_event.dart';
 
 class WorkoutAddEditPage extends StatefulWidget {
   static const String PATH = '/addeditworkout';

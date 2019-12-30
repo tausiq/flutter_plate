@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/workout/bloc/bloc.dart';

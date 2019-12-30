@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/todo/blocs/blocs.dart';
 import 'package:flutter_plate/todo/blocs/todo/todos_addedit_bloc.dart';
 
-import 'blocs/todo/todos_bloc.dart';
 import 'firebase_todos_repository.dart';
 import 'model/todo.dart';
 
@@ -46,10 +45,12 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
   final TextEditingController _taskController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
+  TodosAddEditBloc _bloc;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final _bloc = TodosAddEditBloc(
+    _bloc = TodosAddEditBloc(
       todosRepository: FirebaseTodosRepository(),
       todoId: widget.todoId
     )..add(LoadTodo());
@@ -127,5 +128,11 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
             ),
           );
         });
+  }
+
+  @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
   }
 }

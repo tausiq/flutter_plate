@@ -1,15 +1,12 @@
 import 'package:logger/logger.dart';
 
 class Log {
-  static const String _NAME = 'Plate';
+  // static const String _NAME = 'Plate';
   static Logger _instance;
 
   static void init() {
-    Logger.addLogListener((callback) {
-      print(
-          '${callback.level.toString()}: ${callback.error}: ${callback.message}');
-    });
     _instance = Logger(
+      filter: MyFilter(),
       printer: PrettyPrinter(),
     );
   }
@@ -40,5 +37,14 @@ class Log {
 
   static void wtf(message, [Object error, StackTrace stackTrace]) {
     _instance.wtf(message, error, stackTrace);
+  }
+}
+
+class MyFilter extends LogFilter {
+  @override
+  bool shouldLog(LogEvent event) {
+    print(
+        '${event.level.toString()}: ${event.error}: ${event.message}');
+    return true;
   }
 }

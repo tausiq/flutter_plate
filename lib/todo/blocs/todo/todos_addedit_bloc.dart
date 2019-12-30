@@ -1,7 +1,7 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-
 import 'package:meta/meta.dart';
 
 import '../../todo_service.dart';

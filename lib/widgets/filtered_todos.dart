@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/todo/blocs/blocs.dart';
@@ -14,6 +14,7 @@ class FilteredTodos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
     final todosBloc = BlocProvider.of<TodosBloc>(context);
 
     return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(

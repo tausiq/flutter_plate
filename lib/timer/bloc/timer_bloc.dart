@@ -1,7 +1,8 @@
 import 'dart:async';
+
+import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/timer/bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:bloc/bloc.dart';
 
 import '../ticker.dart';
 

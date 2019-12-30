@@ -14,6 +14,7 @@ import 'model/app_tab.dart';
 class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
     final tabBloc = BlocProvider.of<TabBloc>(context);
     return BlocBuilder<TabBloc, AppTab>(
       builder: (context, activeTab) {

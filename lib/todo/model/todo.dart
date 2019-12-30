@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+
 import '../entities/entities.dart';
 
 @immutable

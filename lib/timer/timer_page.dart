@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/timer/timer_actions.dart';
 import 'package:flutter_plate/timer/timer_actions.dart';
 
 import 'bloc/timer_bloc.dart';
@@ -16,6 +13,7 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
     final TimerBloc _timerBloc = BlocProvider.of<TimerBloc>(context);
     return Scaffold(
       appBar: AppBar(title: Text('Flutter Timer')),

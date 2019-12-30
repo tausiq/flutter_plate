@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/user/users_page.dart';
 import 'package:flutter_plate/widgets/empty_view.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
-import 'package:flutter_plate/workout/firebase_workout_repository.dart';
-import 'package:flutter_plate/workout/workout.dart';
-import 'package:flutter_plate/workout/workout_add_edit_page.dart';
 import 'package:flutter_plate/workout/bloc/workout_bloc.dart';
 import 'package:flutter_plate/workout/bloc/workouts_event.dart';
 import 'package:flutter_plate/workout/bloc/workouts_state.dart';
+import 'package:flutter_plate/workout/firebase_workout_repository.dart';
+import 'package:flutter_plate/workout/workout.dart';
+import 'package:flutter_plate/workout/workout_add_edit_page.dart';
 import 'package:intl/intl.dart';
 import 'package:preferences/preferences.dart';
 

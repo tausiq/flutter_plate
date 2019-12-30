@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import './bloc.dart';
 import 'package:flutter_plate/todo/blocs/todo/bloc.dart';
+
+import './bloc.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
   StreamSubscription _todosSubscription;

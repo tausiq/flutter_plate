@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_plate/workout/bloc/bloc.dart';
 import 'package:flutter_plate/workout/firebase_workout_repository.dart';
 import 'package:mockito/mockito.dart';

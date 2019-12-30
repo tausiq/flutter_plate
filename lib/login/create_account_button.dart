@@ -4,6 +4,7 @@ import 'package:flutter_plate/auth/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 
 class CreateAccountButton extends StatelessWidget {
+  //ignore: unused_field
   final FirebaseUserRepository _userRepository;
 
   CreateAccountButton({Key key, @required FirebaseUserRepository userRepository})

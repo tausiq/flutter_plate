@@ -1,4 +1,4 @@
-import 'package:fluro/fluro.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/auth_bloc.dart';
@@ -6,13 +6,11 @@ import 'package:flutter_plate/auth/bloc/auth_event.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/help/help_page.dart';
-import 'package:flutter_plate/home/bloc/bloc.dart';
 import 'package:flutter_plate/home/home_page.dart';
-import 'package:flutter_plate/user/user.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
+import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/user/users_page.dart';
 import 'package:flutter_plate/workout/workout_page.dart';
 
@@ -24,7 +22,9 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeBloc _homeBloc = BlocProvider.of<HomeBloc>(context);
+    //ignore: close_sinks
+    // final HomeBloc _homeBloc = BlocProvider.of<HomeBloc>(context);
+    //ignore: close_sinks
     final AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
 
     return Drawer(
@@ -139,16 +139,6 @@ class NavDrawer extends StatelessWidget {
         title: Text(title),
         subtitle: Text(subtitle),
         onTap: callback);
-  }
-
-  void _logout() async {
-    // ApiClient().logout().then((val) {
-    //   if (val.isSuccessful()) {
-    //     Prefs().clear().then((val) {
-    //       widget._onLogout();
-    //     });
-    //   }
-    // });
   }
 
   Widget _buildHeader(BuildContext context) {

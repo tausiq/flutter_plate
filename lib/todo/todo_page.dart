@@ -9,6 +9,7 @@ class TodoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
     final todosBloc = BlocProvider.of<TodosBloc>(context);
 
     return MultiBlocProvider(

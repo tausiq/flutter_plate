@@ -30,12 +30,12 @@ class _PostPageState extends State<PostPage> {
             child: CircularProgressIndicator(),
           );
         }
-        if (state is PostError) {
+        else if (state is PostError) {
           return Center(
             child: Text('failed to fetch posts'),
           );
         }
-        if (state is PostLoaded) {
+        else if (state is PostLoaded) {
           if (state.posts.isEmpty) {
             return Center(
               child: Text('no posts'),
@@ -53,6 +53,7 @@ class _PostPageState extends State<PostPage> {
             controller: _scrollController,
           );
         }
+        return Container();
       },
     );
   }

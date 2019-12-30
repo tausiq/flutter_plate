@@ -7,6 +7,7 @@ import 'package:flutter_plate/todo/model/extra_action.dart';
 class ExtraActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //ignore: close_sinks
     final todosBloc = BlocProvider.of<TodosBloc>(context);
     return BlocBuilder<TodosBloc, TodosState>(
       builder: (context, state) {

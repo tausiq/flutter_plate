@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/src/material/time.dart';
+import 'package:flutter/material.dart';
+
 import 'package:flutter_plate/workout/workout_repository.dart';
 import 'package:preferences/preferences.dart';
-
 
 import 'workout.dart';
 import 'workout_entity.dart';

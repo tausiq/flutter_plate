@@ -1,8 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_plate/todo/model/models.dart';
 import 'package:flutter_plate/todo/model/visibility_filter.dart';
 import 'package:meta/meta.dart';
-
-import 'package:equatable/equatable.dart';
 
 @immutable
 abstract class FilteredTodosState extends Equatable {

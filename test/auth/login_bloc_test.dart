@@ -23,6 +23,11 @@ void main() {
     );
   });
 
+    tearDown(() {
+    loginBloc.close();
+    authenticationBloc.close();
+  });
+
   test('initial state is correct', () {
     expect(LoginState.empty(), loginBloc.initialState);
   });
