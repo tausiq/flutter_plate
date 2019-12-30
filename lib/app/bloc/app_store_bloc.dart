@@ -51,7 +51,7 @@ class AppStoreBloc {
     _isShowLoading.add(true);
     AppStoreAPIRepository apiProvider = _application.appStoreAPIRepository;
 
-    StreamSubscription subscription = Observable.fromFuture(
+    StreamSubscription subscription = Stream.fromFuture(
             _application.dbAppStoreRepository.deleteAllAppContent())
         .flatMap((_) => apiProvider.getTop10FeatureApp())
         .zipWith(apiProvider.getTop100FreeApp(),
@@ -79,10 +79,10 @@ class AppStoreBloc {
   }
 
   void _searchApps(String searchKey) {
-    StreamSubscription subscription = Observable.fromFuture(
+    StreamSubscription subscription = Stream.fromFuture(
             _application.dbAppStoreRepository.loadFeaturesApp(searchKey))
         .zipWith(
-            Observable.fromFuture(
+            Stream.fromFuture(
                 _application.dbAppStoreRepository.loadTopFreeApp(searchKey)),
             (List<AppContent> featureApps, List<AppContent> freeApps) {
       return CombinedAppResponse(featureApps, freeApps);

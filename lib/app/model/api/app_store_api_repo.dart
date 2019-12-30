@@ -17,37 +17,37 @@ class AppStoreAPIRepository {
 
   AppStoreAPIRepository(this._apiProvider, this._dbAppStoreRepository);
 
-  Observable<List<AppContent>> getTop100FreeApp() {
-    return Observable.fromFuture(_apiProvider.getTopFreeApp(TOP_100))
+  Stream<List<AppContent>> getTop100FreeApp() {
+    return Stream.fromFuture(_apiProvider.getTopFreeApp(TOP_100))
         .flatMap(_convertFromEntry)
         .flatMap((List<AppContent> list) {
-      return Observable.fromFuture(_loadAndSaveTopFreeApp(list, ''));
+      return Stream.fromFuture(_loadAndSaveTopFreeApp(list, ''));
     });
   }
 
-  Observable<List<AppContent>> getTop10FeatureApp() {
-    return Observable.fromFuture(_apiProvider.getTopFeatureApp(TOP_10))
+  Stream<List<AppContent>> getTop10FeatureApp() {
+    return Stream.fromFuture(_apiProvider.getTopFeatureApp(TOP_10))
         .flatMap(_convertFromEntry)
         .flatMap((List<AppContent> list) {
-      return Observable.fromFuture(_loadAndSaveFeatureApp(list, ''));
+      return Stream.fromFuture(_loadAndSaveFeatureApp(list, ''));
     });
   }
 
-  Observable<AppContent> getAppDetail(String id) {
-    return Observable.fromFuture(_apiProvider.getAppDetail(id))
+  Stream<AppContent> getAppDetail(String id) {
+    return Stream.fromFuture(_apiProvider.getAppDetail(id))
         .flatMap((LookupResponse response) {
-      return Observable.just(response.results[0]);
+      return Stream.value(response.results[0]);
     }).flatMap((AppContent appContent) {
-      return Observable.fromFuture(_loadAndSaveAppDetail(appContent));
+      return Stream.fromFuture(_loadAndSaveAppDetail(appContent));
     });
   }
 
-  Observable<List<AppContent>> _convertFromEntry(TopAppResponse response) {
+  Stream<List<AppContent>> _convertFromEntry(TopAppResponse response) {
     List<AppContent> appContent = [];
     for (Entry entry in response.feed.entry) {
       appContent.add(AppContent.fromEntry(entry));
     }
-    return Observable.just(appContent);
+    return Stream.value(appContent);
   }
 
   Future<List<AppContent>> _loadAndSaveFeatureApp(

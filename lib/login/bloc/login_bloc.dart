@@ -24,7 +24,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Stream<LoginEvent> events,
     Stream<LoginState> Function(LoginEvent event) next,
   ) {
-    final observableStream = events as Observable<LoginEvent>;
+    final observableStream = events;
     final nonDebounceStream = observableStream.where((event) {
       return (event is! EmailChanged && event is! PasswordChanged);
     });
