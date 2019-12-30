@@ -12,22 +12,19 @@ class AppProvider extends InheritedWidget {
   bool updateShouldNotify(_) => true;
 
   static AppProvider of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider);
+    return context.dependOnInheritedWidgetOfExactType<AppProvider>();
   }
 
   static Router getRouter(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider)
-        .application
-        .router;
+    return getApplication(context).router;
   }
 
   static PlateApp getApplication(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider)
-        .application;
+    return of(context).application;
   }
 
   static User getUser(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(AppProvider) as AppProvider).application.loggedInUser;
+    return getApplication(context).loggedInUser;
   }
 
 }
