@@ -29,6 +29,5 @@ class UserLoaded extends UserAddEditState {
   }
 
   @override
-  // TODO: implement props
   List<Object> get props => [item];
 }
