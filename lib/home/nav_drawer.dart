@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/app/ui/page/app_store_page.dart';
 import 'package:flutter_plate/auth/bloc/auth_bloc.dart';
 import 'package:flutter_plate/auth/bloc/auth_event.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
+import 'package:flutter_plate/post/post_page.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
@@ -47,6 +49,8 @@ class NavDrawer extends StatelessWidget {
               AppLocalizations.of(context).tr('drawer.app_store.title'),
               AppLocalizations.of(context).tr('drawer.app_store.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context)
+                .navigateTo(context, AppStorePage.PATH);
           }),
           _getItem(
               2,
@@ -63,6 +67,8 @@ class NavDrawer extends StatelessWidget {
               AppLocalizations.of(context).tr('drawer.post.title'),
               AppLocalizations.of(context).tr('drawer.post.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
+            AppProvider.getRouter(context)
+                .navigateTo(context, PostPage.PATH);
           }),
           _getItem(
               4,

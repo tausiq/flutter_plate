@@ -10,6 +10,7 @@ import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
+import 'package:flutter_plate/post/post_page.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/timer/bloc/bloc.dart';
 import 'package:flutter_plate/timer/ticker.dart';
@@ -111,6 +112,12 @@ var helpRouteHandler = Handler(
       return HelpPage();
     });
 
+var postRouteHandler = Handler(
+  handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return PostPage();
+  }
+);
+
 
 var todoAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -169,5 +176,6 @@ class AppRoutes {
     router.define(UserWorkoutPage.PATH, handler: userWorkoutRouteHandler);
     router.define(UserAddEditPage.PATH, handler: userAddEditRouteHandler);
     router.define(HelpPage.PATH, handler: helpRouteHandler);
+    router.define(PostPage.PATH, handler: postRouteHandler);
   }
 }
