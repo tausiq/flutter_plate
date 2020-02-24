@@ -42,6 +42,10 @@
         "users": {
             "title": "Users",
             "subtitle": "Manage users"
+        },
+        "social": {
+            "title": "Social",
+            "subtitle": "Social network"
         }
 
     },

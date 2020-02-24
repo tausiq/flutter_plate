@@ -12,6 +12,7 @@ import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/post/post_page.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
+import 'package:flutter_plate/social/social_page.dart';
 import 'package:flutter_plate/timer/bloc/bloc.dart';
 import 'package:flutter_plate/timer/ticker.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
@@ -118,6 +119,12 @@ var postRouteHandler = Handler(
   }
 );
 
+var socialRouteHandler = Handler(
+    handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      return SocialPage();
+    }
+);
+
 
 var todoAddEditRouteHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> params) {
@@ -177,5 +184,6 @@ class AppRoutes {
     router.define(UserAddEditPage.PATH, handler: userAddEditRouteHandler);
     router.define(HelpPage.PATH, handler: helpRouteHandler);
     router.define(PostPage.PATH, handler: postRouteHandler);
+    router.define(SocialPage.PATH, handler: socialRouteHandler);
   }
 }

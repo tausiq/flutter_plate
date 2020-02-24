@@ -10,6 +10,7 @@ import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
 import 'package:flutter_plate/post/post_page.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
+import 'package:flutter_plate/social/social_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
 import 'package:flutter_plate/user/user.dart';
@@ -104,10 +105,19 @@ class NavDrawer extends StatelessWidget {
               AppProvider.getRouter(context).pop(context);
               AppProvider.getRouter(context).navigateTo(context, UsersPage.PATH);
             }),
+          _getItem(
+              8,
+              Icons.group_work,
+              AppLocalizations.of(context).tr('drawer.social.title'),
+              AppLocalizations.of(context).tr('drawer.social.subtitle'),
+                  () {
+                AppProvider.getRouter(context).pop(context);
+                AppProvider.getRouter(context).navigateTo(context, SocialPage.PATH);
+              }),
 
         Divider(),
           _getItem(
-              8,
+              9,
               Icons.settings,
               AppLocalizations.of(context).tr('title_settings'),
               AppLocalizations.of(context).tr('subtitle_settings'), () {
@@ -116,7 +126,7 @@ class NavDrawer extends StatelessWidget {
                 .navigateTo(context, SettingsPage.PATH);
           }),
           _getItem(
-              9,
+              10,
               Icons.exit_to_app,
               AppLocalizations.of(context).tr('title_logout'),
               AppLocalizations.of(context).tr('subtitle_logout'), () {
@@ -124,7 +134,7 @@ class NavDrawer extends StatelessWidget {
             _authBloc.add(LoggedOut());
           }),
           _getItem(
-              10,
+              11,
               Icons.help,
               AppLocalizations.of(context).tr('drawer.help.title'),
               AppLocalizations.of(context).tr('drawer.help.subtitle'),
