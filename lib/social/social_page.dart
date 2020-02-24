@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/social/social_home_page.dart';
 import 'package:flutter_plate/social/social_notification_page.dart';
 import 'package:flutter_plate/social/social_profile_page.dart';
+import 'package:flutter_plate/social/social_settings_page.dart';
 import 'package:flutter_plate/widgets/icon_badge.dart';
 
 import 'social_chats_page.dart';
@@ -45,7 +46,7 @@ class _SocialPageState extends State<SocialPage> {
               SocialChatPage(),
               SocialNotificationPage(),
               SocialProfilePage(),
-              Container(color: Colors.blue),
+              SocialSettingsPage(),
             ],
           ),
         ),

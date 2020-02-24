@@ -40,6 +40,7 @@ dependencies:
   google_sign_in: 4.1.1
   preferences: 5.0.2 # depends on shared_preferences
   bottom_navy_bar: 5.3.2
+  settings_ui: 0.2.0
 
 
   # The following adds the Cupertino Icons font to your application.
