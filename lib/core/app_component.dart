@@ -1,5 +1,4 @@
-import 'package:easy_localization/easy_localization_delegate.dart';
-import 'package:easy_localization/easy_localization_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_plate/config/Env.dart';
@@ -31,16 +30,16 @@ class AppComponentState extends State<AppComponent> {
 
   @override
   Widget build(BuildContext context) {
-    var data = EasyLocalizationProvider.of(context).data;
+
     final app = MaterialApp(
       title: Env.value.appName,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        EasylocaLizationDelegate(locale: data.locale, path: 'langs')
+        EasyLocalization.of(context).delegate,
       ],
-      supportedLocales: [Locale('en', 'US'), Locale('bn'), Locale('fr')],
-      locale: data.savedLocale,
+      supportedLocales: EasyLocalization.of(context).supportedLocales,
+      locale: EasyLocalization.of(context).locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Lato',
@@ -50,12 +49,7 @@ class AppComponentState extends State<AppComponent> {
     );
     print('initial core.route = ${app.initialRoute}');
 
-    final localApp = EasyLocalizationProvider(
-      data: data,
-      child: app,
-    );
-
-    final appProvider = AppProvider(child: localApp, application: _application);
+    final appProvider = AppProvider(child: app, application: _application);
     return appProvider;
   }
 }

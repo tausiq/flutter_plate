@@ -92,7 +92,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                     CircularProgressIndicator(),
                     Container(
                         margin: EdgeInsets.only(top: 8),
-                        child: Text(AppLocalizations.of(context).tr('dialogLoading')))
+                        child: Text(tr('dialogLoading')))
                   ],
                 ))));
   }
@@ -195,7 +195,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                 Container(
                   width: 4,
                 ),
-                Text(AppLocalizations.of(context).tr('detailRate'))
+                Text(tr('detailRate'))
               ],
             )
           ],

@@ -39,16 +39,16 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               0,
               Icons.home,
-              AppLocalizations.of(context).tr('drawer.home.title'),
-              AppLocalizations.of(context).tr('drawer.home.subtitle'), () {
+              tr('drawer.home.title'),
+              tr('drawer.home.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context).navigateTo(context, HomePage.PATH);
           }),
           _getItem(
               1,
               Icons.category,
-              AppLocalizations.of(context).tr('drawer.app_store.title'),
-              AppLocalizations.of(context).tr('drawer.app_store.subtitle'), () {
+              tr('drawer.app_store.title'),
+              tr('drawer.app_store.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context)
                 .navigateTo(context, AppStorePage.PATH);
@@ -56,8 +56,8 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               2,
               Icons.fastfood,
-              AppLocalizations.of(context).tr('drawer.counter.title'),
-              AppLocalizations.of(context).tr('drawer.counter.subtitle'), () {
+              tr('drawer.counter.title'),
+              tr('drawer.counter.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context)
                 .navigateTo(context, CounterPage.PATH);
@@ -65,8 +65,8 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               3,
               Icons.favorite,
-              AppLocalizations.of(context).tr('drawer.post.title'),
-              AppLocalizations.of(context).tr('drawer.post.subtitle'), () {
+              tr('drawer.post.title'),
+              tr('drawer.post.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context)
                 .navigateTo(context, PostPage.PATH);
@@ -74,24 +74,24 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               4,
               Icons.rate_review,
-              AppLocalizations.of(context).tr('drawer.timer.title'),
-              AppLocalizations.of(context).tr('drawer.timer.subtitle'), () {
+              tr('drawer.timer.title'),
+              tr('drawer.timer.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context).navigateTo(context, TimerPage.PATH);
           }),
           _getItem(
               5,
               Icons.work,
-              AppLocalizations.of(context).tr('drawer.todo.title'),
-              AppLocalizations.of(context).tr('drawer.todo.subtitle'), () {
+              tr('drawer.todo.title'),
+              tr('drawer.todo.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context).navigateTo(context, TodoPage.PATH);
           }),
           _getItem(
               6,
               Icons.airline_seat_recline_extra,
-              AppLocalizations.of(context).tr('drawer.workout.title'),
-              AppLocalizations.of(context).tr('drawer.workout.subtitle'), () {
+              tr('drawer.workout.title'),
+              tr('drawer.workout.subtitle'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context)
                 .navigateTo(context, WorkoutPage.PATH);
@@ -99,8 +99,8 @@ class NavDrawer extends StatelessWidget {
         _getItem(
             7,
             Icons.group,
-            AppLocalizations.of(context).tr('drawer.users.title'),
-            AppLocalizations.of(context).tr('drawer.users.subtitle'),
+            tr('drawer.users.title'),
+            tr('drawer.users.subtitle'),
                 () {
               AppProvider.getRouter(context).pop(context);
               AppProvider.getRouter(context).navigateTo(context, UsersPage.PATH);
@@ -108,8 +108,8 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               8,
               Icons.group_work,
-              AppLocalizations.of(context).tr('drawer.social.title'),
-              AppLocalizations.of(context).tr('drawer.social.subtitle'),
+              tr('drawer.social.title'),
+              tr('drawer.social.subtitle'),
                   () {
                 AppProvider.getRouter(context).pop(context);
                 AppProvider.getRouter(context).navigateTo(context, SocialPage.PATH);
@@ -119,8 +119,8 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               9,
               Icons.settings,
-              AppLocalizations.of(context).tr('title_settings'),
-              AppLocalizations.of(context).tr('subtitle_settings'), () {
+              tr('title_settings'),
+              tr('subtitle_settings'), () {
             AppProvider.getRouter(context).pop(context);
             AppProvider.getRouter(context)
                 .navigateTo(context, SettingsPage.PATH);
@@ -128,16 +128,16 @@ class NavDrawer extends StatelessWidget {
           _getItem(
               10,
               Icons.exit_to_app,
-              AppLocalizations.of(context).tr('title_logout'),
-              AppLocalizations.of(context).tr('subtitle_logout'), () {
+              tr('title_logout'),
+              tr('subtitle_logout'), () {
             AppProvider.getRouter(context).pop(context);
             _authBloc.add(LoggedOut());
           }),
           _getItem(
               11,
               Icons.help,
-              AppLocalizations.of(context).tr('drawer.help.title'),
-              AppLocalizations.of(context).tr('drawer.help.subtitle'),
+              tr('drawer.help.title'),
+              tr('drawer.help.subtitle'),
               () {
               AppProvider.getRouter(context).pop(context);
               AppProvider.getRouter(context).navigateTo(context, HelpPage.PATH);

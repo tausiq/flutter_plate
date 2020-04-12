@@ -64,7 +64,7 @@ class _AppStorePageState extends State<AppStorePage> {
                     )
                   : null,
               border: InputBorder.none,
-              hintText: AppLocalizations.of(context).tr('homeSearchHint')),
+              hintText: tr('homeSearchHint')),
         );
       },
     );
@@ -97,7 +97,7 @@ class _AppStorePageState extends State<AppStorePage> {
                     CircularProgressIndicator(),
                     Container(
                         margin: EdgeInsets.only(top: 8),
-                        child: Text(AppLocalizations.of(context).tr('dialogLoading')))
+                        child: Text(tr('dialogLoading')))
                   ],
                 ))));
   }
@@ -110,14 +110,14 @@ class _AppStorePageState extends State<AppStorePage> {
             case ConnectionState.none:
             case ConnectionState.waiting:
               {
-                return Center(child: Text(AppLocalizations.of(context).tr('dialogLoading')));
+                return Center(child: Text(tr('dialogLoading')));
               }
             case ConnectionState.done:
             case ConnectionState.active:
               {
                 List<HomeListItem> feedList = snapshot.data;
                 if (0 == feedList.length) {
-                  return Center(child: Text(AppLocalizations.of(context).tr('homeEmptyList')));
+                  return Center(child: Text(tr('homeEmptyList')));
                 }
 
                 return ListView.builder(
@@ -176,7 +176,7 @@ class _AppStorePageState extends State<AppStorePage> {
         Container(
           margin: EdgeInsets.only(left: 20, top: 12, bottom: 16),
           child: Text(
-            AppLocalizations.of(context).tr('homeRecommend'),
+            tr('homeRecommend'),
             style: Theme.of(context).textTheme.title,
           ),
         ),
