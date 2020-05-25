@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_plate/post/post.dart';
+import 'package:flutter_plate/post/model/post.dart';
 import 'package:meta/meta.dart';
 
 @immutable

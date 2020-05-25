@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_plate/post/post.dart';
-import 'package:flutter_plate/post/post_event.dart';
-import 'package:flutter_plate/post/post_state.dart';
+import 'package:flutter_plate/post/model/post.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'bloc.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;

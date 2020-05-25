@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/post/bloc.dart';
-import 'package:flutter_plate/post/post.dart';
+import 'package:flutter_plate/post/bloc/bloc.dart';
+import 'package:flutter_plate/post/model/post.dart';
+import 'package:flutter_plate/post/ui/post_item.dart';
 import 'package:http/http.dart' as http;
+
+import 'bottom_loader.dart';
 
 class PostPage extends StatefulWidget {
   static const String PATH = '/posts';
@@ -89,40 +92,5 @@ class _PostPageState extends State<PostPage> {
   }
 }
 
-class BottomLoader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Center(
-        child: SizedBox(
-          width: 33,
-          height: 33,
-          child: CircularProgressIndicator(
-            strokeWidth: 1.5,
-          ),
-        ),
-      ),
-    );
-  }
-}
 
-class PostWidget extends StatelessWidget {
-  final Post post;
 
-  const PostWidget({Key key, @required this.post}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(
-        '${post.id}',
-        style: TextStyle(fontSize: 10.0),
-      ),
-      title: Text(post.title),
-      isThreeLine: true,
-      subtitle: Text(post.body),
-      dense: true,
-    );
-  }
-}

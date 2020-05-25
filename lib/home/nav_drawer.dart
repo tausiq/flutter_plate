@@ -8,7 +8,7 @@ import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/counter/counter_page.dart';
 import 'package:flutter_plate/help/help_page.dart';
 import 'package:flutter_plate/home/home_page.dart';
-import 'package:flutter_plate/post/post_page.dart';
+import 'package:flutter_plate/post/ui/post_page.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/social/social_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
