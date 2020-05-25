@@ -15,43 +15,43 @@ version: 1.4.0+140
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
-  flutter: 1.12.13+hotfix.9
+  flutter: 1.17.1
 
 dependencies:
-  fluro: 1.5.2
-  dio: 3.0.9
-  logger: 0.8.3
-  json_annotation: 3.0.1
-  sprintf: 4.0.2
-  cached_network_image: 2.0.0
-  sqflite: 1.2.1
-  smooth_star_rating: 1.0.4+2
-  flutter_stetho: 0.5.2
   analyzer: 0.39.4
-  flutter_bloc: 3.2.0 # depends on bloc (meta, rxdart), provider
-  equatable: 1.1.0
-  wave: 0.0.8
-  http: 0.12.0+4
-  flutter_secure_storage: 3.3.1+1
-  easy_localization: 2.0.0+1
-  font_awesome_flutter: 8.7.0
-  cloud_firestore: 0.13.4+2
-  firebase_auth: 0.15.5+3
-  google_sign_in: 4.1.1
-  preferences: 5.1.0 # depends on shared_preferences
   bottom_navy_bar: 5.3.2
-  settings_ui: 0.2.0
-  sentry: 3.0.1
-  pull_to_refresh: 1.5.7
-  path_provider: 1.6.5
+  cached_network_image: 2.2.0+1
   connection_status_bar: 1.1.2
+  cloud_firestore: 0.13.4+2
+  dio: 3.0.9
+  easy_localization: 2.0.0+1
+  equatable: 1.1.0
+  fluro: 1.6.3
+  firebase_auth: 0.15.5+3
+  flutter_bloc: 4.0.0 # depends on bloc (meta), provider
   flutter_localizations:
       sdk: flutter
-
+  flutter_secure_storage: 3.3.1+1
+  flutter_stetho: 0.5.2
+  font_awesome_flutter: 8.7.0
+  google_sign_in: 4.1.1
+  http: 0.12.0+4
+  json_annotation: 3.0.1
+  logger: 0.8.3
+  path_provider: 1.6.5
+  preferences: 5.1.0 # depends on shared_preferences
+  pull_to_refresh: 1.5.7
+  rxdart: 0.24.1
+  sentry: 3.0.1
+  settings_ui: 0.2.0
+  smooth_star_rating: 1.0.4+2
+  sprintf: 4.0.2
+  sqflite: 1.2.1
+  wave: 0.0.8
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the Cupertino Icons class for iOS style icons.
-  cupertino_icons: 0.1.2
+  # cupertino_icons: 0.1.2
 
 dev_dependencies:
   flutter_test:
@@ -61,8 +61,8 @@ dev_dependencies:
   floor_generator: 0.11.0
   build_runner: 1.7.4
   json_serializable: 3.2.5
-  test: 1.9.4
-  bloc_test: 3.0.0
+  test: 1.14.3
+  bloc_test: 5.1.0
   flutter_native_splash: 0.1.9
 
 flutter_native_splash:
