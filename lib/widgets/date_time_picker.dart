@@ -37,7 +37,7 @@ class DateTimePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle valueStyle = Theme.of(context).textTheme.title;
+    final TextStyle valueStyle = Theme.of(context).textTheme.headline4;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
@@ -88,7 +88,7 @@ class DatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle valueStyle = Theme.of(context).textTheme.title;
+    final TextStyle valueStyle = Theme.of(context).textTheme.headline4;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
@@ -125,7 +125,7 @@ class TimePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle valueStyle = Theme.of(context).textTheme.title;
+    final TextStyle valueStyle = Theme.of(context).textTheme.headline4;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[

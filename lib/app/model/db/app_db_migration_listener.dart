@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
-import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppDatabaseMigrationListener implements DatabaseMigrationListener {

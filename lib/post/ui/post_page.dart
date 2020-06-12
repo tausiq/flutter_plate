@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/post/bloc/bloc.dart';
-import 'package:flutter_plate/post/model/post.dart';
 import 'package:flutter_plate/post/ui/post_item.dart';
 import 'package:http/http.dart' as http;
 

@@ -6,7 +6,7 @@ import 'package:flutter_plate/app/model/pojo/response/LookupResponse.dart';
 import 'package:flutter_plate/app/model/pojo/response/TopAppResponse.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/util/http/HttpException.dart';
-import 'package:flutter_plate/util/log/DioLogger.dart';
+import 'package:flutter_plate/util/log/dio_logger.dart';
 import 'package:sprintf/sprintf.dart';
 
 class APIProvider {
@@ -30,13 +30,13 @@ class APIProvider {
         EnvType.STAGING == Env.value.environmentType) {
       _dio.interceptors
           .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
-        DioLogger.onSend(TAG, options);
+        DioLogger.onSend(options);
         return options;
       }, onResponse: (Response response) {
-        DioLogger.onSuccess(TAG, response);
+        DioLogger.onSuccess(response);
         return response;
       }, onError: (DioError error) {
-        DioLogger.onError(TAG, error);
+        DioLogger.onError(error);
         return error;
       }));
     }

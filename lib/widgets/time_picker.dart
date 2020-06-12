@@ -20,7 +20,7 @@ class TimePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle valueStyle = Theme.of(context).textTheme.title;
+    final TextStyle valueStyle = Theme.of(context).textTheme.headline4;
     return InputDropdown(
       labelText: labelText,
       valueText: selectedTime.format(context),

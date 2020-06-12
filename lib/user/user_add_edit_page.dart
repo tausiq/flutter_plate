@@ -87,7 +87,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                   children: [
                     TextFormField(
                       autofocus: !isEditing,
-                      style: textTheme.headline,
+                      style: textTheme.headline5,
                       decoration: InputDecoration(
                         hintText: 'First Name',
                       ),
@@ -101,7 +101,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                     ),
                     TextFormField(
                       autofocus: !isEditing,
-                      style: textTheme.headline,
+                      style: textTheme.headline5,
                       decoration: InputDecoration(
                         hintText: 'Last Name',
                       ),
@@ -116,7 +116,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                     TextFormField(
                       autofocus: !isEditing,
                       enabled: !isEditing,
-                      style: textTheme.headline,
+                      style: textTheme.headline5,
                       decoration: InputDecoration(
                         hintText: 'Email',
                       ),
@@ -129,7 +129,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                     TextFormField(
                       autofocus: !isEditing,
                       enabled: !isEditing,
-                      style: textTheme.headline,
+                      style: textTheme.headline5,
                       decoration: InputDecoration(
                         hintText: 'Password',
                       ),

@@ -15,38 +15,38 @@ version: 1.4.0+140
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
-  flutter: 1.17.1
+  flutter: 1.17.3
 
 dependencies:
-  analyzer: 0.39.4
-  bottom_navy_bar: 5.3.2
+  analyzer: 0.39.10
+  bottom_navy_bar: 5.4.0
   cached_network_image: 2.2.0+1
   connection_status_bar: 1.1.2
-  cloud_firestore: 0.13.4+2
+  cloud_firestore: 0.13.6
   dio: 3.0.9
-  easy_localization: 2.0.0+1
-  equatable: 1.1.0
+  easy_localization: 2.3.2
+  equatable: 1.2.0
   fluro: 1.6.3
-  firebase_auth: 0.15.5+3
+  firebase_auth: 0.16.1
   flutter_bloc: 4.0.0 # depends on bloc (meta), provider
   flutter_localizations:
       sdk: flutter
-  flutter_secure_storage: 3.3.1+1
+  flutter_secure_storage: 3.3.3
   flutter_stetho: 0.5.2
-  font_awesome_flutter: 8.7.0
-  google_sign_in: 4.1.1
-  http: 0.12.0+4
+  font_awesome_flutter: 8.8.1
+  google_sign_in: 4.5.1
+  http: 0.12.1
   json_annotation: 3.0.1
-  logger: 0.8.3
-  path_provider: 1.6.5
-  preferences: 5.1.0 # depends on shared_preferences
-  pull_to_refresh: 1.5.7
+  logger: 0.9.1
+  path_provider: 1.6.10
+  preferences: 5.2.0 # depends on shared_preferences
+  pull_to_refresh: 1.5.8
   rxdart: 0.24.1
   sentry: 3.0.1
-  settings_ui: 0.2.0
-  smooth_star_rating: 1.0.4+2
+  settings_ui: 0.3.0
+  smooth_star_rating: 1.1.1
   sprintf: 4.0.2
-  sqflite: 1.2.1
+  sqflite: 1.3.1
   wave: 0.0.8
 
   # The following adds the Cupertino Icons font to your application.
@@ -54,16 +54,16 @@ dependencies:
   # cupertino_icons: 0.1.2
 
 dev_dependencies:
+  bloc_test: 5.1.0
+  build_runner: 1.10.0
+  floor_generator: 0.13.0
+  flutter_driver:
+      sdk: flutter
+  flutter_native_splash: 0.1.9
   flutter_test:
    sdk: flutter
-  flutter_driver:
-    sdk: flutter
-  floor_generator: 0.11.0
-  build_runner: 1.7.4
-  json_serializable: 3.2.5
-  test: 1.14.3
-  bloc_test: 5.1.0
-  flutter_native_splash: 0.1.9
+  json_serializable: 3.3.0
+  test: 1.14.4
 
 flutter_native_splash:
     image: images/logo.png
@@ -98,20 +98,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Lato
-      fonts:
-        - asset: fonts/Lato/Lato-Bold.ttf
-        - asset: fonts/Lato/Lato-BoldItalic.ttf
-          style: italic
-        - asset: fonts/Lato/Lato-Black.ttf
-          weight: 700
     - family: Cabin
       fonts:
-       - asset: fonts/Cabin/Cabin-Regular.ttf
-       - asset: fonts/Cabin/Cabin-RegularItalic.ttf
-         style: italic
-       - asset: fonts/Cabin/Cabin-Bold.ttf
-         weight: 700
+        - asset: fonts/Cabin/Cabin-Medium.ttf
+        - asset: fonts/Cabin/Cabin-MediumItalic.ttf
+        - asset: fonts/Cabin/Cabin-Bold.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

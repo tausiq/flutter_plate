@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';

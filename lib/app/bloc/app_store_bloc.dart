@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
 import 'package:flutter_plate/app/model/pojo/AppContent.dart';
 import 'package:flutter_plate/core/plate_app.dart';
-import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AppStoreBloc {

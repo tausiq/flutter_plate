@@ -141,7 +141,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                         appContent.trackName,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
-                        style: Theme.of(context).textTheme.title,
+                        style: Theme.of(context).textTheme.headline6,
                       )),
                   Text(
                     null != appContent.artistName ? appContent.artistName : '',
@@ -174,7 +174,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                 children: <Widget>[
                   Text(
                     '$averageUserRating',
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   Container(
                     width: 4,

@@ -1,3 +1,4 @@
+import 'package:flutter_plate/util/log/prefix_printer.dart';
 import 'package:logger/logger.dart';
 
 class Log {
@@ -6,8 +7,10 @@ class Log {
 
   static void init() {
     _instance = Logger(
-      filter: MyFilter(),
-      printer: PrettyPrinter(),
+      filter: DevelopmentFilter(),
+      printer: PrefixPrinter(PrettyPrinter(methodCount: 0, colors: false, printEmojis:
+      false )),
+      output: null,
     );
   }
 
@@ -37,14 +40,5 @@ class Log {
 
   static void wtf(message, [Object error, StackTrace stackTrace]) {
     _instance.wtf(message, error, stackTrace);
-  }
-}
-
-class MyFilter extends LogFilter {
-  @override
-  bool shouldLog(LogEvent event) {
-    print(
-        '${event.level.toString()}: ${event.error}: ${event.message}');
-    return true;
   }
 }

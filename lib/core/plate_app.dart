@@ -10,7 +10,7 @@ import 'package:flutter_plate/settings/prefs_const.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
-import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:logger/logger.dart';
 import 'package:preferences/preferences.dart';
 

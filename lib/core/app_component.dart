@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_plate/config/Env.dart';
-import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/log/app_log.dart';
 
 import 'app_provider.dart';
 import 'plate_app.dart';

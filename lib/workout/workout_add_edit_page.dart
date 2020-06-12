@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
-import 'package:flutter_plate/util/log/Log.dart';
+import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:flutter_plate/util/util.dart';
 import 'package:flutter_plate/widgets/date_time_picker.dart';
 import 'package:flutter_plate/workout/bloc/bloc.dart';
@@ -126,7 +126,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                     ),
                     TextFormField(
                       autofocus: !isEditing,
-                      style: textTheme.headline,
+                      style: textTheme.headline5,
                       decoration: InputDecoration(
                         hintText: 'Workout name',
                       ),
@@ -139,7 +139,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       controller: _titleController,
                     ),
                     TextFormField(
-                      style: textTheme.subhead,
+                      style: textTheme.subtitle1,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: 'Work minutes',

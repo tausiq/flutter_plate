@@ -177,7 +177,7 @@ class _AppStorePageState extends State<AppStorePage> {
           margin: EdgeInsets.only(left: 20, top: 12, bottom: 16),
           child: Text(
             tr('homeRecommend'),
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.headline4,
           ),
         ),
         Container(
@@ -290,7 +290,7 @@ class _AppStorePageState extends State<AppStorePage> {
                         width: 40,
                         child: Text(
                           "$order",
-                          style: Theme.of(context).textTheme.title,
+                          style: Theme.of(context).textTheme.headline4,
                         )),
                     Container(
                         height: 70,
