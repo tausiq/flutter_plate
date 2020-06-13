@@ -1,13 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_plate/user/user.dart';
-import 'package:meta/meta.dart';
 
 /// Since we're using Equatable to allow us to compare different instances
 /// of AuthenticationState we need to pass any properties to the superclass.
 /// Without super([displayName]), we will not be able to properly compare
 /// different instances of Authenticated.
 ///
-@immutable
 abstract class AuthenticationState extends Equatable {
   const AuthenticationState();
 }

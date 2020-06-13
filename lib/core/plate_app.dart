@@ -6,16 +6,21 @@ import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
 import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
-import 'package:flutter_plate/settings/prefs_const.dart';
+import 'package:flutter_plate/repo/local/pref_repo.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:logger/logger.dart';
 import 'package:preferences/preferences.dart';
+import 'package:flutter/foundation.dart';
 
-import 'Application.dart';
 import 'app_routes.dart';
+
+abstract class Application {
+  void onCreate();
+  void onTerminate();
+}
 
 class PlateApp implements Application {
   Router router;
@@ -24,6 +29,7 @@ class PlateApp implements Application {
   AppStoreAPIRepository appStoreAPIRepository;
   FirebaseUserRepository userRepository;
   User loggedInUser;
+  PrefRepo prefRepo;
 
   @override
   Future<void> onCreate() async {
@@ -34,6 +40,7 @@ class PlateApp implements Application {
     _initAPIRepository();
     _initUserRepository();
     _initPreference();
+    _initMock();
   }
 
   @override
@@ -42,10 +49,9 @@ class PlateApp implements Application {
   }
 
   Future<void> _initDB() async {
-    AppDatabaseMigrationListener migrationListener =
-        AppDatabaseMigrationListener();
-    DatabaseConfig databaseConfig = DatabaseConfig(
-        Env.value.dbVersion, Env.value.dbName, migrationListener);
+    AppDatabaseMigrationListener migrationListener = AppDatabaseMigrationListener();
+    DatabaseConfig databaseConfig =
+        DatabaseConfig(Env.value.dbVersion, Env.value.dbName, migrationListener);
     _db = DatabaseHelper(databaseConfig);
     Log.i('DB name : ' + Env.value.dbName);
 //    await _db.deleteDB();
@@ -58,8 +64,7 @@ class PlateApp implements Application {
 
   void _initAPIRepository() {
     APIProvider apiProvider = APIProvider();
-    appStoreAPIRepository =
-        AppStoreAPIRepository(apiProvider, dbAppStoreRepository);
+    appStoreAPIRepository = AppStoreAPIRepository(apiProvider, dbAppStoreRepository);
   }
 
   void _initUserRepository() {
@@ -67,10 +72,9 @@ class PlateApp implements Application {
   }
 
   void _initPreference() async {
-    await PrefService.init(prefix: PREF_PREFIX);
-    PrefService.setDefaultValues({WORKOUT_MIN_PER_DAY: '60'});
+    prefRepo = PrefRepo();
+    await prefRepo.init();
   }
-
 
   void _initLog() {
     Log.init();
@@ -99,5 +103,11 @@ class PlateApp implements Application {
   void _initRouter() {
     router = Router();
     AppRoutes.configureRoutes(router);
+  }
+
+  Future<void> _initMock() async {
+    if (!kReleaseMode) {
+      // Init mock data
+    }
   }
 }

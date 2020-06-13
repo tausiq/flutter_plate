@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:meta/meta.dart';
+import 'package:preferences/preferences.dart';
 
 import 'bloc.dart';
 
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final FirebaseUserRepository _userRepository;
 
   AuthenticationBloc({@required FirebaseUserRepository userRepository})
@@ -47,11 +47,14 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapLoggedInToState() async* {
-    yield Authenticated((await _userRepository.getUser()));
+    final user = await _userRepository.getUser();
+    PrefService.setString('user_id', user.id);
+    yield Authenticated(user);
   }
 
   Stream<AuthenticationState> _mapLoggedOutToState() async* {
     yield Unauthenticated();
-    _userRepository.signOut();
+    PrefService.clear();
+    await _userRepository.signOut();
   }
 }

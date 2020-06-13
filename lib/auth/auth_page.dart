@@ -11,6 +11,7 @@ import 'package:preferences/preferences.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/bloc.dart';
 
+/// AuthPage is not a page as such, it only decides which page to show initially
 class AuthPage extends StatelessWidget {
   static const String PATH = '/';
   final FirebaseUserRepository userRepository;
@@ -21,24 +22,27 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
       bloc: BlocProvider.of<AuthenticationBloc>(context),
-      builder: (BuildContext context, AuthenticationState state) {
-        if (state is Uninitialized) {
-          return SplashPage();
-        }
-        if (state is Authenticated) {
-          AppProvider.getApplication(context).setLoggedInUser(state.user);
-          PrefService.setString('user_id', state.user.id);
-          return HomePage(user: state.user,);
-
-        }
-        if (state is Unauthenticated) {
-          return LoginPage(userRepository: userRepository);
-        }
-        if (state is Unregistered) {
-          return RegisterPage(userRepository: userRepository);
-        }
-          return null;
-      },
+      builder: _builder,
     );
+  }
+
+  Widget _builder(BuildContext context, AuthenticationState state) {
+    if (state is Uninitialized) {
+      return SplashPage();
+    }
+    if (state is Authenticated) {
+      AppProvider.getApplication(context).setLoggedInUser(state.user);
+      PrefService.setString('user_id', state.user.id);
+      return HomePage(
+        user: state.user,
+      );
+    }
+    if (state is Unauthenticated) {
+      return LoginPage(userRepository: userRepository);
+    }
+    if (state is Unregistered) {
+      return RegisterPage(userRepository: userRepository);
+    }
+    return null;
   }
 }

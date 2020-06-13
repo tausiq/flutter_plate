@@ -28,7 +28,7 @@ dependencies:
   equatable: 1.2.0
   fluro: 1.6.3
   firebase_auth: 0.16.1
-  flutter_bloc: 4.0.0 # depends on bloc (meta), provider
+  flutter_bloc: 4.0.1 # depends on bloc (meta), provider
   flutter_localizations:
       sdk: flutter
   flutter_secure_storage: 3.3.3

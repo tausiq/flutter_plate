@@ -81,7 +81,26 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 Influenced by: https://github.com/KingWu/flutter_starter_kit
 
 #### Commands
+Json serializable: 
+`flutter pub run build_runner build`
+
+Android build: 
+`flutter build appbundle -t lib/config/main_development.dart --flavor development`
+
+iOS build: 
+`flutter build ios -t lib/config/main_development.dart --release --no-codesign`
+
 Android release:
 `flutter build apk -t lib/config/main_production.dart --target-platform android-arm,android-arm64,android-x64 --split-per-abi --flavor production --release`
+
 iOS release: 
 `flutter build ios -t lib/config/main_production.dart`
+
+Generator: 
+`flutter packages pub run build_runner build`
+
+Test: 
+`flutter test test/api/api_repo_test.dart`
+
+Update package: 
+`flutter pub outdated`
