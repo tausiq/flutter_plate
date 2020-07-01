@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/login/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 
-import 'bloc/login_bloc.dart';
 import 'login_form.dart';
 
 class LoginPage extends StatelessWidget {
