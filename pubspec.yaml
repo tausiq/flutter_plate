@@ -15,14 +15,14 @@ version: 1.4.0+140
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
-  flutter: 1.17.3
+  flutter: 1.17.5
 
 dependencies:
   analyzer: 0.39.10
   bottom_navy_bar: 5.4.0
   cached_network_image: 2.2.0+1
   connection_status_bar: 1.1.2
-  cloud_firestore: 0.13.6
+  cloud_firestore: 0.13.7
   dio: 3.0.9
   easy_localization: 2.3.2
   equatable: 1.2.0
@@ -38,9 +38,9 @@ dependencies:
   http: 0.12.1
   json_annotation: 3.0.1
   logger: 0.9.1
-  path_provider: 1.6.10
+  path_provider: 1.6.11
   preferences: 5.2.0 # depends on shared_preferences
-  pull_to_refresh: 1.5.8
+  pull_to_refresh: 1.6.0
   rxdart: 0.24.1
   sentry: 3.0.1
   settings_ui: 0.3.0

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fluro/fluro.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_plate/app/model/api/api_provider.dart';
 import 'package:flutter_plate/app/model/api/app_store_api_repo.dart';
 import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:logger/logger.dart';
 import 'package:preferences/preferences.dart';
-import 'package:flutter/foundation.dart';
 
 import 'app_routes.dart';
 
