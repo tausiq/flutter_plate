@@ -103,6 +103,8 @@ flutter:
         - asset: fonts/Cabin/Cabin-Medium.ttf
         - asset: fonts/Cabin/Cabin-MediumItalic.ttf
         - asset: fonts/Cabin/Cabin-Bold.ttf
-
+    - family: icomoon
+      fonts:
+          - asset: fonts/IcoMoon.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

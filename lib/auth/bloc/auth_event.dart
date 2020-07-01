@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-abstract class AuthenticationEvent extends Equatable {
-  const AuthenticationEvent();
+abstract class AuthEvent extends Equatable {
+  const AuthEvent();
 }
 
-class AppStarted extends AuthenticationEvent {
+class AppStarted extends AuthEvent {
   @override
   String toString() => 'AppStarted';
 
@@ -12,7 +12,7 @@ class AppStarted extends AuthenticationEvent {
   List<Object> get props => [];
 }
 
-class LoggedIn extends AuthenticationEvent {
+class LoggedIn extends AuthEvent {
   @override
   String toString() => 'LoggedIn';
 
@@ -20,7 +20,7 @@ class LoggedIn extends AuthenticationEvent {
   List<Object> get props => [];
 }
 
-class LoggedOut extends AuthenticationEvent {
+class LoggedOut extends AuthEvent {
   @override
   String toString() => 'LoggedOut';
 
@@ -28,7 +28,7 @@ class LoggedOut extends AuthenticationEvent {
   List<Object> get props => [];
 }
 
-class CreateAccount extends AuthenticationEvent {
+class CreateAccount extends AuthEvent {
   @override
   String toString() => 'CreateAccount';
 

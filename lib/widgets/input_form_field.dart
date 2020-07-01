@@ -7,13 +7,13 @@ class InputFormField extends StatelessWidget {
   final TextInputType textInputType;
   final Color textFieldColor;
   final bool obscureText, autoFocus;
-  final double bottomMargin;
-  final TextStyle textStyle, hintStyle;
-  final Function validateFunction;
-  final Function onSaved;
+  final double verticalMargin;
+  final double horizontalMargin;
+  final TextStyle textStyle, hintStyle, labelStyle;
+  var validateFunction;
+  var onSaved;
   final int maxLength;
   final Key key;
-  final int maxLines;
   final TextCapitalization textCapitalization;
   final TextEditingController controller;
 
@@ -26,41 +26,47 @@ class InputFormField extends StatelessWidget {
       this.autoFocus,
       this.textInputType,
       this.textFieldColor,
-      this.bottomMargin,
+      this.verticalMargin = 0.0,
+      this.horizontalMargin = 0.0,
       this.textStyle,
       this.validateFunction,
       this.onSaved,
       this.hintStyle,
+      this.labelStyle,
       this.text,
       this.maxLength,
       this.controller,
-      this.textCapitalization,
-      this.maxLines});
+      this.textCapitalization});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: bottomMargin),
+      padding:
+          EdgeInsets.symmetric(vertical: verticalMargin, horizontal: horizontalMargin),
       child: TextFormField(
         style: textStyle,
         key: key,
-        obscureText: obscureText ?? false,
-        keyboardType: textInputType ?? TextInputType.text,
+        obscureText: obscureText,
+        keyboardType: textInputType,
         validator: validateFunction,
-        onSaved: onSaved ?? () => {},
-        autofocus: autoFocus ?? false,
+        onSaved: onSaved,
+        autofocus: autoFocus,
         initialValue: text,
         maxLength: maxLength,
         textCapitalization: textCapitalization ?? TextCapitalization.none,
         maxLengthEnforced: true,
         controller: controller,
-        maxLines: maxLines ?? 1,
         decoration: new InputDecoration(
             hintText: hintText,
             hintStyle: hintStyle,
             labelText: labelText,
-            labelStyle: textStyle,
+            labelStyle: labelStyle ?? textStyle,
             border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).accentColor,
+                width: 0.5,
+                style: BorderStyle.solid,
+              ),
               borderRadius: BorderRadius.circular(8.0),
             )),
       ),

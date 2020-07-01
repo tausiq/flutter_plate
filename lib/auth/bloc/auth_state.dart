@@ -6,11 +6,11 @@ import 'package:flutter_plate/user/user.dart';
 /// Without super([displayName]), we will not be able to properly compare
 /// different instances of Authenticated.
 ///
-abstract class AuthenticationState extends Equatable {
-  const AuthenticationState();
+abstract class AuthState extends Equatable {
+  const AuthState();
 }
 
-class Uninitialized extends AuthenticationState {
+class Uninitialized extends AuthState {
   @override
   String toString() => 'Uninitialized';
 
@@ -18,7 +18,7 @@ class Uninitialized extends AuthenticationState {
   List<Object> get props => [];
 }
 
-class Authenticated extends AuthenticationState {
+class Authenticated extends AuthState {
   final User user;
 
   const Authenticated(this.user);
@@ -30,7 +30,7 @@ class Authenticated extends AuthenticationState {
   List<Object> get props => [user];
 }
 
-class Unauthenticated extends AuthenticationState {
+class Unauthenticated extends AuthState {
   @override
   String toString() => 'Unauthenticated';
 
@@ -38,7 +38,7 @@ class Unauthenticated extends AuthenticationState {
   List<Object> get props => [];
 }
 
-class Unregistered extends AuthenticationState {
+class Unregistered extends AuthState {
   @override
   String toString() => 'Unregistered';
 

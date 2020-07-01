@@ -37,9 +37,9 @@ var rootHandler =
 var authRouteHandler =
     Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
   var userRepository = AppProvider.getApplication(context).userRepository;
-  return BlocProvider<AuthenticationBloc>(
+  return BlocProvider<AuthBloc>(
     create: (context) {
-      return AuthenticationBloc(userRepository: userRepository)..add(AppStarted());
+      return AuthBloc(userRepository: userRepository)..add(AppStarted());
     },
     child: AuthPage(
       userRepository: userRepository,

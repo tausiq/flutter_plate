@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/reg/register_form.dart';
+import 'package:flutter_plate/reg/ui/design1/register_form.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 
-import 'bloc/bloc.dart';
+import '../../bloc/bloc.dart';
 
 class RegisterPage extends StatelessWidget {
   final FirebaseUserRepository _userRepository;

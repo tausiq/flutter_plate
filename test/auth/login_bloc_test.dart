@@ -4,11 +4,9 @@ import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-
-
 class MockUserRepository extends Mock implements FirebaseUserRepository {}
 
-class MockAuthenticationBloc extends Mock implements AuthenticationBloc {}
+class MockAuthenticationBloc extends Mock implements AuthBloc {}
 
 void main() {
   LoginBloc loginBloc;
@@ -18,12 +16,10 @@ void main() {
   setUp(() {
     userRepository = MockUserRepository();
     authenticationBloc = MockAuthenticationBloc();
-    loginBloc = LoginBloc(
-      userRepository: userRepository
-    );
+    loginBloc = LoginBloc(userRepository: userRepository);
   });
 
-    tearDown(() {
+  tearDown(() {
     loginBloc.close();
     authenticationBloc.close();
   });
@@ -74,12 +70,11 @@ void main() {
       );
 
       loginBloc.add(LoginWithCredentialsPressed(
-        email: 'valid.email',
+        username: 'valid.email',
         password: 'valid.password',
       ));
     });
   });
-
 
   group('LoginButtonPressed', () {
     test('emits token on success', () {
@@ -102,7 +97,7 @@ void main() {
       });
 
       loginBloc.add(LoginWithCredentialsPressed(
-        email: 'valid.email',
+        username: 'valid.email',
         password: 'valid.password',
       ));
     });

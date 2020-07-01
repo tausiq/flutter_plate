@@ -19,12 +19,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final HomeBloc _homeBloc = new HomeBloc();
-  AuthenticationBloc authenticationBloc;
+  AuthBloc authenticationBloc;
 
   @override
   Widget build(BuildContext context) {
-    authenticationBloc =
-        BlocProvider.of<AuthenticationBloc>(context);
+    authenticationBloc = BlocProvider.of<AuthBloc>(context);
 
     return BlocProvider<HomeBloc>(
         create: (BuildContext context) {
@@ -46,13 +45,15 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Center(child: Text('Welcome ${widget.user.firstName} ${widget.user.lastName}!')),
+              Center(
+                  child:
+                      Text('Welcome ${widget.user.firstName} ${widget.user.lastName}!')),
             ],
           ),
         ));
   }
 
-  @override 
+  @override
   void dispose() {
     _homeBloc.close();
     authenticationBloc.close();

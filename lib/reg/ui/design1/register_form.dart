@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
-import 'package:flutter_plate/reg/register_button.dart';
+import 'package:flutter_plate/reg/ui/design1/register_button.dart';
 
-import 'bloc/bloc.dart';
+import '../../bloc/bloc.dart';
 
 class RegisterForm extends StatefulWidget {
   State<RegisterForm> createState() => _RegisterFormState();
@@ -17,8 +17,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
   RegisterBloc _registerBloc;
 
-  bool get isPopulated => _firstNameController.text.isNotEmpty && _lastNameController.text.isNotEmpty &&
-      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+  bool get isPopulated =>
+      _firstNameController.text.isNotEmpty &&
+      _lastNameController.text.isNotEmpty &&
+      _emailController.text.isNotEmpty &&
+      _passwordController.text.isNotEmpty;
 
   bool isRegisterButtonEnabled(RegisterState state) {
     return state.isFormValid && isPopulated && !state.isSubmitting;
@@ -54,7 +57,7 @@ class _RegisterFormState extends State<RegisterForm> {
             );
         }
         if (state.isSuccess) {
-          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
+          BlocProvider.of<AuthBloc>(context).add(LoggedIn());
         }
         if (state.isFailure) {
           Scaffold.of(context)
@@ -130,21 +133,17 @@ class _RegisterFormState extends State<RegisterForm> {
                     },
                   ),
                   RegisterButton(
-                    onPressed: isRegisterButtonEnabled(state)
-                        ? _onFormSubmitted
-                        : null,
+                    onPressed: isRegisterButtonEnabled(state) ? _onFormSubmitted : null,
                   ),
                   RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                     onPressed: () {
-                      BlocProvider.of<AuthenticationBloc>(context)
-                          .add(LoggedOut());
+                      BlocProvider.of<AuthBloc>(context).add(LoggedOut());
                     },
                     child: Text('Go back to Login'),
                   )
-
                 ],
               ),
             ),
@@ -174,7 +173,6 @@ class _RegisterFormState extends State<RegisterForm> {
       LastNameChanged(name: _lastNameController.text),
     );
   }
-
 
   void _onEmailChanged() {
     _registerBloc.add(

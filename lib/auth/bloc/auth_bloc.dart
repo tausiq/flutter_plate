@@ -7,19 +7,19 @@ import 'package:preferences/preferences.dart';
 
 import 'bloc.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final FirebaseUserRepository _userRepository;
 
-  AuthenticationBloc({@required FirebaseUserRepository userRepository})
+  AuthBloc({@required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository;
 
   @override
-  AuthenticationState get initialState => Uninitialized();
+  AuthState get initialState => Uninitialized();
 
   @override
-  Stream<AuthenticationState> mapEventToState(
-    AuthenticationEvent event,
+  Stream<AuthState> mapEventToState(
+    AuthEvent event,
   ) async* {
     if (event is AppStarted) {
       yield* _mapAppStartedToState();
@@ -32,7 +32,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     }
   }
 
-  Stream<AuthenticationState> _mapAppStartedToState() async* {
+  Stream<AuthState> _mapAppStartedToState() async* {
     try {
       final isSignedIn = await _userRepository.isSignedIn();
       if (isSignedIn) {
@@ -46,13 +46,13 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     }
   }
 
-  Stream<AuthenticationState> _mapLoggedInToState() async* {
+  Stream<AuthState> _mapLoggedInToState() async* {
     final user = await _userRepository.getUser();
     PrefService.setString('user_id', user.id);
     yield Authenticated(user);
   }
 
-  Stream<AuthenticationState> _mapLoggedOutToState() async* {
+  Stream<AuthState> _mapLoggedOutToState() async* {
     yield Unauthenticated();
     PrefService.clear();
     await _userRepository.signOut();

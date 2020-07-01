@@ -54,16 +54,16 @@ class LoginWithGooglePressed extends LoginEvent {
 }
 
 class LoginWithCredentialsPressed extends LoginEvent {
-  final String email;
+  final String username;
   final String password;
 
-  LoginWithCredentialsPressed({@required this.email, @required this.password});
+  LoginWithCredentialsPressed({@required this.username, @required this.password});
 
   @override
   String toString() {
-    return 'LoginWithCredentialsPressed { email: $email, password: $password }';
+    return 'LoginWithCredentialsPressed { email: $username, password: $password }';
   }
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [username, password];
 }

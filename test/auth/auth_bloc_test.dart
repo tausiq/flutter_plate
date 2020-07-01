@@ -7,12 +7,12 @@ import 'package:mockito/mockito.dart';
 class MockUserRepository extends Mock implements FirebaseUserRepository {}
 
 void main() {
-  AuthenticationBloc authenticationBloc;
+  AuthBloc authenticationBloc;
   MockUserRepository userRepository;
 
   setUp(() {
     userRepository = MockUserRepository();
-    authenticationBloc = AuthenticationBloc(userRepository: userRepository);
+    authenticationBloc = AuthBloc(userRepository: userRepository);
   });
 
   test('initial state is correct', () {
@@ -29,10 +29,7 @@ void main() {
 
   group('AppStarted', () {
     test('emits [uninitialized, unauthenticated] for invalid token', () {
-      final expectedResponse = [
-        Uninitialized(),
-        Unauthenticated()
-      ];
+      final expectedResponse = [Uninitialized(), Unauthenticated()];
 
       when(userRepository.hasToken()).thenAnswer((_) => Future.value(false));
 
@@ -46,40 +43,34 @@ void main() {
   });
 
   group('LoggedIn', () {
-    test(
-        'emits [uninitialized, loading, authenticated] when token is persisted',
-            () {
-          final expectedResponse = [
-            Uninitialized(),
-            Authenticated(User()),
-          ];
+    test('emits [uninitialized, loading, authenticated] when token is persisted', () {
+      final expectedResponse = [
+        Uninitialized(),
+        Authenticated(User()),
+      ];
 
-          expectLater(
-            authenticationBloc.state,
-            emitsInOrder(expectedResponse),
-          );
+      expectLater(
+        authenticationBloc.state,
+        emitsInOrder(expectedResponse),
+      );
 
-          authenticationBloc.add(LoggedIn(
-
-          ));
-        });
+      authenticationBloc.add(LoggedIn());
+    });
   });
 
   group('LoggedOut', () {
-    test(
-        'emits [uninitialized, loading, unauthenticated] when token is deleted',
-            () {
-          final expectedResponse = [
-            Uninitialized(),
-            Unauthenticated(),
-          ];
+    test('emits [uninitialized, loading, unauthenticated] when token is deleted', () {
+      final expectedResponse = [
+        Uninitialized(),
+        Unauthenticated(),
+      ];
 
-          expectLater(
-            authenticationBloc.state,
-            emitsInOrder(expectedResponse),
-          );
+      expectLater(
+        authenticationBloc.state,
+        emitsInOrder(expectedResponse),
+      );
 
-          authenticationBloc.add(LoggedOut());
-        });
+      authenticationBloc.add(LoggedOut());
+    });
   });
 }

@@ -78,7 +78,7 @@ class _LoginFormState extends State<LoginForm> {
             );
         }
         if (state.isSuccess) {
-          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
+          BlocProvider.of<AuthBloc>(context).add(LoggedIn());
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
@@ -164,7 +164,7 @@ class _LoginFormState extends State<LoginForm> {
   void _onFormSubmitted() {
     _loginBloc.add(
       LoginWithCredentialsPressed(
-        email: _emailController.text,
+        username: _emailController.text,
         password: _passwordController.text,
       ),
     );

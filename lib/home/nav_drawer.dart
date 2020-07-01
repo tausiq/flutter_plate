@@ -28,7 +28,7 @@ class NavDrawer extends StatelessWidget {
     //ignore: close_sinks
     // final HomeBloc _homeBloc = BlocProvider.of<HomeBloc>(context);
     //ignore: close_sinks
-    final AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
+    final AuthBloc _authBloc = BlocProvider.of<AuthBloc>(context);
 
     return Drawer(
       child: ListView(

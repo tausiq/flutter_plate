@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/home/home_page.dart';
-import 'package:flutter_plate/login/ui/design1/login_page.dart';
 import 'package:flutter_plate/login/ui/design1/splash_page.dart';
-import 'package:flutter_plate/reg/register_page.dart';
+import 'package:flutter_plate/login/ui/design2/landing_page_2.dart';
+import 'package:flutter_plate/reg/ui/design1/register_page.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:preferences/preferences.dart';
 
@@ -20,13 +20,13 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      bloc: BlocProvider.of<AuthenticationBloc>(context),
+    return BlocBuilder<AuthBloc, AuthState>(
+      bloc: BlocProvider.of<AuthBloc>(context),
       builder: _builder,
     );
   }
 
-  Widget _builder(BuildContext context, AuthenticationState state) {
+  Widget _builder(BuildContext context, AuthState state) {
     if (state is Uninitialized) {
       return SplashPage();
     }
@@ -38,7 +38,8 @@ class AuthPage extends StatelessWidget {
       );
     }
     if (state is Unauthenticated) {
-      return LoginPage(userRepository: userRepository);
+      return LandingPage2();
+//      return LoginPage(userRepository: userRepository);
     }
     if (state is Unregistered) {
       return RegisterPage(userRepository: userRepository);
