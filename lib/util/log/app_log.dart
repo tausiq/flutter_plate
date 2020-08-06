@@ -1,4 +1,3 @@
-import 'package:flutter_plate/util/log/prefix_printer.dart';
 import 'package:logger/logger.dart';
 
 class Log {

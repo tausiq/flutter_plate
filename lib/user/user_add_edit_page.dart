@@ -11,8 +11,7 @@ class UserAddEditPage extends StatefulWidget {
   final bool isEditing;
   final String userId;
 
-  UserAddEditPage({Key key, @required this.isEditing, this.userId})
-      : super(key: key);
+  UserAddEditPage({Key key, @required this.isEditing, this.userId}) : super(key: key);
 
   static String generatePath(bool isEditing, {String userId}) {
     Map<String, dynamic> param = {
@@ -47,12 +46,12 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    _bloc = UserAddEditBloc(
-        userRepository: FirebaseUserRepository(), userId: widget.userId)
-      ..add(LoadUser());
+    _bloc =
+        UserAddEditBloc(userRepository: FirebaseUserRepository(), userId: widget.userId)
+          ..add(LoadUser());
 
     return BlocBuilder<UserAddEditBloc, UserAddEditState>(
-        bloc: _bloc,
+        cubit: _bloc,
         builder: (context, state) {
           final item = state is UserLoaded ? state.item : null;
           if (state is UserLoaded) {
@@ -68,15 +67,15 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
               ),
               actions: isEditing
                   ? [
-                IconButton(
-                  tooltip: 'Delete User',
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    _bloc.add(DeleteUser(item));
-                    Navigator.pop(context, item);
-                  },
-                )
-              ]
+                      IconButton(
+                        tooltip: 'Delete User',
+                        icon: Icon(Icons.delete),
+                        onPressed: () {
+                          _bloc.add(DeleteUser(item));
+                          Navigator.pop(context, item);
+                        },
+                      )
+                    ]
                   : [],
             ),
             body: Padding(
@@ -92,9 +91,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                         hintText: 'First Name',
                       ),
                       validator: (val) {
-                        return val.trim().isEmpty
-                            ? 'Please enter first name'
-                            : null;
+                        return val.trim().isEmpty ? 'Please enter first name' : null;
                       },
                       onSaved: (value) => _firstName = value,
                       controller: _firstNameController,
@@ -106,9 +103,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                         hintText: 'Last Name',
                       ),
                       validator: (val) {
-                        return val.trim().isEmpty
-                            ? 'Please enter last name'
-                            : null;
+                        return val.trim().isEmpty ? 'Please enter last name' : null;
                       },
                       onSaved: (value) => _lastName = value,
                       controller: _lastNameController,
@@ -134,9 +129,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                         hintText: 'Password',
                       ),
                       validator: (val) {
-                        return val.trim().isEmpty
-                            ? 'Please enter password'
-                            : null;
+                        return val.trim().isEmpty ? 'Please enter password' : null;
                       },
                       onSaved: (value) => _password = value,
                       controller: _passwordController,
@@ -165,10 +158,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                   } else {
                     _bloc.add(
                       AddUser(
-                          User(
-                              firstName: _firstName,
-                              lastName: _lastName,
-                              email: _email),
+                          User(firstName: _firstName, lastName: _lastName, email: _email),
                           _password),
                     );
                   }

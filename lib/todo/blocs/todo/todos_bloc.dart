@@ -13,10 +13,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   TodosBloc({@required TodosRepository todosRepository})
       : assert(todosRepository != null),
-        _todosRepository = todosRepository;
-
-  @override
-  TodosState get initialState => TodosLoading();
+        _todosRepository = todosRepository,
+        super(TodosLoading());
 
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
@@ -47,7 +45,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   Stream<TodosState> _mapToggleAllToState() async* {
     if (state is TodosLoaded) {
       final allComplete = (state as TodosLoaded).todos.every((todo) => todo.complete);
-      final List<Todo> updatedTodos = (state as TodosLoaded).todos
+      final List<Todo> updatedTodos = (state as TodosLoaded)
+          .todos
           .map((todo) => todo.copyWith(complete: !allComplete))
           .toList();
       updatedTodos.forEach((updatedTodo) {
@@ -59,7 +58,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   Stream<TodosState> _mapClearCompletedToState() async* {
     if (state is TodosLoaded) {
       final List<Todo> completedTodos =
-      (state as TodosLoaded).todos.where((todo) => todo.complete).toList();
+          (state as TodosLoaded).todos.where((todo) => todo.complete).toList();
       completedTodos.forEach((completedTodo) {
         _todosRepository.deleteTodo(completedTodo);
       });

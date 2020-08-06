@@ -25,7 +25,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(LoginState.empty(), loginBloc.initialState);
+    expect(LoginState.empty(), loginBloc.state);
   });
 
   test('dispose does not emit new states', () {

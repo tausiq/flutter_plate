@@ -15,7 +15,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(RegisterState.empty(), bloc.initialState);
+    expect(RegisterState.empty(), bloc.state);
   });
 
   test('dispose does not emit new states', () {
@@ -25,5 +25,4 @@ void main() {
     );
     bloc.close();
   });
-
 }

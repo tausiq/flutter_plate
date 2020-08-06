@@ -16,7 +16,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(workoutsBloc.initialState, WorkoutListLoading());
+    expect(workoutsBloc.state, WorkoutListLoading());
   });
 
   test('dispose does not emit new states', () {

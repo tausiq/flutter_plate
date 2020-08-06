@@ -15,10 +15,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   RegisterBloc({@required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
-        _userRepository = userRepository;
-
-  @override
-  RegisterState get initialState => RegisterState.empty();
+        _userRepository = userRepository,
+        super(RegisterState.empty());
 
   @override
   Stream<Transition<RegisterEvent, RegisterState>> transformEvents(
@@ -46,7 +44,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     } else if (event is PasswordChanged) {
       yield* _mapPasswordChangedToState(event.password);
     } else if (event is Submitted) {
-      yield* _mapFormSubmittedToState(event.email, event.firstName, event.lastName, event.password);
+      yield* _mapFormSubmittedToState(
+          event.email, event.firstName, event.lastName, event.password);
     }
   }
 

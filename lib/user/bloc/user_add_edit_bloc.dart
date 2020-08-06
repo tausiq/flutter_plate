@@ -14,10 +14,8 @@ class UserAddEditBloc extends Bloc<UserAddEditEvent, UserAddEditState> {
   UserAddEditBloc({@required UserRepository userRepository, String userId})
       : assert(userRepository != null),
         _userRepository = userRepository,
-        _userId = userId;
-
-  @override
-  UserAddEditState get initialState => UserLoading();
+        _userId = userId,
+        super(UserLoading());
 
   @override
   Stream<UserAddEditState> mapEventToState(UserAddEditEvent event) async* {

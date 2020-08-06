@@ -18,9 +18,10 @@ class TodoDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //ignore: close_sinks
     final todoBloc =
-        TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)..add(LoadTodo());
+        TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)
+          ..add(LoadTodo());
     return BlocBuilder<TodoDetailsBloc, TodosState>(
-      bloc: todoBloc,
+      cubit: todoBloc,
       builder: (context, state) {
         final todo = state is TodoLoaded ? state.todo : null;
         return Scaffold(
@@ -76,8 +77,7 @@ class TodoDetailsPage extends StatelessWidget {
                                     ),
                                     child: Text(
                                       todo.task,
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
+                                      style: Theme.of(context).textTheme.headline5,
                                     ),
                                   ),
                                 ),
@@ -99,8 +99,8 @@ class TodoDetailsPage extends StatelessWidget {
             onPressed: todo == null
                 ? null
                 : () {
-              AppProvider.getRouter(context)
-                  .navigateTo(context, TodoAddEditPage.generatePath(true, todoId: todo.id));
+                    AppProvider.getRouter(context).navigateTo(
+                        context, TodoAddEditPage.generatePath(true, todoId: todo.id));
                   },
           ),
         );

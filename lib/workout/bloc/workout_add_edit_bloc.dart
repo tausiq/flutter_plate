@@ -7,8 +7,6 @@ import 'package:flutter_plate/workout/bloc/bloc.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
 import 'package:flutter_plate/workout/workout_service.dart';
 
-
-
 class WorkoutAddEditBloc extends Bloc<WorkoutAddEditEvent, WorkoutAddEditState> {
   final WorkoutRepository _workoutsRepository;
   StreamSubscription _workoutsSubscription;
@@ -18,10 +16,8 @@ class WorkoutAddEditBloc extends Bloc<WorkoutAddEditEvent, WorkoutAddEditState> 
   WorkoutAddEditBloc({@required WorkoutRepository workoutsRepository, String workoutId})
       : assert(workoutsRepository != null),
         _workoutsRepository = workoutsRepository,
-        _workoutId = workoutId;
-
-  @override
-  WorkoutAddEditState get initialState => WorkoutLoading();
+        _workoutId = workoutId,
+        super(WorkoutLoading());
 
   @override
   Stream<WorkoutAddEditState> mapEventToState(WorkoutAddEditEvent event) async* {

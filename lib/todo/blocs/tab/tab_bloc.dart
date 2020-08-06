@@ -6,6 +6,8 @@ import 'package:flutter_plate/todo/model/app_tab.dart';
 import './bloc.dart';
 
 class TabBloc extends Bloc<TabEvent, AppTab> {
+  TabBloc() : super(AppTab.todos);
+
   @override
   AppTab get initialState => AppTab.todos;
 

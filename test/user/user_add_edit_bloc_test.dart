@@ -4,7 +4,6 @@ import 'package:flutter_plate/user/user.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-
 class MockUserRepository extends Mock implements FirebaseUserRepository {}
 
 void main() {
@@ -17,7 +16,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(userBloc.initialState, UserListLoading());
+    expect(userBloc.state, UserListLoading());
   });
 
   test('dispose does not emit new states', () {
@@ -63,5 +62,4 @@ void main() {
       userBloc.add(UpdateUser(user));
     });
   });
-
 }

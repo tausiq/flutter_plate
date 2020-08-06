@@ -51,12 +51,11 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     _bloc = TodosAddEditBloc(
-      todosRepository: FirebaseTodosRepository(),
-      todoId: widget.todoId
-    )..add(LoadTodo());
+        todosRepository: FirebaseTodosRepository(), todoId: widget.todoId)
+      ..add(LoadTodo());
 
     return BlocBuilder<TodosAddEditBloc, TodosState>(
-        bloc: _bloc,
+        cubit: _bloc,
         builder: (context, state) {
           final todo = state is TodoLoaded ? state.todo : null;
           _taskController.text = isEditing ? todo?.task : '';
@@ -81,9 +80,7 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
                         hintText: 'What needs to be done?',
                       ),
                       validator: (val) {
-                        return val.trim().isEmpty
-                            ? 'Please enter some text'
-                            : null;
+                        return val.trim().isEmpty ? 'Please enter some text' : null;
                       },
                       onSaved: (value) => _task = value,
                       controller: _taskController,
@@ -110,15 +107,16 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
                   _formKey.currentState.save();
 
                   if (widget.isEditing) {
-                    _bloc..add(
-                      UpdateTodo(
-                        todo.copyWith(task: _task, note: _note),
-                      ),
-                    );
+                    _bloc
+                      ..add(
+                        UpdateTodo(
+                          todo.copyWith(task: _task, note: _note),
+                        ),
+                      );
                   } else {
-                     _bloc.add(
-                       AddTodo(Todo(_task, note: _note)),
-                     );
+                    _bloc.add(
+                      AddTodo(Todo(_task, note: _note)),
+                    );
                   }
 
 //                  widget.onSave(_task, _note);

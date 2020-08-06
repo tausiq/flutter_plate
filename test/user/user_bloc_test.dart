@@ -6,7 +6,6 @@ import 'package:flutter_plate/user/user.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-
 class MockUserRepository extends Mock implements FirebaseUserRepository {}
 
 void main() {
@@ -19,7 +18,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(userBloc.initialState, UserListLoading());
+    expect(userBloc.state, UserListLoading());
   });
 
   test('dispose does not emit new states', () {
@@ -34,8 +33,7 @@ void main() {
     test('emits [UserLoading] for empty user list', () {
       final expectedResponse = [UserListLoading()];
 
-      when(userRepository.users())
-          .thenAnswer((_) => Stream<List<User>>.empty());
+      when(userRepository.users()).thenAnswer((_) => Stream<List<User>>.empty());
 
       expectLater(
         userBloc.state,
@@ -54,8 +52,7 @@ void main() {
 
       final expectedResponse = [UserListLoading(), UserListLoaded(users)];
 
-      when(userRepository.users())
-          .thenAnswer((_) => Stream<List<User>>.value(users));
+      when(userRepository.users()).thenAnswer((_) => Stream<List<User>>.value(users));
 
       expectLater(
         userBloc.state,
@@ -65,6 +62,4 @@ void main() {
       userBloc.add(LoadUsers());
     });
   });
-
-
 }

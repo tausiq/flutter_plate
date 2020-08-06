@@ -16,7 +16,7 @@ void main() {
   });
 
   test('initial state is correct', () {
-    expect(authenticationBloc.initialState, Uninitialized());
+    expect(authenticationBloc.state, Uninitialized());
   });
 
   test('dispose does not emit new states', () {

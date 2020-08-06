@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/core/app_bloc_delegate.dart';
 import 'package:flutter_plate/core/app_component.dart';
 import 'package:flutter_plate/core/plate_app.dart';
 import 'package:flutter_stetho/flutter_stetho.dart';
 import 'package:sentry/sentry.dart';
-import 'package:flutter/foundation.dart';
 
 enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, EARLY }
 
@@ -53,7 +53,7 @@ class Env {
         EnvType.EARLY == environmentType ||
         EnvType.STAGING == environmentType) {
       Stetho.initialize();
-      BlocSupervisor.delegate = AppBlocDelegate();
+      Bloc.observer = AppBlocDelegate();
     }
 
     var application = PlateApp();
@@ -92,7 +92,6 @@ class Env {
     }, onError: (error, stackTrace) async {
       await _reportError(error, stackTrace);
     });
-
   }
 
   /// Reports [error] along with its [stackTrace] to Sentry.io.

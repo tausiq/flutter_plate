@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
@@ -18,12 +17,8 @@ class WorkoutAddEditPage extends StatefulWidget {
   final String workoutId;
   final String userId;
 
-  WorkoutAddEditPage({
-    Key key,
-    @required this.isEditing,
-    this.workoutId,
-    this.userId
-  }) : super(key: key);
+  WorkoutAddEditPage({Key key, @required this.isEditing, this.workoutId, this.userId})
+      : super(key: key);
 
   static String generatePath(bool isEditing, {String workoutId, String userId}) {
     Map<String, dynamic> param = {
@@ -57,7 +52,9 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
   @override
   void initState() {
     super.initState();
-    _bloc = WorkoutAddEditBloc(workoutsRepository: FirebaseWorkoutsRepository(), workoutId: widget.workoutId)..add(LoadWorkout());
+    _bloc = WorkoutAddEditBloc(
+        workoutsRepository: FirebaseWorkoutsRepository(), workoutId: widget.workoutId)
+      ..add(LoadWorkout());
   }
 
   @override
@@ -68,7 +65,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
       ..add(LoadWorkout());
 
     return BlocBuilder<WorkoutAddEditBloc, WorkoutAddEditState>(
-        bloc: _bloc,
+        cubit: _bloc,
         builder: (context, state) {
           final workout = state is WorkoutLoaded ? state.item : null;
           if (state is WorkoutLoaded) {
@@ -86,21 +83,20 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
               ),
               actions: isEditing
                   ? [
-                IconButton(
-                  tooltip: 'Delete Workout',
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    if ((state as WorkoutLoaded).canDelete) {
-                      _bloc.add(DeleteWorkout(workout));
-                      Navigator.pop(context, workout);
-                    } else {
-                      Log.w("no permission for delete");
-                    }
-                  },
-                )
-              ]
+                      IconButton(
+                        tooltip: 'Delete Workout',
+                        icon: Icon(Icons.delete),
+                        onPressed: () {
+                          if ((state as WorkoutLoaded).canDelete) {
+                            _bloc.add(DeleteWorkout(workout));
+                            Navigator.pop(context, workout);
+                          } else {
+                            Log.w("no permission for delete");
+                          }
+                        },
+                      )
+                    ]
                   : [],
-
             ),
             body: Padding(
               padding: EdgeInsets.all(16.0),
@@ -114,8 +110,8 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       selectedDate: _dateTime,
                       selectedTime: _timeOfDay,
                       selectDate: (DateTime dt) {
-                        _dateTime = DateTime(dt.year, dt.month, dt.day,
-                            _dateTime.hour, _dateTime.minute);
+                        _dateTime = DateTime(
+                            dt.year, dt.month, dt.day, _dateTime.hour, _dateTime.minute);
                         _bloc.add(DateTimeChanged(_dateTime, _timeOfDay));
                       },
                       selectTime: (TimeOfDay td) {
@@ -131,9 +127,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                         hintText: 'Workout name',
                       ),
                       validator: (val) {
-                        return val.trim().isEmpty
-                            ? 'Please enter workout name'
-                            : null;
+                        return val.trim().isEmpty ? 'Please enter workout name' : null;
                       },
                       onSaved: (value) => _title = value,
                       controller: _titleController,
@@ -171,9 +165,13 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
                       );
                   } else {
                     _bloc.add(
-                      AddWorkout(Workout(_title, _dateTime, _timeOfDay, Util.isNullOrEmpty(widget.userId) ?
-
-                          AppProvider.getApplication(context).loggedInUser.id : widget.userId,
+                      AddWorkout(Workout(
+                          _title,
+                          _dateTime,
+                          _timeOfDay,
+                          Util.isNullOrEmpty(widget.userId)
+                              ? AppProvider.getApplication(context).loggedInUser.id
+                              : widget.userId,
                           minutes: int.tryParse(_calory))),
                     );
                   }

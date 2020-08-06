@@ -21,7 +21,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
-      bloc: BlocProvider.of<AuthBloc>(context),
+      cubit: BlocProvider.of<AuthBloc>(context),
       builder: _builder,
     );
   }

@@ -17,10 +17,9 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
 
   WorkoutBloc({@required WorkoutRepository workoutsRepository, @required User user})
       : assert(workoutsRepository != null),
-        _workoutsRepository = workoutsRepository, _user = user;
-
-  @override
-  WorkoutListState get initialState => WorkoutListLoading();
+        _workoutsRepository = workoutsRepository,
+        _user = user,
+        super(WorkoutListLoading());
 
   @override
   Stream<WorkoutListState> mapEventToState(WorkoutsEvent event) async* {
@@ -39,7 +38,7 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
       LoadWorkoutsByUserId event) async* {
     _workoutsSubscription?.cancel();
     _workoutsSubscription = _workoutsRepository.workoutsByUserId(event.userId).listen(
-          (workouts) {
+      (workouts) {
         add(
           WorkoutsUpdated(workouts),
         );
@@ -51,22 +50,21 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
     _workoutsSubscription?.cancel();
     _workoutsSubscription =
         _workoutsRepository.workoutsByUserId(PrefService.getString('user_id')).listen(
-              (workouts) {
-            add(
-              WorkoutsUpdated(workouts),
-            );
-          },
+      (workouts) {
+        add(
+          WorkoutsUpdated(workouts),
         );
+      },
+    );
   }
 
   Stream<WorkoutListState> _mapLoadFilteredWorkoutsToState(
       LoadFilteredWorkouts event) async* {
     _workoutsSubscription?.cancel();
     _workoutsSubscription = _workoutsRepository
-        .filteredWorkouts(
-        event.fromDate, event.toDate, event.fromTime, event.toTime)
+        .filteredWorkouts(event.fromDate, event.toDate, event.fromTime, event.toTime)
         .listen(
-          (workouts) {
+      (workouts) {
         add(WorkoutsUpdated(workouts,
             fromDate: event.fromDate,
             toDate: event.toDate,
@@ -96,17 +94,24 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
       fromDate = DateTime(minYear);
       toDate = DateTime(maxYear, 12, 31, 23, 59);
     } else {
-      fromDate = DateTime(event.fromDate.year, event.fromDate.month, event.fromDate.day, event.fromTime.hour, event.fromTime.minute);
-      toDate = DateTime(event.toDate.year, event.toDate.month, event.toDate.day, event.toTime.hour, event.toTime.minute);
+      fromDate = DateTime(event.fromDate.year, event.fromDate.month, event.fromDate.day,
+          event.fromTime.hour, event.fromTime.minute);
+      toDate = DateTime(event.toDate.year, event.toDate.month, event.toDate.day,
+          event.toTime.hour, event.toTime.minute);
       fromTime = event.fromTime;
       toTime = event.toTime;
     }
 
-    int diff =(_user == null) ? 0 : totalCalories - int.tryParse(PrefService.getString('minutes_per_day_${_user.id}'));
-    if (toDate.year != fromDate.year || toDate.month != fromDate.month || toDate.day != fromDate.day) diff = 0;
+    int diff = (_user == null)
+        ? 0
+        : totalCalories -
+            int.tryParse(PrefService.getString('minutes_per_day_${_user.id}'));
+    if (toDate.year != fromDate.year ||
+        toDate.month != fromDate.month ||
+        toDate.day != fromDate.day) diff = 0;
 
-    yield WorkoutListLoaded(event.items, diff, totalCalories, fromDate,
-        toDate, fromTime, toTime);
+    yield WorkoutListLoaded(
+        event.items, diff, totalCalories, fromDate, toDate, fromTime, toTime);
   }
 
   @override

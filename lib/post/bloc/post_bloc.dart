@@ -12,7 +12,7 @@ import 'bloc.dart';
 class PostBloc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;
 
-  PostBloc({@required this.httpClient});
+  PostBloc({@required this.httpClient}) : super(PostUninitialized());
 
   @override
   Stream<Transition<PostEvent, PostState>> transformEvents(
@@ -26,9 +26,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   }
 
   @override
-  get initialState => PostUninitialized();
-
-  @override
   Stream<PostState> mapEventToState(event) async* {
     if (event is Fetch && !_hasReachedMax(state)) {
       try {
@@ -37,13 +34,11 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           yield PostLoaded(posts: posts, hasReachedMax: false);
         }
         if (state is PostLoaded) {
-          final posts =
-              await _fetchPosts((state as PostLoaded).posts.length, 20);
+          final posts = await _fetchPosts((state as PostLoaded).posts.length, 20);
           yield posts.isEmpty
               ? (state as PostLoaded).copyWith(hasReachedMax: true)
               : PostLoaded(
-                  posts: (state as PostLoaded).posts + posts,
-                  hasReachedMax: false);
+                  posts: (state as PostLoaded).posts + posts, hasReachedMax: false);
         }
       } catch (_) {
         yield PostError();
@@ -51,8 +46,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     }
   }
 
-  bool _hasReachedMax(PostState state) =>
-      state is PostLoaded && state.hasReachedMax;
+  bool _hasReachedMax(PostState state) => state is PostLoaded && state.hasReachedMax;
 
   Future<List<Post>> _fetchPosts(int startIndex, int limit) async {
     final response = await httpClient.get(

@@ -15,10 +15,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
     @required FirebaseUserRepository userRepository,
   })  : assert(userRepository != null),
-        _userRepository = userRepository;
-
-  @override
-  LoginState get initialState => LoginState.empty();
+        _userRepository = userRepository,
+        super(LoginState.empty());
 
   @override
   Stream<Transition<LoginEvent, LoginState>> transformEvents(

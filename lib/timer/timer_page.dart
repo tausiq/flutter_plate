@@ -25,12 +25,10 @@ class TimerPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 100.0),
             child: Center(
               child: BlocBuilder(
-                bloc: _timerBloc,
+                cubit: _timerBloc,
                 builder: (context, state) {
-                  final String minutesStr = ((state.duration / 60) % 60)
-                      .floor()
-                      .toString()
-                      .padLeft(2, '0');
+                  final String minutesStr =
+                      ((state.duration / 60) % 60).floor().toString().padLeft(2, '0');
                   final String secondsStr =
                       (state.duration % 60).floor().toString().padLeft(2, '0');
                   return Text(
@@ -42,9 +40,9 @@ class TimerPage extends StatelessWidget {
             ),
           ),
           BlocBuilder(
-            condition: (previousState, currentState) =>
+            buildWhen: (previousState, currentState) =>
                 currentState.runtimeType != previousState.runtimeType,
-            bloc: _timerBloc,
+            cubit: _timerBloc,
             builder: (context, state) => TimerActions(),
           ),
         ],

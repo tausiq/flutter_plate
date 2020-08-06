@@ -12,11 +12,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   UserBloc({@required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
-        _userRepository = userRepository;
-
-  @override
-  UserState get initialState => UserListLoading();
-
+        _userRepository = userRepository,
+        super(UserListLoading());
 
   @override
   Stream<UserState> mapEventToState(
@@ -32,7 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> _mapLoadUsersToState() async* {
     _usersSubscription?.cancel();
     _usersSubscription = _userRepository.users().listen(
-          (items) {
+      (items) {
         add(
           UsersUpdated(items),
         );
@@ -50,4 +47,3 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     return super.close();
   }
 }
-

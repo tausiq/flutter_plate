@@ -12,10 +12,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc({@required FirebaseUserRepository userRepository})
       : assert(userRepository != null),
-        _userRepository = userRepository;
-
-  @override
-  AuthState get initialState => Uninitialized();
+        _userRepository = userRepository,
+        super(Uninitialized());
 
   @override
   Stream<AuthState> mapEventToState(

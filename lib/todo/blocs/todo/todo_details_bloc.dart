@@ -15,11 +15,11 @@ class TodoDetailsBloc extends Bloc<TodosEvent, TodosState> {
   TodoService _todoService;
 
   TodoDetailsBloc({@required TodosRepository todosRepository, @required String todoId})
-      : assert(todosRepository != null), assert(todoId != null),
-        _todosRepository = todosRepository, _todoId = todoId;
-
-  @override
-  TodosState get initialState => TodoLoading();
+      : assert(todosRepository != null),
+        assert(todoId != null),
+        _todosRepository = todosRepository,
+        _todoId = todoId,
+        super(TodoLoading());
 
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
@@ -38,7 +38,7 @@ class TodoDetailsBloc extends Bloc<TodosEvent, TodosState> {
     _todoService = TodoService((await FirebaseUserRepository().getUser()).roles);
     _todosSubscription?.cancel();
     _todosRepository.getTodo(_todoId).then((val) {
-        add(TodoUpdated(val));
+      add(TodoUpdated(val));
     });
   }
 

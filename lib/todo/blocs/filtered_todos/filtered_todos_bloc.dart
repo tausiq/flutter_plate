@@ -14,7 +14,8 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
 
   FilteredTodosBloc({@required TodosBloc todosBloc})
       : assert(todosBloc != null),
-        _todosBloc = todosBloc {
+        _todosBloc = todosBloc,
+        super(initialState(todosBloc)) {
     _todosSubscription = todosBloc.listen((state) {
       if (state is TodosLoaded) {
         add(UpdateTodos((todosBloc.state as TodosLoaded).todos));
@@ -22,9 +23,8 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
     });
   }
 
-  @override
-  FilteredTodosState get initialState {
-    final state = _todosBloc.state;
+  static FilteredTodosState initialState(TodosBloc todosBloc) {
+    final state = todosBloc.state;
     return state is TodosLoaded
         ? FilteredTodosLoaded(state.todos, VisibilityFilter.all)
         : FilteredTodosLoading();
@@ -66,8 +66,7 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
     );
   }
 
-  List<Todo> _mapTodosToFilteredTodos(
-      List<Todo> todos, VisibilityFilter filter) {
+  List<Todo> _mapTodosToFilteredTodos(List<Todo> todos, VisibilityFilter filter) {
     return todos.where((todo) {
       if (filter == VisibilityFilter.all) {
         return true;

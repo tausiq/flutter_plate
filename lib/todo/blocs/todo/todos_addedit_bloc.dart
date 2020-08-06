@@ -16,16 +16,17 @@ class TodosAddEditBloc extends Bloc<TodosEvent, TodosState> {
 
   TodosAddEditBloc({@required TodosRepository todosRepository, String todoId})
       : assert(todosRepository != null),
-        _todosRepository = todosRepository, _todoId = todoId;
-
-  @override
-  TodosState get initialState => TodoLoading();
+        _todosRepository = todosRepository,
+        _todoId = todoId,
+        super(TodoLoading());
 
   @override
   Stream<TodosState> mapEventToState(TodosEvent event) async* {
     if (event is LoadTodo) {
-      if (_todoId == null || _todoId.isEmpty) yield TodoLoading();
-      else yield* _mapLoadTodoToState();
+      if (_todoId == null || _todoId.isEmpty)
+        yield TodoLoading();
+      else
+        yield* _mapLoadTodoToState();
     } else if (event is AddTodo) {
       yield* _mapAddTodoToState(event);
     } else if (event is UpdateTodo) {
