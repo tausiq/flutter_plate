@@ -14,18 +14,18 @@ maintainer: Md Shahab Uddin (tausiq)
 version: 1.4.0+140
 
 environment:
-  sdk: '>=2.0.0 <3.0.0'
-  flutter: 1.17.5
+  sdk: '>=2.1.0 <3.0.0'
+  flutter: 1.20.0
 
 dependencies:
-  analyzer: 0.39.10
-  bottom_navy_bar: 5.4.0
+  analyzer: 0.39.16
+  bottom_navy_bar: 5.5.0
   cached_network_image: 2.2.0+1
   connection_status_bar: 1.1.2
   cloud_firestore: 0.13.7
   dio: 3.0.9
   easy_localization: 2.3.2
-  equatable: 1.2.0
+  equatable: 1.2.3
   fluro: 1.6.3
   firebase_auth: 0.16.1
   flutter_bloc: 4.0.1 # depends on bloc (meta), provider
@@ -35,17 +35,17 @@ dependencies:
   flutter_stetho: 0.5.2
   font_awesome_flutter: 8.8.1
   google_sign_in: 4.5.1
-  http: 0.12.1
+  http: 0.12.2
   json_annotation: 3.0.1
   logger: 0.9.1
   path_provider: 1.6.11
   preferences: 5.2.0 # depends on shared_preferences
-  pull_to_refresh: 1.6.0
+  pull_to_refresh: 1.6.1
   rxdart: 0.24.1
   sentry: 3.0.1
   settings_ui: 0.3.0
   smooth_star_rating: 1.1.1
-  sprintf: 4.0.2
+  sprintf: 4.1.0
   sqflite: 1.3.1
   wave: 0.0.8
 
@@ -56,14 +56,14 @@ dependencies:
 dev_dependencies:
   bloc_test: 5.1.0
   build_runner: 1.10.0
-  floor_generator: 0.13.0
+  floor_generator: 0.14.0
   flutter_driver:
       sdk: flutter
   flutter_native_splash: 0.1.9
   flutter_test:
    sdk: flutter
   json_serializable: 3.3.0
-  test: 1.14.4
+  test: 1.15.2
 
 flutter_native_splash:
     image: images/logo.png
