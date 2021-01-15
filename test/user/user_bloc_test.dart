@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/user/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-import 'package:flutter_plate/user/user.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -33,7 +33,7 @@ void main() {
     test('emits [UserLoading] for empty user list', () {
       final expectedResponse = [UserListLoading()];
 
-      when(userRepository.users()).thenAnswer((_) => Stream<List<User>>.empty());
+      when(userRepository.users()).thenAnswer((_) => Stream<List<AppUser>>.empty());
 
       expectLater(
         userBloc.state,
@@ -46,13 +46,13 @@ void main() {
 
   group('LoadUsers', () {
     test('emits [UsersLoaded] for non-empty user list', () {
-      List<User> users = List();
-      users.add(User());
-      users.add(User());
+      List<AppUser> users = List();
+      users.add(AppUser());
+      users.add(AppUser());
 
       final expectedResponse = [UserListLoading(), UserListLoaded(users)];
 
-      when(userRepository.users()).thenAnswer((_) => Stream<List<User>>.value(users));
+      when(userRepository.users()).thenAnswer((_) => Stream<List<AppUser>>.value(users));
 
       expectLater(
         userBloc.state,

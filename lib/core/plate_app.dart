@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_plate/app/model/api/api_provider.dart';
@@ -8,8 +9,8 @@ import 'package:flutter_plate/app/model/db/app_db_migration_listener.dart';
 import 'package:flutter_plate/app/model/db/db_app_store_repo.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/repo/local/pref_repo.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:logger/logger.dart';
@@ -23,16 +24,17 @@ abstract class Application {
 }
 
 class PlateApp implements Application {
-  Router router;
+  FluroRouter router;
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;
   AppStoreAPIRepository appStoreAPIRepository;
   FirebaseUserRepository userRepository;
-  User loggedInUser;
+  AppUser loggedInUser;
   PrefRepo prefRepo;
 
   @override
   Future<void> onCreate() async {
+    await Firebase.initializeApp();
     _initLog();
     _initRouter();
     await _initDB();
@@ -95,13 +97,13 @@ class PlateApp implements Application {
     }
   }
 
-  void setLoggedInUser(User user) {
+  void setLoggedInUser(AppUser user) {
     loggedInUser = user;
     PrefService.setDefaultValues({'minutes_per_day_${user.id}': '30'});
   }
 
   void _initRouter() {
-    router = Router();
+    router = FluroRouter();
     AppRoutes.configureRoutes(router);
   }
 

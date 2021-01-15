@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../user.dart';
+import '../app_user.dart';
 
 abstract class UserState extends Equatable {
   UserState();
@@ -17,7 +17,7 @@ class UserListLoading extends UserState {
 }
 
 class UserListLoaded extends UserState {
-  final List<User> items;
+  final List<AppUser> items;
 
   UserListLoaded([this.items = const []]);
 
@@ -30,7 +30,6 @@ class UserListLoaded extends UserState {
   List<Object> get props => [];
 }
 
-
 class UserListNotLoaded extends UserState {
   @override
   String toString() {
@@ -40,4 +39,3 @@ class UserListNotLoaded extends UserState {
   @override
   List<Object> get props => [];
 }
-

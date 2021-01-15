@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/settings_page.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/user/users_page.dart';
 import 'package:flutter_plate/widgets/empty_view.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
@@ -21,7 +21,7 @@ import 'filter_actions.dart';
 class WorkoutPage extends StatefulWidget {
   static const String PATH = '/workout';
 
-  final User user;
+  final AppUser user;
 
   WorkoutPage({Key key, @required this.user}) : super(key: key);
 
@@ -83,10 +83,10 @@ class _WorkoutPageState extends State<WorkoutPage> {
       toDate = state.toDate ?? DateTime.now();
       fromTime = state.fromTime ?? TimeOfDay(hour: 0, minute: 0);
       toTime = state.toTime ?? TimeOfDay(hour: 23, minute: 59);
-      fromDate = DateTime(fromDate.year, fromDate.month, fromDate.day,
-          fromTime.hour, fromTime.minute);
-      toDate = DateTime(
-          toDate.year, toDate.month, toDate.day, toTime.hour, toTime.minute);
+      fromDate = DateTime(
+          fromDate.year, fromDate.month, fromDate.day, fromTime.hour, fromTime.minute);
+      toDate =
+          DateTime(toDate.year, toDate.month, toDate.day, toTime.hour, toTime.minute);
       minutes = state.totalMinutes;
     }
 
@@ -119,24 +119,18 @@ class _WorkoutPageState extends State<WorkoutPage> {
                 )
               ],
             ),
-            decoration:
-                BoxDecoration(color: Theme.of(context).primaryColorDark)),
+            decoration: BoxDecoration(color: Theme.of(context).primaryColorDark)),
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: items != null ? items.length : 0,
             itemBuilder: (context, index) {
               final item = items[index];
-              DateTime fullDateTime = DateTime(
-                  item.dateTime.year,
-                  item.dateTime.month,
-                  item.dateTime.day,
-                  item.timeOfDay.hour,
-                  item.timeOfDay.minute);
+              DateTime fullDateTime = DateTime(item.dateTime.year, item.dateTime.month,
+                  item.dateTime.day, item.timeOfDay.hour, item.timeOfDay.minute);
               return ListTile(
                 title: Text(item.title),
-                subtitle: Text(
-                    DateFormat('MMM dd, yyyy hh:mm a').format(fullDateTime)),
+                subtitle: Text(DateFormat('MMM dd, yyyy hh:mm a').format(fullDateTime)),
                 trailing: Chip(
                   label: Text(
                     item.minutes.toString(),
@@ -149,8 +143,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
                       : Theme.of(context).primaryColor,
                 ),
                 onTap: () async {
-                  AppProvider.getRouter(context).navigateTo(context,
-                      WorkoutAddEditPage.generatePath(true, workoutId: item.id));
+                  AppProvider.getRouter(context).navigateTo(
+                      context, WorkoutAddEditPage.generatePath(true, workoutId: item.id));
                 },
               );
             },
@@ -160,7 +154,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     );
   }
 
-  getActions(WorkoutBloc bloc, User user) {
+  getActions(WorkoutBloc bloc, AppUser user) {
     final ret = <Widget>[];
     ret.add(IconButton(
       icon: Icon(Icons.refresh),
@@ -172,9 +166,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     ret.add(IconButton(
       icon: Icon(Icons.settings),
       onPressed: () {
-        AppProvider.getRouter(context)
-            .navigateTo(context, SettingsPage.PATH)
-            .then((val) {
+        AppProvider.getRouter(context).navigateTo(context, SettingsPage.PATH).then((val) {
           bloc.add(LoadAllWorkouts());
         });
       },
@@ -185,8 +177,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
       tooltip: 'Select a day',
       onPressed: () async {
         await showDialog<Null>(
-            context: context,
-            builder: (BuildContext context) => CalendarActions(bloc));
+            context: context, builder: (BuildContext context) => CalendarActions(bloc));
       },
     ));
 

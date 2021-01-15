@@ -5,14 +5,14 @@ import 'package:equatable/equatable.dart';
 /// Flutter Application. Having the separation between models and entities
 /// allows us to switch our data provider at any time and only have to change
 /// the the toEntity and fromEntity conversion in our model layer.
-class UserEntity extends Equatable {
+class AppUserEntity extends Equatable {
   final String firstName;
   final String lastName;
   final Map<String, dynamic> roles;
   final String email;
   final String id;
 
-  UserEntity(this.id, this.email, this.firstName, this.lastName, this.roles);
+  AppUserEntity(this.id, this.email, this.firstName, this.lastName, this.roles);
 
   Map<String, Object> toJson() {
     return {
@@ -22,14 +22,13 @@ class UserEntity extends Equatable {
     };
   }
 
-
   @override
   String toString() {
     return 'UserEntity{firstName: $firstName, lastName: $lastName, roles: $roles, email: $email, id: $id}';
   }
 
-  static UserEntity fromJson(Map<String, Object> json) {
-    return UserEntity(
+  static AppUserEntity fromJson(Map<String, Object> json) {
+    return AppUserEntity(
       json['id'] as String,
       json['email'] as String,
       json['firstName'] as String,
@@ -38,15 +37,17 @@ class UserEntity extends Equatable {
     );
   }
 
-  static UserEntity fromSnapshot(DocumentSnapshot snap) {
-    return UserEntity(
-      snap.documentID,
-      (snap.data ?? const {})['email'] ?? '',
-      (snap.data ?? const {})['firstName'] ?? '',
-      (snap.data ?? const {})['lastName'] ?? '',
+  static AppUserEntity fromSnapshot(DocumentSnapshot snap) {
+    final data = snap.data() ?? const {};
+
+    return AppUserEntity(
+      snap.id,
+      data['email'] ?? '',
+      data['firstName'] ?? '',
+      data['lastName'] ?? '',
       // snap.data['firstName'] ?? '',
       // snap.data['lastName'] ?? '',
-      new Map<String, dynamic>.from((snap.data ?? const {})['roles'] ?? {}),
+      new Map<String, dynamic>.from(data['roles'] ?? {}),
     );
   }
 

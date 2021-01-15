@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 
 import 'bloc/bloc.dart';
 import 'nav_drawer.dart';
@@ -9,7 +9,7 @@ import 'nav_drawer.dart';
 class HomePage extends StatefulWidget {
   static const String PATH = '/home';
 
-  final User user;
+  final AppUser user;
 
   HomePage({Key key, @required this.user}) : super(key: key);
 

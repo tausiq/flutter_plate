@@ -5,6 +5,7 @@ import fileinput
 import parse 
 import subprocess
 
+
 def increase_build_number():
     pubspec_path = 'pubspec.yaml'
 
@@ -33,6 +34,7 @@ def increase_build_number():
 def get_packages():
     subprocess.run(["flutter", "clean"])
     subprocess.run(["flutter", "packages", "get"])
+
 
 def build(platform = 'all'):
     if platform == 'all':

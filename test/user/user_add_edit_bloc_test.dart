@@ -1,6 +1,6 @@
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/user/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-import 'package:flutter_plate/user/user.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -48,7 +48,7 @@ void main() {
 
   group('UpdateUser', () {
     test('emits [UserLoading] after updating a user', () {
-      User user = User();
+      AppUser user = AppUser();
 
       final expectedResponse = [UserListLoading()];
 

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_plate/core/app_bloc_delegate.dart';
 import 'package:flutter_plate/core/app_component.dart';
 import 'package:flutter_plate/core/plate_app.dart';
-import 'package:flutter_stetho/flutter_stetho.dart';
 import 'package:sentry/sentry.dart';
 
 enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, EARLY }
@@ -52,7 +51,6 @@ class Env {
     if (EnvType.DEVELOPMENT == environmentType ||
         EnvType.EARLY == environmentType ||
         EnvType.STAGING == environmentType) {
-      Stetho.initialize();
       Bloc.observer = AppBlocDelegate();
     }
 

@@ -1,16 +1,15 @@
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/workout/workout.dart';
 
 class WorkoutService {
   Workout workout;
-  User user;
+  AppUser user;
 
   WorkoutService(this.user, {this.workout});
 
   bool matchingRoles(List<String> allowedRoles) {
     for (int i = 0; i < allowedRoles.length; i++)
-      return user.roles.containsKey(allowedRoles[i]) &&
-          user.roles[allowedRoles[i]];
+      return user.roles.containsKey(allowedRoles[i]) && user.roles[allowedRoles[i]];
     return false;
   }
 

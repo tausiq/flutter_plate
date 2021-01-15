@@ -1,6 +1,6 @@
 import 'package:flutter_plate/auth/bloc/bloc.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-import 'package:flutter_plate/user/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -46,7 +46,7 @@ void main() {
     test('emits [uninitialized, loading, authenticated] when token is persisted', () {
       final expectedResponse = [
         Uninitialized(),
-        Authenticated(User()),
+        Authenticated(AppUser()),
       ];
 
       expectLater(

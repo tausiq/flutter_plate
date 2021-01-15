@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../user.dart';
+import '../app_user.dart';
 
 abstract class UserEvent extends Equatable {
   UserEvent();
@@ -17,7 +17,7 @@ class LoadUsers extends UserEvent {
 }
 
 class UsersUpdated extends UserEvent {
-  final List<User> items;
+  final List<AppUser> items;
 
   UsersUpdated(this.items);
 
@@ -29,4 +29,3 @@ class UsersUpdated extends UserEvent {
   @override
   List<Object> get props => [];
 }
-

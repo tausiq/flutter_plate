@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/core/app_provider.dart';
 import 'package:flutter_plate/settings/prefs_const.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:preferences/preferences.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -13,7 +13,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    User user = AppProvider.getApplication(context).loggedInUser;
+    AppUser user = AppProvider.getApplication(context).loggedInUser;
 
     return Scaffold(
       appBar: AppBar(

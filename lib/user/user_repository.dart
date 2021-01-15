@@ -1,15 +1,14 @@
 import 'dart:async';
 
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 
 abstract class UserRepository {
   Future<bool> isSignedIn();
   Future<void> authenticate();
   Future<String> getUserId();
-  Stream<List<User>> users();
-  Future<void> updateUser(User item);
-  Future<User> getUserById(String id);
-  Future<void> addNewUser(User item, String password);
-  Future<void> deleteUser(User item);
-
+  Stream<List<AppUser>> users();
+  Future<void> updateUser(AppUser item);
+  Future<AppUser> getUserById(String id);
+  Future<void> addNewUser(AppUser item, String password);
+  Future<void> deleteUser(AppUser item);
 }

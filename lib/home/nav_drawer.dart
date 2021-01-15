@@ -13,12 +13,12 @@ import 'package:flutter_plate/settings/settings_page.dart';
 import 'package:flutter_plate/social/social_page.dart';
 import 'package:flutter_plate/timer/timer_page.dart';
 import 'package:flutter_plate/todo/todo_page.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/user/users_page.dart';
 import 'package:flutter_plate/workout/workout_page.dart';
 
 class NavDrawer extends StatelessWidget {
-  final User user;
+  final AppUser user;
   final int selectedIndex;
 
   NavDrawer(this.user, this.selectedIndex);

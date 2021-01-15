@@ -1,6 +1,6 @@
-import 'user_entity.dart';
+import 'app_user_entity.dart';
 
-class User {
+class AppUser {
   final String id;
   final String firstName;
   final String lastName;
@@ -9,9 +9,9 @@ class User {
   final String phone;
   final Map<String, dynamic> roles;
 
-  User(
+  AppUser(
       {String id,
-        String firstName,
+      String firstName,
       String lastName,
       String profileImageURL,
       String email,
@@ -25,15 +25,15 @@ class User {
         this.phone = phone ?? '',
         this.roles = roles ?? Map();
 
-  User copyWith(
+  AppUser copyWith(
       {String id,
-        String firstName,
-        String lastName,
-        String profileImageURL,
-        String email,
-        String phone,
-        Map<String, dynamic> roles}) {
-    return User(
+      String firstName,
+      String lastName,
+      String profileImageURL,
+      String email,
+      String phone,
+      Map<String, dynamic> roles}) {
+    return AppUser(
       id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
@@ -44,8 +44,7 @@ class User {
     );
   }
 
-
-  User.fromMap(Map<dynamic, dynamic> val)
+  AppUser.fromMap(Map<dynamic, dynamic> val)
       : id = val['id'],
         firstName = val['first_name'],
         lastName = val['last_name'],
@@ -66,12 +65,17 @@ class User {
     };
   }
 
-  UserEntity toEntity() {
-    return UserEntity(id, email, firstName, lastName, roles);
+  AppUserEntity toEntity() {
+    return AppUserEntity(id, email, firstName, lastName, roles);
   }
 
-  static User fromEntity(UserEntity entity) {
-    return User(id: entity.id, firstName: entity.firstName, lastName: entity.lastName, email: entity.email, roles: entity.roles);
+  static AppUser fromEntity(AppUserEntity entity) {
+    return AppUser(
+        id: entity.id,
+        firstName: entity.firstName,
+        lastName: entity.lastName,
+        email: entity.email,
+        roles: entity.roles);
   }
 
   bool isAdmin() {
@@ -81,5 +85,4 @@ class User {
   bool isManager() {
     return roles.containsKey('manager');
   }
-
 }

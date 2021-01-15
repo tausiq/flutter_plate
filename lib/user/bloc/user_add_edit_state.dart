@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../user.dart';
+import '../app_user.dart';
 
 @immutable
 abstract class UserAddEditState extends Equatable {
@@ -19,7 +19,7 @@ class UserLoading extends UserAddEditState {
 }
 
 class UserLoaded extends UserAddEditState {
-  final User item;
+  final AppUser item;
 
   UserLoaded(this.item);
 

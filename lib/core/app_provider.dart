@@ -1,13 +1,12 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/core/plate_app.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 
 class AppProvider extends InheritedWidget {
   final PlateApp application;
 
-  AppProvider({Key key, Widget child, this.application})
-      : super(key: key, child: child);
+  AppProvider({Key key, Widget child, this.application}) : super(key: key, child: child);
 
   bool updateShouldNotify(_) => true;
 
@@ -15,7 +14,7 @@ class AppProvider extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType<AppProvider>();
   }
 
-  static Router getRouter(BuildContext context) {
+  static FluroRouter getRouter(BuildContext context) {
     return getApplication(context).router;
   }
 
@@ -23,8 +22,7 @@ class AppProvider extends InheritedWidget {
     return of(context).application;
   }
 
-  static User getUser(BuildContext context) {
+  static AppUser getUser(BuildContext context) {
     return getApplication(context).loggedInUser;
   }
-
 }

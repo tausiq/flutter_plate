@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../user.dart';
+import '../app_user.dart';
 
 @immutable
 abstract class UserAddEditEvent extends Equatable {
@@ -19,7 +19,7 @@ class LoadUser extends UserAddEditEvent {
 }
 
 class AddUser extends UserAddEditEvent {
-  final User user;
+  final AppUser user;
   final String password;
 
   AddUser(this.user, this.password);
@@ -34,7 +34,7 @@ class AddUser extends UserAddEditEvent {
 }
 
 class UpdateUser extends UserAddEditEvent {
-  final User item;
+  final AppUser item;
 
   UpdateUser(this.item);
 
@@ -48,7 +48,7 @@ class UpdateUser extends UserAddEditEvent {
 }
 
 class DeleteUser extends UserAddEditEvent {
-  final User item;
+  final AppUser item;
 
   DeleteUser(this.item);
 
@@ -62,7 +62,7 @@ class DeleteUser extends UserAddEditEvent {
 }
 
 class UserUpdated extends UserAddEditEvent {
-  final User item;
+  final AppUser item;
 
   UserUpdated(this.item);
 

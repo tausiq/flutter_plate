@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/core/app_provider.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 import 'package:flutter_plate/widgets/empty_view.dart';
 import 'package:flutter_plate/widgets/loading_indicator.dart';
 import 'package:flutter_plate/workout/user_workout_page.dart';
@@ -13,7 +13,7 @@ import 'user_add_edit_page.dart';
 class UsersPage extends StatefulWidget {
   static const String PATH = '/users';
 
-  final User user;
+  final AppUser user;
 
   UsersPage({Key key, @required this.user}) : super(key: key);
 
@@ -67,19 +67,19 @@ class _UsersPageState extends State<UsersPage> {
           trailing: _getRoleChip(item),
           onTap: () async {
             if (widget.user.isManager()) {
-              AppProvider.getRouter(context).navigateTo(context, UserAddEditPage.generatePath(true, userId: item.id));
-            } else if(widget.user.isAdmin()) {
+              AppProvider.getRouter(context).navigateTo(
+                  context, UserAddEditPage.generatePath(true, userId: item.id));
+            } else if (widget.user.isAdmin()) {
               AppProvider.getRouter(context)
                   .navigateTo(context, UserWorkoutPage.generatePath(item.id));
             }
-
           },
         );
       },
     );
   }
 
-  _getRoleChip(User item) {
+  _getRoleChip(AppUser item) {
     MaterialColor color;
     String role;
     if (item.roles.containsKey('admin') && item.roles['admin']) {

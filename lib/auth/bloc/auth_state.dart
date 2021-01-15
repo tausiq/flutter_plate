@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_plate/user/user.dart';
+import 'package:flutter_plate/user/app_user.dart';
 
 /// Since we're using Equatable to allow us to compare different instances
 /// of AuthenticationState we need to pass any properties to the superclass.
@@ -19,7 +19,7 @@ class Uninitialized extends AuthState {
 }
 
 class Authenticated extends AuthState {
-  final User user;
+  final AppUser user;
 
   const Authenticated(this.user);
 

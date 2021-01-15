@@ -14,7 +14,8 @@ class WorkoutEntity extends Equatable {
   final String title;
   final String userId;
 
-  WorkoutEntity(this.dateTime, this.timeOfDay, this.id, this.userId, this.title, this.minutes);
+  WorkoutEntity(
+      this.dateTime, this.timeOfDay, this.id, this.userId, this.title, this.minutes);
 
   Map<String, Object> toJson() {
     return {
@@ -44,20 +45,30 @@ class WorkoutEntity extends Equatable {
   }
 
   static WorkoutEntity fromSnapshot(DocumentSnapshot snap) {
+    final data = snap.data() ?? const {};
     return WorkoutEntity(
-      DateTime.fromMillisecondsSinceEpoch(snap.data['dateTime']),
-            TimeOfDay.fromDateTime(DateTime.fromMillisecondsSinceEpoch(snap.data['dateTime'] + snap.data['timeOfDay'])),
-      snap.documentID,
-      snap.data['userId'],
-      snap.data['title'],
-      snap.data['calory'],
+      DateTime.fromMillisecondsSinceEpoch(data['dateTime']),
+      TimeOfDay.fromDateTime(
+          DateTime.fromMillisecondsSinceEpoch(data['dateTime'] + data['timeOfDay'])),
+      snap.id,
+      data['userId'],
+      data['title'],
+      data['calory'],
     );
   }
 
   Map<String, Object> toDocument() {
     return {
-      'dateTime': DateTime(dateTime.year, dateTime.month, dateTime.day).toUtc().millisecondsSinceEpoch,
-      'timeOfDay': DateTime(dateTime.year, dateTime.month, dateTime.day, timeOfDay.hour, timeOfDay.minute).toUtc().millisecondsSinceEpoch - DateTime(dateTime.year, dateTime.month, dateTime.day).toUtc().millisecondsSinceEpoch,
+      'dateTime': DateTime(dateTime.year, dateTime.month, dateTime.day)
+          .toUtc()
+          .millisecondsSinceEpoch,
+      'timeOfDay': DateTime(dateTime.year, dateTime.month, dateTime.day, timeOfDay.hour,
+                  timeOfDay.minute)
+              .toUtc()
+              .millisecondsSinceEpoch -
+          DateTime(dateTime.year, dateTime.month, dateTime.day)
+              .toUtc()
+              .millisecondsSinceEpoch,
       'title': title,
       'calory': minutes,
       'userId': userId,

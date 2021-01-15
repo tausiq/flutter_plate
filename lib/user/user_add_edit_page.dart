@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'app_user.dart';
 import 'bloc/bloc.dart';
 import 'firebase_user_repository.dart';
-import 'user.dart';
 
 class UserAddEditPage extends StatefulWidget {
   static const String PATH = '/addedituser';
@@ -158,7 +158,8 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
                   } else {
                     _bloc.add(
                       AddUser(
-                          User(firstName: _firstName, lastName: _lastName, email: _email),
+                          AppUser(
+                              firstName: _firstName, lastName: _lastName, email: _email),
                           _password),
                     );
                   }
