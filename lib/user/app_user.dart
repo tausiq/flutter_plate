@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'app_user_entity.dart';
 
 class AppUser {
@@ -42,6 +44,11 @@ class AppUser {
       phone: phone ?? this.phone,
       roles: roles ?? this.roles,
     );
+  }
+
+  factory AppUser.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snap) {
+    final data = snap.data() ?? const {};
+    return AppUser();
   }
 
   AppUser.fromMap(Map<dynamic, dynamic> val)

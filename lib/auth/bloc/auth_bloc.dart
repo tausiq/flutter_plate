@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:meta/meta.dart';
-import 'package:preferences/preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bloc.dart';
 
@@ -46,13 +46,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapLoggedInToState() async* {
     final user = await _userRepository.getUser();
-    PrefService.setString('user_id', user.id);
+    (await SharedPreferences.getInstance()).setString('user_id', user.id);
     yield Authenticated(user);
   }
 
   Stream<AuthState> _mapLoggedOutToState() async* {
     yield Unauthenticated();
-    PrefService.clear();
+    // PrefService.clear();
     await _userRepository.signOut();
   }
 }

@@ -11,7 +11,7 @@ import 'package:meta/meta.dart';
 class FirebaseUserRepository implements UserRepository {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final CollectionReference _usercollection;
+  final CollectionReference<Map<String, dynamic>> _usercollection;
 
   /// If FirebaseAuth and/or GoogleSignIn are not injected into the UserRepository,
   /// then we instantiate them internally. This allows us to be able to inject
@@ -117,9 +117,7 @@ class FirebaseUserRepository implements UserRepository {
   @override
   Stream<List<AppUser>> users() {
     return _usercollection.snapshots().map((item) {
-      return item.docs
-          .map((doc) => AppUser.fromEntity(AppUserEntity.fromSnapshot(doc)))
-          .toList();
+      return item.docs.map((doc) => AppUser.fromSnapshot(doc)).toList();
     });
   }
 

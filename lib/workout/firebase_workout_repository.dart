@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
-import 'package:preferences/preferences.dart';
+
+// import 'package:preferences/preferences.dart';
 
 import 'workout.dart';
 import 'workout_entity.dart';
@@ -69,7 +70,7 @@ class FirebaseWorkoutsRepository implements WorkoutRepository {
         .map((snapshot) {
       return snapshot.docs
           .map((doc) => Workout.fromEntity(WorkoutEntity.fromSnapshot(doc)))
-          .where((doc) => doc.userId == PrefService.getString('user_id'))
+          .where((doc) => doc.userId == "") // PrefService.getString('user_id'))
           .where((doc) =>
               doc.timeOfDay.hour * 60 * 60 * 1000 + doc.timeOfDay.minute * 60 * 1000 >=
                   fTime &&

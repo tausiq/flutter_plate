@@ -65,7 +65,7 @@ class _WorkoutAddEditPageState extends State<WorkoutAddEditPage> {
       ..add(LoadWorkout());
 
     return BlocBuilder<WorkoutAddEditBloc, WorkoutAddEditState>(
-        cubit: _bloc,
+        bloc: _bloc,
         builder: (context, state) {
           final workout = state is WorkoutLoaded ? state.item : null;
           if (state is WorkoutLoaded) {

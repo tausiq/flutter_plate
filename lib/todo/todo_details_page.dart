@@ -21,7 +21,7 @@ class TodoDetailsPage extends StatelessWidget {
         TodoDetailsBloc(todosRepository: FirebaseTodosRepository(), todoId: id)
           ..add(LoadTodo());
     return BlocBuilder<TodoDetailsBloc, TodosState>(
-      cubit: todoBloc,
+      bloc: todoBloc,
       builder: (context, state) {
         final todo = state is TodoLoaded ? state.todo : null;
         return Scaffold(

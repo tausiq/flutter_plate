@@ -8,7 +8,6 @@ import 'package:flutter_plate/workout/bloc/workouts_event.dart';
 import 'package:flutter_plate/workout/bloc/workouts_state.dart';
 import 'package:flutter_plate/workout/workout_repository.dart';
 import 'package:meta/meta.dart';
-import 'package:preferences/preference_service.dart';
 
 class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
   final WorkoutRepository _workoutsRepository;
@@ -48,8 +47,10 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
 
   Stream<WorkoutListState> _mapLoadWorkoutsToState() async* {
     _workoutsSubscription?.cancel();
-    _workoutsSubscription =
-        _workoutsRepository.workoutsByUserId(PrefService.getString('user_id')).listen(
+    _workoutsSubscription = _workoutsRepository
+        .workoutsByUserId("" //PrefService.getString('user_id')
+            )
+        .listen(
       (workouts) {
         add(
           WorkoutsUpdated(workouts),
@@ -102,10 +103,11 @@ class WorkoutBloc extends Bloc<WorkoutsEvent, WorkoutListState> {
       toTime = event.toTime;
     }
 
-    int diff = (_user == null)
-        ? 0
-        : totalCalories -
-            int.tryParse(PrefService.getString('minutes_per_day_${_user.id}'));
+    // int diff = (_user == null)
+    //     ? 0
+    //     : totalCalories -
+    //         int.tryParse(PrefService.getString('minutes_per_day_${_user.id}'));
+    int diff = 0;
     if (toDate.year != fromDate.year ||
         toDate.month != fromDate.month ||
         toDate.day != fromDate.day) diff = 0;

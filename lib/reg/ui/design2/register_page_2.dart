@@ -122,7 +122,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
 //        });
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       body: Container(
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(

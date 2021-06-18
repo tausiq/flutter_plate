@@ -13,7 +13,8 @@ import 'package:flutter_plate/workout/firebase_workout_repository.dart';
 import 'package:flutter_plate/workout/workout.dart';
 import 'package:flutter_plate/workout/workout_add_edit_page.dart';
 import 'package:intl/intl.dart';
-import 'package:preferences/preferences.dart';
+
+// import 'package:preferences/preferences.dart';
 
 import 'calendar_actions.dart';
 import 'filter_actions.dart';
@@ -113,7 +114,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   style: TextStyle(color: Colors.white, fontSize: 12.0),
                 ),
                 Text(
-                  'Total Mins: $minutes        Allowed Mins: ${PrefService.getString('minutes_per_day')}/day',
+                  'Total Mins: $minutes        Allowed Mins: ${"" //PrefService.getString
+                  // ('minutes_per_day')
+                  }/day',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 12.0),
                 )

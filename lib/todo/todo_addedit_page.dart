@@ -55,7 +55,7 @@ class _TodoAddEditPageState extends State<TodoAddEditPage> {
       ..add(LoadTodo());
 
     return BlocBuilder<TodosAddEditBloc, TodosState>(
-        cubit: _bloc,
+        bloc: _bloc,
         builder: (context, state) {
           final todo = state is TodoLoaded ? state.todo : null;
           _taskController.text = isEditing ? todo?.task : '';

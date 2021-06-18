@@ -6,7 +6,6 @@ import 'package:flutter_plate/login/ui/design1/splash_page.dart';
 import 'package:flutter_plate/login/ui/design2/landing_page_2.dart';
 import 'package:flutter_plate/reg/ui/design1/register_page.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
-import 'package:preferences/preferences.dart';
 
 import 'bloc/auth_bloc.dart';
 import 'bloc/bloc.dart';
@@ -21,7 +20,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
-      cubit: BlocProvider.of<AuthBloc>(context),
+      bloc: BlocProvider.of<AuthBloc>(context),
       builder: _builder,
     );
   }
@@ -32,7 +31,6 @@ class AuthPage extends StatelessWidget {
     }
     if (state is Authenticated) {
       AppProvider.getApplication(context).setLoggedInUser(state.user);
-      PrefService.setString('user_id', state.user.id);
       return HomePage(
         user: state.user,
       );

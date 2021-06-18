@@ -17,8 +17,8 @@ class AppBlocDelegate extends BlocObserver {
   }
 
   @override
-  void onError(Cubit bloc, Object error, StackTrace stacktrace) {
-    super.onError(bloc, error, stacktrace);
-    Log.e(error.toString() + bloc.toString(), error, stacktrace);
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    super.onError(bloc, error, stackTrace);
+    Log.e(error.toString() + bloc.toString(), error, stackTrace);
   }
 }

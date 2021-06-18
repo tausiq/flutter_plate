@@ -83,7 +83,7 @@ class LoginForm2State extends State<LoginForm2> {
           }
         },
         child: BlocBuilder<LoginBloc, LoginState>(
-          cubit: _loginBloc,
+          bloc: _loginBloc,
           builder: (
             BuildContext context,
             LoginState loginState,

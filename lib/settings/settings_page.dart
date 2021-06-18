@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/core/app_provider.dart';
-import 'package:flutter_plate/settings/prefs_const.dart';
 import 'package:flutter_plate/user/app_user.dart';
-import 'package:preferences/preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   static const String PATH = '/settings';
@@ -19,36 +17,37 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text('Settings'),
       ),
-      body: PreferencePage([
-        PreferenceTitle('Profile'),
-        PreferenceText(
-          'Name: ' + user.firstName + " " + user.lastName,
-          style: TextStyle(color: Colors.grey),
-        ),
-        PreferenceText(
-          'Email: ' + user.email,
-          style: TextStyle(color: Colors.grey),
-        ),
-        PreferenceTitle('Configuration'),
-        PreferenceDialogLink(
-          'Daily Workout',
-          dialog: PreferenceDialog(
-            [
-              TextFieldPreference(
-                'Enter Workout Minute',
-                WORKOUT_MIN_PER_DAY + '_${user.id}',
-                padding: const EdgeInsets.only(top: 8.0),
-                autofocus: true,
-                maxLines: 1,
-              )
-            ],
-            title: 'Workout Minute',
-            cancelText: 'Cancel',
-            submitText: 'Save',
-            onlySaveOnSubmit: true,
-          ),
-        ),
-      ]),
+      // body: PreferencePage([
+      //   PreferenceTitle('Profile'),
+      //   PreferenceText(
+      //     'Name: ' + user.firstName + " " + user.lastName,
+      //     style: TextStyle(color: Colors.grey),
+      //   ),
+      //   PreferenceText(
+      //     'Email: ' + user.email,
+      //     style: TextStyle(color: Colors.grey),
+      //   ),
+      //   PreferenceTitle('Configuration'),
+      //   PreferenceDialogLink(
+      //     'Daily Workout',
+      //     dialog: PreferenceDialog(
+      //       [
+      //         TextFieldPreference(
+      //           'Enter Workout Minute',
+      //           WORKOUT_MIN_PER_DAY + '_${user.id}',
+      //           padding: const EdgeInsets.only(top: 8.0),
+      //           autofocus: true,
+      //           maxLines: 1,
+      //         )
+      //       ],
+      //       title: 'Workout Minute',
+      //       cancelText: 'Cancel',
+      //       submitText: 'Save',
+      //       onlySaveOnSubmit: true,
+      //     ),
+      //   ),
+      // ]
+      // ),
     );
   }
 }

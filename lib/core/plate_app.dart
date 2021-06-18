@@ -14,7 +14,6 @@ import 'package:flutter_plate/user/firebase_user_repository.dart';
 import 'package:flutter_plate/util/db/DatabaseHelper.dart';
 import 'package:flutter_plate/util/log/app_log.dart';
 import 'package:logger/logger.dart';
-import 'package:preferences/preferences.dart';
 
 import 'app_routes.dart';
 
@@ -99,7 +98,7 @@ class PlateApp implements Application {
 
   void setLoggedInUser(AppUser user) {
     loggedInUser = user;
-    PrefService.setDefaultValues({'minutes_per_day_${user.id}': '30'});
+    // PrefService.setDefaultValues({'minutes_per_day_${user.id}': '30'});
   }
 
   void _initRouter() {

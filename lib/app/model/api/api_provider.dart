@@ -6,7 +6,7 @@ import 'package:flutter_plate/app/model/pojo/response/LookupResponse.dart';
 import 'package:flutter_plate/app/model/pojo/response/TopAppResponse.dart';
 import 'package:flutter_plate/config/Env.dart';
 import 'package:flutter_plate/util/http/HttpException.dart';
-import 'package:flutter_plate/util/log/dio_logger.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:sprintf/sprintf.dart';
 
 class APIProvider {
@@ -14,8 +14,7 @@ class APIProvider {
 
   static const String _baseUrl = 'https://itunes.apple.com/us';
   static const String _TOP_FREE_APP_API = '/rss/newapplications/limit=%d/json';
-  static const String _TOP_FEATURE_APP_API =
-      '/rss/newpaidapplications/limit=%d/json';
+  static const String _TOP_FEATURE_APP_API = '/rss/newpaidapplications/limit=%d/json';
   static const String _APP_DETAIL_API = '/lookup/json';
 
   Dio _dio;
@@ -28,23 +27,19 @@ class APIProvider {
     if (EnvType.DEVELOPMENT == Env.value.environmentType ||
         EnvType.EARLY == Env.value.environmentType ||
         EnvType.STAGING == Env.value.environmentType) {
-      _dio.interceptors
-          .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
-        DioLogger.onSend(options);
-        return options;
-      }, onResponse: (Response response) {
-        DioLogger.onSuccess(response);
-        return response;
-      }, onError: (DioError error) {
-        DioLogger.onError(error);
-        return error;
-      }));
+      _dio.interceptors.add(PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseBody: true,
+          responseHeader: false,
+          error: true,
+          compact: true,
+          maxWidth: 90));
     }
   }
 
   Future<TopAppResponse> getTopFreeApp(int limit) async {
-    Response response =
-        await _dio.get(sprintf(APIProvider._TOP_FREE_APP_API, [limit]));
+    Response response = await _dio.get(sprintf(APIProvider._TOP_FREE_APP_API, [limit]));
     throwIfNoSuccess(response);
     return TopAppResponse.fromJson(jsonDecode(response.data));
   }
@@ -57,8 +52,8 @@ class APIProvider {
   }
 
   Future<LookupResponse> getAppDetail(String id) async {
-    Response response = await _dio
-        .get(APIProvider._APP_DETAIL_API, queryParameters: {'id': id});
+    Response response =
+        await _dio.get(APIProvider._APP_DETAIL_API, queryParameters: {'id': id});
     throwIfNoSuccess(response);
     return LookupResponse.fromJson(jsonDecode(response.data));
   }

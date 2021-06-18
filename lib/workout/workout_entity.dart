@@ -44,7 +44,7 @@ class WorkoutEntity extends Equatable {
     );
   }
 
-  static WorkoutEntity fromSnapshot(DocumentSnapshot snap) {
+  static WorkoutEntity fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snap) {
     final data = snap.data() ?? const {};
     return WorkoutEntity(
       DateTime.fromMillisecondsSinceEpoch(data['dateTime']),

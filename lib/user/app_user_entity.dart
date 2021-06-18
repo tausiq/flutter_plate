@@ -37,7 +37,7 @@ class AppUserEntity extends Equatable {
     );
   }
 
-  static AppUserEntity fromSnapshot(DocumentSnapshot snap) {
+  static AppUserEntity fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snap) {
     final data = snap.data() ?? const {};
 
     return AppUserEntity(

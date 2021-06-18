@@ -51,7 +51,7 @@ class _UserAddEditPageState extends State<UserAddEditPage> {
           ..add(LoadUser());
 
     return BlocBuilder<UserAddEditBloc, UserAddEditState>(
-        cubit: _bloc,
+        bloc: _bloc,
         builder: (context, state) {
           final item = state is UserLoaded ? state.item : null;
           if (state is UserLoaded) {
