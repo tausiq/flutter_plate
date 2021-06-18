@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
+import 'package:flutter_plate/constants/Assets.dart';
 import 'package:flutter_plate/login/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 
@@ -90,7 +91,7 @@ class _LoginFormState extends State<LoginForm> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Image.asset('images/flutter_logo.png', height: 200),
+                    child: Image.asset(Assets.appLogo, height: 200),
                   ),
                   TextFormField(
                     controller: _emailController,

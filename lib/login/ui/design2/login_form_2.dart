@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_plate/auth/bloc/bloc.dart';
+import 'package:flutter_plate/constants/Assets.dart';
 import 'package:flutter_plate/login/bloc/bloc.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:flutter_plate/widgets/colored_button.dart';
@@ -97,7 +98,7 @@ class LoginForm2State extends State<LoginForm2> {
     final logo = CircleAvatar(
       backgroundColor: Colors.transparent,
       radius: 24.0,
-      child: Image.asset('images/flutter_logo.png'),
+      child: Image.asset(Assets.appLogo),
     );
 
     final email = InputFormField(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_plate/constants/Assets.dart';
 import 'package:flutter_plate/login/bloc/bloc.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 
@@ -33,7 +34,7 @@ class LoginPage2 extends StatelessWidget {
           image: DecorationImage(
             colorFilter:
                 new ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
-            image: AssetImage('images/login_bg.png'),
+            image: AssetImage(Assets.bgLogin),
             fit: BoxFit.cover,
           ),
         ),

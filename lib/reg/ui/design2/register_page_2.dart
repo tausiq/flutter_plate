@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_plate/constants/Assets.dart';
 import 'package:flutter_plate/util/validation.dart';
 import 'package:flutter_plate/widgets/colored_button.dart';
 import 'package:flutter_plate/widgets/input_form_field.dart';
@@ -28,7 +29,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
     final logo = CircleAvatar(
       backgroundColor: Colors.transparent,
       radius: 24.0,
-      child: Image.asset('images/flutter_logo.png'),
+      child: Image.asset(Assets.appLogo),
     );
 
     final nameField = InputFormField(
@@ -130,7 +131,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
             image: DecorationImage(
               colorFilter:
                   new ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
-              image: AssetImage('images/login_bg.png'),
+              image: AssetImage(Assets.bgLogin),
               fit: BoxFit.cover,
             ),
           ),

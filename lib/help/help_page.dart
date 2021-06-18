@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_plate/constants/Assets.dart';
 
 class HelpPage extends StatefulWidget {
   static const String PATH = "/about";
@@ -17,15 +18,19 @@ class _HelpPageState extends State<HelpPage> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        appBar: AppBar(title: Text('Help'),),
+        appBar: AppBar(
+          title: Text('Help'),
+        ),
         body: Column(
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top,
-                  left: 16,
-                  right: 16),
-              child: Image.asset("images/flutter_logo.png", width: 120.0, height: 120.0,),
+                  top: MediaQuery.of(context).padding.top, left: 16, right: 16),
+              child: Image.asset(
+                Assets.appLogo,
+                width: 120.0,
+                height: 120.0,
+              ),
             ),
             Container(
               padding: EdgeInsets.only(top: 8),

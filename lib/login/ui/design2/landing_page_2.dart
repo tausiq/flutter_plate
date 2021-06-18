@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_plate/constants/Assets.dart';
 import 'package:flutter_plate/reg/ui/design2/register_page_2.dart';
 import 'package:flutter_plate/user/firebase_user_repository.dart';
 
@@ -66,7 +67,7 @@ class _LandingPage2State extends State<LandingPage2> with TickerProviderStateMix
           image: DecorationImage(
             colorFilter:
                 ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
-            image: AssetImage('images/login_bg.png'),
+            image: AssetImage(Assets.bgLogin),
             fit: BoxFit.cover,
           ),
         ),
@@ -77,7 +78,7 @@ class _LandingPage2State extends State<LandingPage2> with TickerProviderStateMix
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 24.0,
-                child: Image.asset('images/flutter_logo.png'),
+                child: Image.asset(Assets.appLogo),
               ),
             ),
             Padding(
