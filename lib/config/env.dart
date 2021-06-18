@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_plate/constants/const.dart';
 import 'package:flutter_plate/core/app_bloc_delegate.dart';
 import 'package:flutter_plate/core/app_component.dart';
 import 'package:flutter_plate/core/plate_app.dart';
@@ -28,6 +30,7 @@ class Env {
   void _init() async {
     WidgetsFlutterBinding.ensureInitialized();
     await EasyLocalization.ensureInitialized();
+    await setPreferredOrientations();
 
     if (EnvType.DEVELOPMENT == environmentType ||
         EnvType.EARLY == environmentType ||
@@ -40,15 +43,22 @@ class Env {
 
     await SentryFlutter.init(
       (options) {
-        options.dsn =
-            'https://dc5de6ddcd1d4cba8463ae0759aae869@o216731.ingest.sentry.io/5197447';
+        options.dsn = Const.dnsSentry;
       },
       // Init your App.
-      appRunner: () => runApp(EasyLocalization(supportedLocales: [
-        Locale('en', 'US'),
-        Locale('fr', 'FR'),
-        Locale('bn', 'BD'),
-      ], path: 'assets/langs', child: AppComponent(application))),
+      appRunner: () => runApp(EasyLocalization(
+          supportedLocales: Const.supportedLocales,
+          path: Const.languagePath,
+          child: AppComponent(application))),
     );
+  }
+
+  Future<void> setPreferredOrientations() {
+    return SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
   }
 }
