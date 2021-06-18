@@ -14,7 +14,7 @@ class Env {
   String appName;
   String baseUrl;
   Color primarySwatch;
-  EnvType environmentType = EnvType.DEVELOPMENT;
+  EnvType environmentType;
 
   // Database Config
   int dbVersion = 1;
@@ -27,6 +27,7 @@ class Env {
 
   void _init() async {
     WidgetsFlutterBinding.ensureInitialized();
+    await EasyLocalization.ensureInitialized();
 
     if (EnvType.DEVELOPMENT == environmentType ||
         EnvType.EARLY == environmentType ||
@@ -47,7 +48,7 @@ class Env {
         Locale('en', 'US'),
         Locale('fr', 'FR'),
         Locale('bn', 'BD'),
-      ], path: 'langs', child: AppComponent(application))),
+      ], path: 'assets/langs', child: AppComponent(application))),
     );
   }
 }

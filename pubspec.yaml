@@ -1,5 +1,5 @@
 name: flutter_plate
-description: Flutter Starter Kit with Bloc pattern
+description: A Flutter starter kit with Bloc pattern
 authors:
  - Md Shahab Uddin <tausiq19@gmail.com>
 homepage: https://github.com/tausiq/flutter_plate
@@ -15,10 +15,8 @@ version: 1.4.1+141
 
 environment:
   sdk: '>=2.6.0 <3.0.0'
-  flutter: '>=1.20.0 <2.2.3'
 
 dependencies:
-  analyzer: 1.7.1
   bottom_navy_bar: 6.0.0
   cached_network_image: 3.0.0
   cloud_firestore: 2.2.2
@@ -45,11 +43,13 @@ dependencies:
   pretty_dio_logger: 1.2.0-beta-1
   pull_to_refresh: 1.6.4
   rxdart: 0.27.1
+  sembast: 3.1.0+2
   sentry_flutter: 5.1.0
   settings_ui: 1.0.0
   smooth_star_rating: 1.1.1
   sprintf: 6.0.0
   sqflite: 2.0.0+3
+  validators: 3.0.0
   wave: 0.2.0
 
   # The following adds the Cupertino Icons font to your application.
@@ -57,11 +57,13 @@ dependencies:
   # cupertino_icons: 0.1.2
 
 dev_dependencies:
+  analyzer: 1.7.1
   bloc_test: 8.0.2
   build_runner: 2.0.4
   floor_generator: 1.1.0
   flutter_driver:
       sdk: flutter
+  flutter_launcher_icons: ^0.9.0
   flutter_native_splash: 1.2.0
   flutter_test:
    sdk: flutter
@@ -70,11 +72,17 @@ dev_dependencies:
   test: 1.17.8
 
 dependency_overrides:
+    args: 2.0.0
     test_api: 0.4.1
     async: 2.7.0
 
+flutter_icons:
+    image_path: "assets/icons/ic_launcher.png"
+    android: true
+    ios: true
+
 flutter_native_splash:
-    image: images/logo.png
+    image: assets/images/logo.png
     color: "2196f3"
 
 
@@ -91,8 +99,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
-    - langs/
+    - assets/icons/
+    - assets/images/
+    - assets/langs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -108,11 +117,11 @@ flutter:
   fonts:
     - family: Cabin
       fonts:
-        - asset: fonts/Cabin/Cabin-Medium.ttf
-        - asset: fonts/Cabin/Cabin-MediumItalic.ttf
-        - asset: fonts/Cabin/Cabin-Bold.ttf
+        - asset: assets/fonts/Cabin/Cabin-Medium.ttf
+        - asset: assets/fonts/Cabin/Cabin-MediumItalic.ttf
+        - asset: assets/fonts/Cabin/Cabin-Bold.ttf
     - family: icomoon
       fonts:
-          - asset: fonts/IcoMoon.ttf
+          - asset: assets/fonts/IcoMoon.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
