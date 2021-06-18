@@ -1,4 +1,4 @@
-import 'package:flutter_plate/counter/bloc/bloc.dart';
+import 'package:flutter_plate/features/counter/bloc/bloc.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -17,7 +17,6 @@ void main() {
   });
 
   test('Counter value should be incremented', () {
-
     expectLater(
       counterBloc.state,
       emitsInOrder([0, 1]),
@@ -26,7 +25,6 @@ void main() {
   });
 
   test('Counter value should be decremented', () {
-
     expectLater(
       counterBloc.state,
       emitsInOrder([0, -1]),

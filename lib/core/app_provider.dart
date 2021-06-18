@@ -1,7 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plate/core/plate_app.dart';
-import 'package:flutter_plate/user/app_user.dart';
+import 'package:flutter_plate/features/user/app_user.dart';
 
 class AppProvider extends InheritedWidget {
   final PlateApp application;

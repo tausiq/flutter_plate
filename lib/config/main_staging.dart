@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/config/Env.dart';
+import 'package:flutter_plate/config/env.dart';
 
 void main() => Staging();
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/todo/blocs/blocs.dart';
-import 'package:flutter_plate/todo/model/visibility_filter.dart';
+import 'package:flutter_plate/features/todo/blocs/blocs.dart';
+import 'package:flutter_plate/features/todo/model/visibility_filter.dart';
 
 class FilterButton extends StatelessWidget {
   final bool visible;
@@ -11,21 +11,17 @@ class FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final defaultStyle = Theme.of(context).textTheme.body1;
-    final activeStyle = Theme.of(context)
-        .textTheme
-        .body1
-        .copyWith(color: Theme.of(context).accentColor);
+    final activeStyle =
+        Theme.of(context).textTheme.body1.copyWith(color: Theme.of(context).accentColor);
     //ignore: close_sinks
     final filteredTodosBloc = BlocProvider.of<FilteredTodosBloc>(context);
-    return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(
-        builder: (context, state) {
+    return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(builder: (context, state) {
       final button = _Button(
         onSelected: (filter) {
           filteredTodosBloc.add(UpdateFilter(filter));
         },
-        activeFilter: state is FilteredTodosLoaded
-            ? state.activeFilter
-            : VisibilityFilter.all,
+        activeFilter:
+            state is FilteredTodosLoaded ? state.activeFilter : VisibilityFilter.all,
         activeStyle: activeStyle,
         defaultStyle: defaultStyle,
       );
@@ -62,27 +58,22 @@ class _Button extends StatelessWidget {
           value: VisibilityFilter.all,
           child: Text(
             'Show All',
-            style: activeFilter == VisibilityFilter.all
-                ? activeStyle
-                : defaultStyle,
+            style: activeFilter == VisibilityFilter.all ? activeStyle : defaultStyle,
           ),
         ),
         PopupMenuItem<VisibilityFilter>(
           value: VisibilityFilter.active,
           child: Text(
             'Show Active',
-            style: activeFilter == VisibilityFilter.active
-                ? activeStyle
-                : defaultStyle,
+            style: activeFilter == VisibilityFilter.active ? activeStyle : defaultStyle,
           ),
         ),
         PopupMenuItem<VisibilityFilter>(
           value: VisibilityFilter.completed,
           child: Text(
             'Show Completed',
-            style: activeFilter == VisibilityFilter.completed
-                ? activeStyle
-                : defaultStyle,
+            style:
+                activeFilter == VisibilityFilter.completed ? activeStyle : defaultStyle,
           ),
         ),
       ],

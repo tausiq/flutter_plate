@@ -1,6 +1,6 @@
-import 'package:flutter_plate/user/app_user.dart';
-import 'package:flutter_plate/user/bloc/bloc.dart';
-import 'package:flutter_plate/user/firebase_user_repository.dart';
+import 'package:flutter_plate/features/user/app_user.dart';
+import 'package:flutter_plate/features/user/bloc/bloc.dart';
+import 'package:flutter_plate/features/user/firebase_user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

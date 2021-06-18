@@ -1,5 +1,5 @@
-import 'package:flutter_plate/workout/bloc/bloc.dart';
-import 'package:flutter_plate/workout/firebase_workout_repository.dart';
+import 'package:flutter_plate/features/workout/bloc/bloc.dart';
+import 'package:flutter_plate/features/workout/firebase_workout_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

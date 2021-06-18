@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/todo/blocs/blocs.dart';
-import 'package:flutter_plate/todo/todo_details_page.dart';
+import 'package:flutter_plate/features/todo/blocs/blocs.dart';
+import 'package:flutter_plate/features/todo/todo_details_page.dart';
 import 'package:flutter_plate/widgets/todo_item.dart';
 
 import 'delete_todo_snack_bar.dart';

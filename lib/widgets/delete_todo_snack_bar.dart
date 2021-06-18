@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plate/todo/model/models.dart';
+import 'package:flutter_plate/features/todo/model/models.dart';
 
 class DeleteTodoSnackBar extends SnackBar {
   DeleteTodoSnackBar({

@@ -1,5 +1,5 @@
-import 'package:flutter_plate/reg/bloc/bloc.dart';
-import 'package:flutter_plate/user/firebase_user_repository.dart';
+import 'package:flutter_plate/features/reg/bloc/bloc.dart';
+import 'package:flutter_plate/features/user/firebase_user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

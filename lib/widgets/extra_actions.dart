@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_plate/todo/blocs/todo/bloc.dart';
-import 'package:flutter_plate/todo/model/extra_action.dart';
+import 'package:flutter_plate/features/todo/blocs/todo/bloc.dart';
+import 'package:flutter_plate/features/todo/model/extra_action.dart';
 
 class ExtraActions extends StatelessWidget {
   @override
@@ -27,8 +27,7 @@ class ExtraActions extends StatelessWidget {
             itemBuilder: (BuildContext context) => <PopupMenuItem<ExtraAction>>[
               PopupMenuItem<ExtraAction>(
                 value: ExtraAction.toggleAllComplete,
-                child: Text(
-                    allComplete ? 'Mark all incomplete' : 'Mark all complete'),
+                child: Text(allComplete ? 'Mark all incomplete' : 'Mark all complete'),
               ),
               PopupMenuItem<ExtraAction>(
                 value: ExtraAction.clearCompleted,

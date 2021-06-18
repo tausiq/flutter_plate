@@ -1,6 +1,6 @@
-import 'package:flutter_plate/user/app_user.dart';
-import 'package:flutter_plate/workout/bloc/bloc.dart';
-import 'package:flutter_plate/workout/workout_repository.dart';
+import 'package:flutter_plate/features/user/app_user.dart';
+import 'package:flutter_plate/features/workout/bloc/bloc.dart';
+import 'package:flutter_plate/features/workout/workout_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
